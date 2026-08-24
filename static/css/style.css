@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Playwrite+AU+QLD:wght@100..400&display=swap');
+
+body{ /* Tudo na página */
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
+
+
+
+/*-------------------------------------Header----------------------------------------*/
+
+
+
+header{ /* Parte Lateral (cabeçalho) */
+    width: 270px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border-right: 1px solid #aaaaaa;
+}
+
+
+/*~~~~~~~~~~~Cores Laterais~~~~~~~~~~~~*/
+
+
+.coresLaterais{ /* 'div' das Cores da aba Lateral */
+    width: 15px;
+    height: 100%;
+}
+
+.vermelhoLateral{ /* cor vermelha da aba Lateral */
+    width: 100%;
+    height: 16%;
+    background-color: rgb(189, 82, 62);
+}
+
+.azulLateral{ /* cor azul da aba Lateral */
+    width: 100%;
+    height: 17%;
+    background-color: rgb(95, 159, 194);
+}
+
+.verdeLateral{ /* cor verde da aba lateral */
+    width: 100%;
+    height: 18%;
+    background-color: rgb(119, 188, 103);
+}
+
+.roxoLateral{ /* cor roxa da aba lateral */
+    width: 100%;
+    height: 49%;
+    background-color: rgb(144, 94, 151);
+}
+
+
+/*~~~~~~~~~~Barra Lateral~~~~~~~~~*/
+
+
+aside{ /* Tag Barra Lateral */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logoBarraLateral{ /* 'div' para logo marca */
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listaBarraLateral{ /* 'ul' para a lista da barra lateral */
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+
+.listaBarraLateral > li{ /* 'li' filho direto da 'ul' da barra lateral */
+    margin: 5px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.listaBarraLateral > li > a{ /* 'a' (hiperlink) filho direto de 'li' que é filho direto da 'ul' da barra lateral */
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.listaBarraLateral > li > a> button{ /* 'button' que é filho direto de 'a' que é filho direto de 'li' que é filho direto da 'ul' da barra lateral*/
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    justify-content: left;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.listaBarraLateral > li > a> button:hover{ /* ao passar o mouse no 'button' que é filho direto de 'a' que é filho direto de 'li' que é filho direto da 'ul' da barra lateral */
+    background-color: #ff00002b;
+    color: rgb(150, 0, 0);
+    cursor: pointer;
+}
+
+.listaBarraLateral > li > a > button > i{ /* 'i' (ícones) que é filho direto de 'button' que é filho direto de 'a' que é filho direto de 'li' que é filho direto da 'ul' da barra lateral */
+    margin-right: 10px;
+}
+
+
+
+/*-------------------------------------Main---------------------------------------------*/
+
+
+
+main{ /* Todo o corpo que não seja o header (parte principal) */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+nav{ /* barra de navegação superior */
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #aaaaaa;
+}
