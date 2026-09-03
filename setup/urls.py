@@ -1,8 +1,13 @@
 from django.contrib import admin
 from django.urls import path
-from setup.views import minha_pagina_view # <-- Importe a sua view
+from reservas.views import index # <-- Importe a sua view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', minha_pagina_view, name='home'), # <-- Rota vazia '' significa a página inicial do site
+    path('', index, name='home'), # <-- Rota vazia '' significa a página inicial do site
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
