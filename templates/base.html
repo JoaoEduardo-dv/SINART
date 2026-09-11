@@ -18,36 +18,94 @@
             <div class="roxoLateral"></div> <!--cor roxa-->
         </div>
 
-        <aside> <!--Barra Lateral-->
+        <aside class="lateralAberta"> <!--Barra Lateral-->
             
             <div class="logoBarraLateral"> <!--local da barra lateral para a logo marca-->
+                <img class="logoSinart" src="../static/img/Captura de tela 2026-08-18 165815.png" alt="Logo SINART">
                 <h3 style="margin: 0;">SINART</h3>
             </div>
 
             <ul class="listaBarraLateral"> <!--Lista com os ícones laterais-->
-                <li><a href=""><button><i class="fa-solid fa-house"></i> Inínio</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-calendar-week"></i> Reservas e salas</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-book-open"></i> Empréstimos</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-graduation-cap"></i> Aulas e Horários</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-calendar-days"></i> Calendário Acadêmico</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-table"></i> Painel Semanal</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-folder"></i> Documentos</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-users"></i> Usuários</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-gear"></i> Configurações</button></a></li>
-                <li><a href=""><button><i class="fa-solid fa-circle-user"></i> Meu Perfil</button></a></li>
+                <li><a><button><i class="fa-solid fa-house"></i> Inínio</button></a></li>
+                <li><a><button><i class="fa-solid fa-calendar-week"></i> Reservas de salas</button></a></li>
+                <li><a><button><i class="fa-solid fa-book-open"></i> Empréstimos</button></a></li>
+                <li><a><button><i class="fa-solid fa-graduation-cap"></i> Aulas e Horários</button></a></li>
+                <li><a><button><i class="fa-solid fa-calendar-days"></i> Calendário Acadêmico</button></a></li>
+                <li><a><button><i class="fa-solid fa-table"></i> Painel Semanal</button></a></li>
+                <li><a><button><i class="fa-solid fa-folder"></i> Documentos</button></a></li>
+                <li><a><button><i class="fa-solid fa-users"></i> Usuários</button></a></li>
+                <li><a><button><i class="fa-solid fa-gear"></i> Configurações</button></a></li>
+                <li><a><button><i class="fa-solid fa-circle-user"></i> Meu Perfil</button></a></li>
             </ul>
             
+        </aside>
+        <aside class="lateralFechada oculta">
+            <div class="logoBarraLateral"> <!--local da barra lateral para a logo marca-->
+                <img class="logoSinart" src="../static/img/Captura de tela 2026-08-18 165815.png" alt="Logo SINART">
+            </div>
+
+            <ul class="listaBarraLateral"> <!--Lista com os ícones laterais-->
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-house"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-calendar-week"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-book-open"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-graduation-cap"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-calendar-days"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-table"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-folder"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-users"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-gear"></i></button></a></li>
+                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-circle-user"></i></button></a></li>
+            </ul>
         </aside>
     </header>
     <main>
 
         <nav>
-            
+            <div class="lado1Nav">
+                <div class="menu">
+                    <div class="barras"></div>
+                    <div class="barras barraCentral"></div>
+                    <div class="barras"></div>
+                </div>
+                <div class="letreroMenu">Menu</div>
+            </div>
+            <div class="lado2Nav">
+                <div class="sinoNotificacoes">
+                    <i class="fa-regular fa-bell iconNotificacoes"></i>
+                    <div class="letreroSino">Notificações</div>
+                </div>
+                <div class="notificacoes">1</div>
+                <div class="Perfil">
+                    <div class="fotoPerfil"></div>
+                    <div class="nomesPerfil">
+                        <p class="nomeUsuario">João Eduardo</p>
+                        <p class="nomeCargo">Bolsista</p>
+                    </div>
+                    <button class="informacoesUsuario"><i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="informacoesPerfil">
+                        <div class="informacoes">
+                            <div class="fotoPerfilMais"></div>
+                            <div class="nomesPerfil">
+                                <p class="nomeUsuarioMais">João Eduardo</p>
+                                <p class="nomeCargoMais">Bolsista</p>
+                            </div>
+                        </div>
+                        <div class="maisInformacoes">
+                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-house"></i>Meu perfil</button>
+                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-gear"></i>Configurações</button>
+                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-left-right"></i>Trocar de conta</button>
+                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-circle-question"></i>Ajuda</button>
+                            <button class="sairPerfil info"><i class="iconesInfo fa-solid fa-right-from-bracket"></i>Sair</button>
+                        </div>
+                    </div>
+                    <div class="letreroPerfil">Informações</div>
+                </div>
+            </div>
         </nav>
         <div class="corpoPricinpal">
             
         </div>
-
     </main>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
