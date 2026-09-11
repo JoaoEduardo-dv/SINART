@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("reservas.urls"), name='home'), # <-- Rota vazia '' significa a página inicial do site
+    path("", include("reservas.urls")), # <-- Rota vazia '' significa a página inicial do site
 ]
 
 if settings.DEBUG:

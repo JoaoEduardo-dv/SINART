@@ -87,3 +87,38 @@ sinoNotificacoes.addEventListener("mouseenter", function () {
 sinoNotificacoes.addEventListener("mouseleave", function () {
     letreroSino.classList.remove("mostrar");
 });
+
+
+
+//Manter a cor da barra lateral------------------
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const lista1 = document.querySelectorAll(".lista1");
+    const lista2 = document.querySelectorAll(".lista2");
+    const lista3 = document.querySelectorAll(".lista3");
+
+    const paginaAtual = window.location.pathname;
+
+    function ativarBotoes(botoes) {
+        botoes.forEach(function (botao) {
+            botao.style.backgroundColor = "#ff00002b";
+            botao.style.color = "rgb(150, 0, 0)";
+        });
+    }
+
+    if (paginaAtual.includes("/inicio/")) {
+        ativarBotoes(lista1);
+    }
+
+    if (paginaAtual.includes("/reservas/")) {
+        ativarBotoes(lista2);
+    }
+
+    if (paginaAtual.includes("/emprestimos/")) {
+        ativarBotoes(lista3);
+    }
+
+});

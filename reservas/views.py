@@ -1,5 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
-def index (request):
-    return render (request, 'base.html')
+def inicio (request):
+    return render (request, 'inicio.html')
+
+def reservas (request):
+    return render (request, 'reservas/reservas.html')
+
+def emprestimos (request):
+    return render (request, 'emprestimos/emprestimos.html')
