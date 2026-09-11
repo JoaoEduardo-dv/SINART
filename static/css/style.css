@@ -12,6 +12,10 @@ body{ /* Tudo na página */
     font-optical-sizing: auto;
 }
 
+.iconeIcon{
+    border-radius: 50%;
+}
+
 
 
 /*-------------------------------------Header----------------------------------------*/
