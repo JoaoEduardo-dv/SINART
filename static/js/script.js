@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function ativarBotoes(botoes) {
         botoes.forEach(function (botao) {
-            botao.style.backgroundColor = "#ff00002b";
-            botao.style.color = "rgb(150, 0, 0)";
+            botao.style.backgroundColor = "rgb(255, 0, 0)";
+            botao.style.color = "rgb(255, 255, 255)";
         });
     }
 

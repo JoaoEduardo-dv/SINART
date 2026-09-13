@@ -32,8 +32,7 @@
                 <li><a href="{% url 'reservas' %}"><button class="lista2"><i class="fa-solid fa-calendar-week"></i> Reservas de salas</button></a></li>
                 <li><a href="{% url 'emprestimos' %}"><button class="lista3"><i class="fa-solid fa-book-open"></i> Empréstimos</button></a></li>
                 <li><a><button><i class="fa-solid fa-graduation-cap"></i> Aulas e Horários</button></a></li>
-                <li><a><button><i class="fa-solid fa-calendar-days"></i> Calendário Acadêmico</button></a></li>
-                <li><a><button><i class="fa-solid fa-table"></i> Painel Semanal</button></a></li>
+                <li><a><button><i class="fa-solid fa-table"></i> Painel de atividades</button></a></li>
                 <li><a><button><i class="fa-solid fa-folder"></i> Documentos</button></a></li>
                 <li><a><button><i class="fa-solid fa-users"></i> Usuários</button></a></li>
                 <li><a><button><i class="fa-solid fa-gear"></i> Configurações</button></a></li>
@@ -51,7 +50,6 @@
                 <li><a href="{% url 'reservas' %}"><button class="buttonIcons lista2"><i class="iconesLaterais fa-solid fa-calendar-week"></i></button></a></li>
                 <li><a href="{% url 'emprestimos' %}"><button class="buttonIcons lista3"><i class="iconesLaterais fa-solid fa-book-open"></i></button></a></li>
                 <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-graduation-cap"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-calendar-days"></i></button></a></li>
                 <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-table"></i></button></a></li>
                 <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-folder"></i></button></a></li>
                 <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-users"></i></button></a></li>
@@ -104,12 +102,12 @@
                 </div>
             </div>
         </nav>
-        <div class="corpoPricinpal">
-            
+        <div class="corpoPrincipal">
+            {% block content %}
+            {% endblock %}
         </div>
-        {% block content %}
-        {% endblock %}
     </main>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/inicio/inicio.js' %}"></script>
 </body>
 </html>

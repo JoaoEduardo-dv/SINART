@@ -49,6 +49,10 @@ h2{
     border: 1px solid #aaaaaa;
 }
 
+.datas > i{
+    font-size: 20pt;
+}
+
 .data{
     display: flex;
     flex-direction: column;
@@ -88,19 +92,31 @@ h2{
     flex-wrap: nowrap;
 }
 
+.acoes::-webkit-scrollbar{
+    background-color: #f9f9f9;
+    height: 10px;
+}
+
+.acoes::-webkit-scrollbar-thumb {
+    background-color: rgb(200, 200, 200);
+    width: 5px;
+    border-radius: 5px;
+}
+
 .acao{
     width: 250px;
-    height: 130px;
+    height: 100px;
     flex-shrink: 0;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
-    border-radius: 25px;
-    border: 1px solid #aaaaaa;
+    border-radius: 20px;
+    border: 1px solid rgb(239, 239, 239);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff;
 }
 
 .iconAcoes{
@@ -162,4 +178,286 @@ h2{
 .descricaoAcao{
     font-size: 10pt;
     color: #6d6d6d;
+}
+
+
+
+/*-----------------------Parte 3-------------------------*/
+
+
+
+.inicioP3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 380px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 5px;
+}
+
+.inicioP3::-webkit-scrollbar{
+    background-color: #f9f9f9;
+    height: 10px;
+}
+
+.inicioP3::-webkit-scrollbar-thumb {
+    background-color: rgb(200, 200, 200);
+    border-radius: 5px;
+}
+
+.parte3Esquerda{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    min-width: 470px;
+    max-width: 470px;
+    height: 97%;
+    border-radius: 20px;
+    border: 1px solid rgb(239, 239, 239);
+}
+
+.tituloEsquerda{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.tituloEsquerda > h3{
+    margin-left: 10px;
+}
+
+.atividadesP3{
+    width: 470px;
+    height: 275px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.atividadesP3::-webkit-scrollbar{
+    background-color: rgb(255, 255, 255);
+    width: 10px;
+}
+
+.atividadesP3::-webkit-scrollbar-thumb {
+    background-color: rgb(200, 200, 200);
+    border-radius: 5px;
+}
+
+.atividadeP3{
+    width: 100%;
+    border: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(239, 239, 239);
+}
+
+.dataAtividadeP3{
+    max-width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(239, 239, 239);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    flex: 1;
+}
+
+.dataAtividadeP3 > p, .dataAtividadeP3 > h3{
+    margin: 0;
+}
+
+.textosAtividade{
+    margin-left: 5px;
+    flex: 2;
+}
+
+.textosAtividade > p{
+    margin: 0;
+}
+
+.tituloAtividade{
+    font-weight: 700;
+}
+
+.tipoAtividadeInicio{
+    flex: 3;
+    max-width: 100px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.tipoAtividadeInicio > p{
+    padding: 2px;
+    border-radius: 12px;
+}
+
+.parte3Esquerda > button{
+    background-color: transparent;
+    width: 170px;
+    border: none;
+    color: blue;
+}
+
+/*-----------------Parte 3 Direita------------------*/
+
+.parte3Direita{
+    width: 770px;
+    height: 97%;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid rgb(239, 239, 239);
+}
+
+.painelInicioTitulo{
+    width: 100%;
+    height: 40px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.painelInicioTitulo > h3{
+    margin-left: 10px;
+}
+
+.painelInicioTitulo > button{
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    color: blue;
+}
+
+.tudoPainelInicio {
+    width: 100%;
+    height: 310px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tudoPainelInicio::-webkit-scrollbar{
+    background-color: #ffffff;
+    width: 10px;
+}
+
+.tudoPainelInicio::-webkit-scrollbar-thumb {
+    background-color: rgb(200, 200, 200);
+    width: 5px;
+    border-radius: 5px;
+}
+
+.gradePainelInicio {
+    display: grid;
+    grid-template-columns: repeat(5, 150px);
+    grid-auto-rows: minmax(230px, max-content);
+    min-width: max-content;
+}
+
+.diaPainelInicio {
+    width: 150px;
+    min-height: 310px;
+    border: 1px solid rgb(239, 239, 239);
+    border-bottom: none;
+    border-top: none;
+    box-sizing: border-box;
+}
+
+hr{
+    width: 1px;
+    height: 100%;
+    color: black;
+}
+
+.painelInicioSegunda{
+    margin-left: 10px;
+    border: none;
+}
+
+.painelInicioSexta{
+    margin-right: 10px;
+    border: none;
+}
+
+.dataPainelInicio{
+    border-bottom: 1px solid rgb(239, 239, 239);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    flex: 1;
+}
+
+.dataPainelInicio > p, h4{
+    margin: 0;
+}
+
+.atividadesPainelInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex: 2;
+}
+
+.compromissoPainelInicio{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.compromissoPainelInicio > div > p{
+    margin: 0;
+    color: black;
+}
+
+.painelInicioSegunda .horaCompromissoPainelInicio{
+    color: red;
+}
+
+.painelInicioTerca .horaCompromissoPainelInicio{
+    color: blue;
+}
+
+.painelInicioQuarta .horaCompromissoPainelInicio{
+    color: green;
+}
+
+.painelInicioQuinta .horaCompromissoPainelInicio{
+    color: purple;
+}
+
+.painelInicioSexta .horaCompromissoPainelInicio{
+    color: red;
+}
+
+.horaCompromissoPainelInicio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.horaCompromissoPainelInicio > p{
+    padding-left: 5px;
+}
+
+.descricaoCompromissoPainelInicio{
+    margin-left: 15px;
 }
