@@ -1,0 +1,40 @@
+.containerReservas{
+    width: 100%;
+    height: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoReservas{
+    width: 95%;
+    height: 95%;
+    /* background-color: brown; */
+}
+
+.reservasParte1{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: bisque; */
+}
+
+.tituloReservas > h1 , .tituloReservas > p{
+    margin: 0;
+}
+
+.reservasParte1 > button{
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    color: #ffffff;
+}
+
+.reservasParte1 i{
+    margin-right: 5px;
+}
