@@ -12,10 +12,30 @@ Reservas
                 <h1>Reservas</h1>
                 <p>Visualize, gerencie e faça reservas de salas.</p>
             </div>
-            <button><i class="fa-solid fa-plus"></i> Nova reserva</button>
+            <a href="{% url 'cadastroReservas' %}"><button><i class="fa-solid fa-plus"></i> Nova reserva</button></a>
         </div>
         <div class="reservasParte2">
-
+            <div class="esquerdaReservasP2">
+                <div class="blocoDataReservas">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <div class="dataAtualBlocoReservas"><i class="fa-regular fa-calendar"></i> 12 - 18 de maio de 2025
+                    </div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="statusDiaReservas">Hoje</div>
+            </div>
+            <div class="direitaReservasP2">
+                <div class="selecionarSalasReservasP2">
+                    <i class="fa-solid fa-filter"></i>
+                    <p>Todas as salas</p>
+                    <button><i class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="opcaoVisualizacaoReservasP2">
+                    <div class="diaReservasP2">Dia</div>
+                    <div class="semanaReservasP2">Semana</div>
+                    <div class="mesReservasP2">Mês</div>
+                </div>
+            </div>
         </div>
         <div class="reservasParte3"></div>
     </div>

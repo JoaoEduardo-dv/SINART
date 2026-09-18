@@ -117,8 +117,23 @@ document.addEventListener("DOMContentLoaded", function () {
         ativarBotoes(lista2);
     }
 
+    if (paginaAtual.includes("/cadastroReservas/")){
+        ativarBotoes(lista2);
+    }
+
     if (paginaAtual.includes("/emprestimos/")) {
         ativarBotoes(lista3);
     }
 
+});
+
+
+//------------Botão de voltar para a aba anterior a cadastro reservas------
+
+const botoesVoltar = document.querySelectorAll(".voltar");
+
+botoesVoltar.forEach(function(botao) {
+    botao.addEventListener("click", function() {
+        window.history.back();
+    });
 });

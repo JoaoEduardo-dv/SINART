@@ -26,7 +26,7 @@
     margin: 0;
 }
 
-.reservasParte1 > button{
+.reservasParte1 > a > button{
     background-color: red;
     border: none;
     border-radius: 5px;
@@ -35,6 +35,112 @@
     color: #ffffff;
 }
 
+.reservasParte1 > a{
+    z-index: 2;
+}
+
+.reservasParte1 > a:hover{
+    cursor: pointer;
+}
+
 .reservasParte1 i{
     margin-right: 5px;
+}
+
+
+/*-----------------------Parte 2 Reservas----------------------*/
+
+
+.reservasParte2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: aqua;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.esquerdaReservasP2{
+    display: flex;
+    flex-direction: row;
+    /* background-color: aquamarine; */
+    height: 100%;
+}
+
+.blocoDataReservas{
+    display: flex;
+    flex-direction: row;
+    /* background-color: blue; */
+    /* height: 100%; */
+    border-radius: 5px;
+    padding: 3px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: #ffffff;
+}
+
+.blocoDataReservas > i{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.statusDiaReservas{
+    background-color: red;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    border-radius: 5px;
+    margin-left: 20px;
+    border: none;
+}
+
+
+/*----------------Direita Parte 2 Reservas------------*/
+
+
+.direitaReservasP2{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.selecionarSalasReservasP2{
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    height: 100%;
+    align-items: center;
+    width: 180px;
+    justify-content: space-evenly;
+    margin-right: 20px;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 5px;
+}
+
+.selecionarSalasReservasP2 > button{
+    padding: 0;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.selecionarSalasReservasP2 > button:hover{
+    cursor: pointer;
+}
+
+.opcaoVisualizacaoReservasP2{
+    background-color: bisque;
+    display: flex;
+    flex-direction: row;
+}
+
+.opcaoVisualizacaoReservasP2 > div{
+    margin: 0;
+    height: 100%;
+    width: 70px;
 }

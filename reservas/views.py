@@ -9,3 +9,6 @@ def reservas (request):
 
 def emprestimos (request):
     return render (request, 'emprestimos/emprestimos.html')
+
+def cadastroReservas (request):
+    return render (request, 'reservas/cadastroReservas.html')

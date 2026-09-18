@@ -1,11 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+Reservas
+{% endblock %}
+
+{% block content %}
+<div class="parte1CadReservas">
+    <button class="voltar"><i class="fa-solid fa-arrow-left-long"></i></button>
+    <div class="tituloCadReservas">
+        <h1>Nova Reserva de Sala</h1>
+        <h5>Preencha as informações abaixo para realizar a reserva de uma sala do Núcleo de Arte</h6>
+    </div>
+</div>
+
+<div class="parte2CadReservas">
+    <div class="FormularioCadReservas">
+        <div class="tituloFormCadReservas">
+            <div class="numCadReservas">
+                1
+            </div>
+            <h3>Informações da Reserva</h3>
+        </div>
+
+        <div class="infor1">
+            <div class="Colocar um nome depois">
+                <label for="salas">Salas</label>
+                <div class="iconeBarraPesquisaFormCadReservas">
+
+                </div>
+                <div class="barraFuncionalCadReserva">
+                    <select name="salas" id="salas">
+                        <option value="" disabled selected>Selecione uma sala</option>
+                        <option value="sala 47">sala 47</option>
+                        <option value="sala 80">sala 80</option>
+                        <option value="sala 81">sala 81</option>
+                        <option value="sala 83">sala 83</option>
+                        <!-- <option value=""></option> Tem um a sala do bloco B que a NUARTE gerencia-->
+                    </select>
+                </div>
+            </div>
+
+            <label for="data">Data</label>
+
+            <input type="date" id="data" name="data" required>
+
+
+            <h2>Horário de início</h2>
+            <h2>Horario de término</h2>
+        </div>
+
+        <div class="infor2">
+            <h2>Finalidade</h2>
+            <h2>Descrição/observação</h2>
+        </div>
+    </div>
+    <div class="infoCadReservas">
+        <div class="tituloFormCadReservas">
+            <div class="numCadReservas">
+                2
+            </div>
+            <h3>Responsavel</h3>
+
+            <h2>Nome</h2>
+            <h2>Setor/Curso</h2>
+            <h2>Contato (Opcional)</h2>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
