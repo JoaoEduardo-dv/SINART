@@ -50,3 +50,13 @@
 select {
     width: 300px ;
 }
+
+
+
+
+.juncaoDupla{
+    display: flex;
+    padding-left: 10px ;
+    gap: 10px ;
+    background-color: bisque;
+}

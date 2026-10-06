@@ -15,6 +15,7 @@ Reservas
 
 <div class="parte2CadReservas">
     <div class="FormularioCadReservas">
+        
         <div class="tituloFormCadReservas">
             <div class="numCadReservas">
                 1
@@ -23,49 +24,164 @@ Reservas
         </div>
 
         <div class="infor1">
+            
             <div class="Colocar um nome depois">
-                <label for="salas">Salas</label>
-                <div class="iconeBarraPesquisaFormCadReservas">
 
-                </div>
-                <div class="barraFuncionalCadReserva">
-                    <select name="salas" id="salas">
-                        <option value="" disabled selected>Selecione uma sala</option>
-                        <option value="sala 47">sala 47</option>
-                        <option value="sala 80">sala 80</option>
-                        <option value="sala 81">sala 81</option>
-                        <option value="sala 83">sala 83</option>
-                        <!-- <option value=""></option> Tem um a sala do bloco B que a NUARTE gerencia-->
-                    </select>
+                <label for="salas">Salas</label>
+
+                <div class="juncaoDupla">
+                    <div class="iconesCadResera">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <div class="barraFuncionalCadReserva">
+                        <select name="salas" id="salas">
+                            <option value="" disabled selected>Selecione uma sala</option>
+                            <option value="sala 47">sala 47</option>
+                            <option value="sala 80">sala 80</option>
+                            <option value="sala 81">sala 81</option>
+                            <option value="sala 83">sala 83</option>
+                            <!-- <option value=""></option> Tem um a sala do bloco B que a NUARTE gerencia-->
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <label for="data">Data</label>
+            {% comment %} Colocar função para não pdoer escolher datas passadas e ou já esclhidas {% endcomment %}
+            <div class:"dataCadReserva">
 
-            <input type="date" id="data" name="data" required>
+                <label for="data">Data</label>
+                
+                <div class="juncaoDupla">
+                    <div class="iconesCadResera">
+                        <i class="fa-regular fa-calendar"></i>
+                    </div>
 
+                    <input type="date" id="data" name="data" required>
+                </div>
+            </div>
 
-            <h2>Horário de início</h2>
-            <h2>Horario de término</h2>
+            <div class="horarios">
+                <div class="campo">
+                    {% comment %} Ver outra possivel forma de fazer {% endcomment %}
+                    <label for="horario_inicio">Horário de início *</label>
+                        
+                    <div class="juncaoDupla">
+                        <div class="iconesCadResera">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+
+                        <select id="horario_inicio" name="horario_inicio">
+                            <option value="" disabled selected>Selecione o horário</option>
+                            <option value="07:00">07:00</option>
+                            <option value="07:45">07:45</option>
+                            <option value="08:50">08:50</option>
+                            <option value="09:35">09:35</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:15">11:15</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:45">13:45</option>
+                            <option value="14:50">14:50</option>
+                            <option value="15:35">15:35</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:15">17:15</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="horario_termino">Horário de término *</label>
+                    
+                    <div class="juncaoDupla">
+                        <div class="iconesCadResera">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+
+                        <select id="horario_inicio" name="horario_inicio">
+                            <option value="" disabled selected>Selecione o horário</option>
+                            <option value="07:45">07:45</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:35">09:35</option>
+                            <option value="10:20">10:20</option>
+                            <option value="11:15">11:15</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:45">13:45</option>
+                            <option value="14:50">14:50</option>
+                            <option value="15:35">15:35</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:15">17:15</option>
+                            <option value="18:00">18:00</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="infor2">
-            <h2>Finalidade</h2>
-            <h2>Descrição/observação</h2>
+
+            {% comment %} Coloca para voltar ao selecione caso marqu algo e queira desmarcar. {% endcomment %}
+            <label for="finalidade">Finalidade *</label>
+
+            <div class="juncaoDupla">
+
+                <div class="iconesCadResera">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+
+                <select id="finalidade" name="finalidade">
+                    <option value="" disabled selected>Selecione uma finalidade</option>
+                    <option value="aula">Aula/Estudo</option>
+                    <option value="ensaio">Ensaio</option>
+                    <option value="reuniao">Reunião</option>
+                    <option value="evento">Evento</option>
+                    <option value="apresentacao">Apresentação</option>
+                    <option value="oficina">Oficina</option>
+                    <option value="outro">Outro</option>
+                </select>
+
+            </div>    
+
+            <label for="descricao">Descrição / Observações</label>
+            <textarea id="descricao" name="descricao"
+                placeholder="Informe detalhes adicionais sobre a reserva (opcional)..." maxlength="500"></textarea>
+
         </div>
     </div>
+
     <div class="infoCadReservas">
         <div class="tituloFormCadReservas">
             <div class="numCadReservas">
                 2
             </div>
             <h3>Responsavel</h3>
+        </div>
 
-            <h2>Nome</h2>
-            <h2>Setor/Curso</h2>
-            <h2>Contato (Opcional)</h2>
+        <div class="verNomeClasse">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome" placeholder="João da Silva">
+        </div>
+
+            {% comment %} Ver essa questão para saber como e mehor fazer {% endcomment %}
+        <div class="verNomeClasse">
+            <label for="nome">Setor/Curso</label>
+            <input type="text" id="nome" name="nome" placeholder="Aluno/Informática">
+        </div>
+
+        <div class="verNomeClasse">
+            <label for="contato">Contato (opcional)</label>
+            <input type="tel" id="contato" name="contato" placeholder="(XX) XXXXX-XXXX">
         </div>
     </div>
+
+    <div class="but">
+        <button>Cancelar</button>
+        {% comment %} Ainda ajeitar {% endcomment %}
+        <div>
+            <button>Confirmar reserva</button>
+        </div>
+    </div>
+
+    {% comment %} Confirmação de atualização para commit????? {% endcomment %}
 </div>
 
 {% endblock %}
