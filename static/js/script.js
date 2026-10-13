@@ -1,139 +1,79 @@
-// Abrir e fechar barra lateral ----------------------------------
+/* =====================================================================
+   SINART - CONFIGURAÇÃO DE LINKS
+   Coloque o endereço de cada botão abaixo (ex.: "/reservas" ou "reservas.html").
+   Se deixar vazio (""), o clique não faz nada.
+   ===================================================================== */
+const LINKS = {
+  logo:               "",   // clique na logo
+  inicio:             "",
+  reservas:           "",   // Reservas de Salas
+  emprestimos:        "",
+  aulas:              "",   // Aulas e Horários
+  calendario:         "",   // Calendário Acadêmico
+  painel:             "",   // Painel Semanal
+  "usuarios-lista":   "",   // submenu Usuários > Listar
+  "usuarios-cadastro":"",   // submenu Usuários > Cadastrar
+  documentos:         "",
+  nuarte:             "",   // Informações do NUARTE
+  configuracoes:      "",
+  perfil:             "",   // Meu Perfil
+  notificacoes:       "",   // sino
+  sair:               ""    // Sair (menu do usuário)
+};
 
-
-
-const menu = document.querySelector(".menu");
-const lateralAberta = document.querySelector(".lateralAberta");
-const lateralFechada = document.querySelector(".lateralFechada");
-const header = document.querySelector("header");
-const iconesLaterais = document.querySelectorAll(".iconesLaterais");
-
-menu.addEventListener("click", function () {
-    lateralAberta.classList.toggle("oculta");
-    lateralFechada.classList.toggle("oculta");
-
-    if (lateralFechada.classList.contains("oculta")) {
-        // Lateral aberta
-        header.style.width = "270px";
-
-        iconesLaterais.forEach(function(icone) {
-            icone.style.marginLeft = "0";
-        });
-
-    } else {
-        // Lateral fechada
-        header.style.width = "70px";
-
-        iconesLaterais.forEach(function(icone) {
-            icone.style.marginLeft = "10px";
-        });
-    }
+/* ---- aplica os links ---- */
+document.querySelectorAll("[data-link]").forEach(el => {
+  const url = LINKS[el.dataset.link];
+  if (url) { el.setAttribute("href", url); return; }
+  // sem URL no LINKS: só bloqueia o clique se o href ainda for "#"
+  if (el.getAttribute("href") === "#") el.addEventListener("click", e => e.preventDefault());
 });
 
+/* ---- helpers ---- */
+const $ = s => document.querySelector(s);
+const layout = $("#layout");
 
-
-//Abrir e fechar o menu de informações do barra de navegação---------
-
-
-
-const perfil = document.querySelector(".Perfil");
-const letreroPerfil = document.querySelector(".letreroPerfil");
-const informacoesPerfil = document.querySelector(".informacoesPerfil");
-
-perfil.addEventListener("mouseenter", function () {
-    if (informacoesPerfil.classList.contains("mostrar")) {
-        return;
-    }
-
-    letreroPerfil.classList.add("mostrar");
+/* ---- botão hambúrguer ---- */
+$("#menuToggle").addEventListener("click", () => {
+  if (window.innerWidth <= 900) layout.classList.toggle("open-mobile");
+  else layout.classList.toggle("collapsed");
 });
 
-perfil.addEventListener("mouseleave", function () {
-    letreroPerfil.classList.remove("mostrar");
+/* ---- submenu Usuários ---- */
+const sub = $("#sub-usuarios");
+sub.querySelector(".sub-toggle").addEventListener("click", e => {
+  const open = sub.classList.toggle("open");
+  e.currentTarget.setAttribute("aria-expanded", open);
 });
 
-perfil.addEventListener("click", function () {
-    letreroPerfil.classList.remove("mostrar");
-
-    informacoesPerfil.classList.toggle("mostrar");
+/* ---- menu do usuário ---- */
+const userBox = $("#userBox");
+$("#userBtn").addEventListener("click", e => {
+  e.stopPropagation();
+  const open = userBox.classList.toggle("open");
+  e.currentTarget.setAttribute("aria-expanded", open);
 });
 
-
-
-//Mostrar o letrero abaixo dos ícones da barra de navegação----------
-
-
-
-const Menu = document.querySelector(".menu");
-const letreroMenu = document.querySelector(".letreroMenu");
-
-const sinoNotificacoes = document.querySelector(".sinoNotificacoes");
-const letreroSino = document.querySelector(".letreroSino");
-
-// Menu
-Menu.addEventListener("mouseenter", function () {
-    letreroMenu.classList.add("mostrar");
+/* ---- tema claro/escuro ---- */
+const themeBox = $("#themeBox");
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  $("#themeLabel").textContent = t === "dark" ? "Tema escuro" : "Tema claro";
+  $("#themeIcon").setAttribute("href", t === "dark" ? "#i-sun" : "#i-moon");
+  try { localStorage.setItem("sinart-theme", t); } catch(e){}
+}
+$("#themeBtn").addEventListener("click", e => {
+  e.stopPropagation();
+  const open = themeBox.classList.toggle("open");
+  e.currentTarget.setAttribute("aria-expanded", open);
 });
+document.querySelectorAll("[data-theme-set]").forEach(b =>
+  b.addEventListener("click", () => { setTheme(b.dataset.themeSet); themeBox.classList.remove("open"); })
+);
+try { setTheme(localStorage.getItem("sinart-theme") || "light"); } catch(e){}
 
-Menu.addEventListener("mouseleave", function () {
-    letreroMenu.classList.remove("mostrar");
-});
-
-// Sino de notificações
-sinoNotificacoes.addEventListener("mouseenter", function () {
-    letreroSino.classList.add("mostrar");
-});
-
-sinoNotificacoes.addEventListener("mouseleave", function () {
-    letreroSino.classList.remove("mostrar");
-});
-
-
-
-//Manter a cor da barra lateral------------------
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const lista1 = document.querySelectorAll(".lista1");
-    const lista2 = document.querySelectorAll(".lista2");
-    const lista3 = document.querySelectorAll(".lista3");
-
-    const paginaAtual = window.location.pathname;
-
-    function ativarBotoes(botoes) {
-        botoes.forEach(function (botao) {
-            botao.style.backgroundColor = "rgb(255, 0, 0)";
-            botao.style.color = "rgb(255, 255, 255)";
-        });
-    }
-
-    if (paginaAtual.includes("/inicio/")) {
-        ativarBotoes(lista1);
-    }
-
-    if (paginaAtual.includes("/reservas/")) {
-        ativarBotoes(lista2);
-    }
-
-    if (paginaAtual.includes("/cadastroReservas/")){
-        ativarBotoes(lista2);
-    }
-
-    if (paginaAtual.includes("/emprestimos/")) {
-        ativarBotoes(lista3);
-    }
-
-});
-
-
-//------------Botão de voltar para a aba anterior a cadastro reservas------
-
-const botoesVoltar = document.querySelectorAll(".voltar");
-
-botoesVoltar.forEach(function(botao) {
-    botao.addEventListener("click", function() {
-        window.history.back();
-    });
+/* ---- fecha dropdowns ao clicar fora ---- */
+document.addEventListener("click", () => {
+  userBox.classList.remove("open");
+  themeBox.classList.remove("open");
 });

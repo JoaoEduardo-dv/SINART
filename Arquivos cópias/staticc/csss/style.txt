@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Playwrite+AU+QLD:wght@100..400&display=swap');
+
+body{ 
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    overflow: hidden;
+}
+
+.iconeIcon{
+    border-radius: 50%;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*-------------------------------------Header----------------------------------------*/
+
+
+
+header{ /* Parte Lateral (cabeçalho) */
+    width: 270px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border-right: 1px solid #aaaaaa;
+    flex-shrink: 0;
+}
+
+
+/*~~~~~~~~~~~Cores Laterais~~~~~~~~~~~~*/
+
+
+.coresLaterais{ /* 'div' das Cores da aba Lateral */
+    width: 15px;
+    height: 100%;
+}
+
+.vermelhoLateral{ /* cor vermelha da aba Lateral */
+    width: 100%;
+    height: 16%;
+    background-color: rgb(189, 82, 62);
+}
+
+.azulLateral{ /* cor azul da aba Lateral */
+    width: 100%;
+    height: 17%;
+    background-color: rgb(95, 159, 194);
+}
+
+.verdeLateral{ /* cor verde da aba lateral */
+    width: 100%;
+    height: 18%;
+    background-color: rgb(119, 188, 103);
+}
+
+.roxoLateral{ /* cor roxa da aba lateral */
+    width: 100%;
+    height: 49%;
+    background-color: rgb(144, 94, 151);
+}
+
+
+/*~~~~~~~~~~Barra Lateral~~~~~~~~~*/
+
+
+aside{ /* Tag Barra Lateral */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.lateralAberta {
+    width: 255px;
+}
+
+.lateralFechada {
+    width: 55px;
+}
+
+.oculta{
+    display: none;
+}
+
+.logoSinart{
+    width: 30px;
+}
+
+.logoBarraLateral{ /* 'div' para logo marca */
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listaBarraLateral{ /* 'ul' para a lista da barra lateral */
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+}
+
+.listaBarraLateral > li{ /* 'li' filho direto da 'ul' da barra lateral */
+    margin: 5px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.listaBarraLateral > li > a{ /* 'a' (hiperlink) filho direto de 'li' que é filho direto da 'ul' da barra lateral */
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.listaBarraLateral > li > a > button{ /* 'button' que é filho direto de 'a' que é filho direto de 'li' que é filho direto da 'ul' da barra lateral*/
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    justify-content: left;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.buttonIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
+
+.listaBarraLateral > li > a > button:hover{ /* ao passar o mouse no 'button' que é filho direto de 'a' que é filho direto de 'li' que é filho direto da 'ul' da barra lateral */
+    background-color: #ff00002b;
+    color: rgb(150, 0, 0);
+    cursor: pointer;
+}
+
+.listaBarraLateral > li > a > button > i{ /* 'i' (ícones) que é filho direto de 'button' que é filho direto de 'a' que é filho direto de 'li' que é filho direto da 'ul' da barra lateral */
+    margin-right: 10px;
+}
+
+
+
+/*-------------------------------------Main---------------------------------------------*/
+
+
+
+main{ /* Todo o corpo que não seja o header (parte principal) */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    background-color: rgb(249, 249, 249);
+}
+
+.corpoPrincipal{
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    min-height: 0;
+}
+
+.corpoPrincipal::-webkit-scrollbar{
+    background-color: transparent;
+    width: 10px;
+}
+
+.corpoPrincipal::-webkit-scrollbar-thumb {
+    background-color: rgb(200, 200, 200);
+    border-radius: 5px;
+}
+
+nav{ /* barra de navegação superior */
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #aaaaaa;
+    background-color: #ffffff;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.lado1Nav{
+    display: flex;
+    justify-content: left;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.lado2Nav{
+    width: 50%;
+    height: 100%;
+    /* background-color: aliceblue; */
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+}
+
+.menu{
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    border-radius: 50%;
+}
+
+.menu:hover{
+    background-color: rgba(0, 0, 0, 0.155);
+    cursor: pointer;
+}
+
+.letreroMenu{
+    position: absolute;
+    margin-top: 73px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 9pt;
+    width: 60px;
+    margin-left: 3px;
+    text-align: center;
+    border: 2px solid #aaaaaa;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.barras{
+    width: 15px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: black;
+    border: none;
+}
+
+.barraCentral{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.sinoNotificacoes{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sinoNotificacoes:hover{
+    background-color: rgba(0, 0, 0, 0.155);
+    cursor: pointer;
+}
+
+.letreroSino{
+    position: absolute;
+    margin-top: 73px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 9pt;
+    width: 75px;
+    margin-left: px;
+    text-align: center;
+    border: 2px solid #aaaaaa;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.notificacoes{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: #ffffff;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8pt;
+    margin-right: 236px;
+    margin-top: -10px;
+}
+
+.Perfil{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.Perfil:hover{
+    background-color: rgba(0, 0, 0, 0.155);
+    cursor: pointer;
+}
+
+.fotoPerfil{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: blue;
+}
+
+.nomesPerfil{
+    display: flex;
+    flex-direction: column;
+}
+
+.nomeUsuario{
+    margin: 0;
+    font-size: 10pt;
+}
+
+.nomeCargo{
+    margin: 0;
+    font-size: 8pt;
+    color: rgb(95, 95, 95);
+}
+
+.nomesPerfil, .fotoPerfil, .sinoNotificacoes, .Perfil{
+    margin-right: 20px;
+}
+
+.informacoesUsuario{
+    border: none;
+    margin: none;
+    background-color: transparent;
+}
+
+.informacoesPerfil{
+    position: absolute;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-left: -20px;
+    box-shadow: 0px 0px 7px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.informacoesPerfil.mostrar {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fotoPerfilMais{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: blue;
+    margin-right: 20px;
+}
+
+.nomeUsuarioMais{
+    margin: 0;
+    font-size: 12pt;
+}
+
+.nomeCargoMais{
+    margin: 0;
+    font-size: 10pt;
+    color: rgb(95, 95, 95);
+}
+
+.informacoes{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #aaaaaa;
+    padding-bottom: 5px;
+}
+
+.maisInformacoes{
+    display: flex;
+    flex-direction: column;
+}
+
+.maisInfo{
+    padding: 3px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.sairPerfil{
+color: red;
+}
+
+.info{
+    background-color: transparent;
+    display: flex;
+    justify-content: left;
+    padding-left: 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.info:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.155);
+}
+
+.iconesInfo{
+    margin-right: 8px;
+}
+
+.letreroPerfil{
+    position: absolute;
+    margin-top: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 9pt;
+    width: 150px;
+    margin-left: 15px;
+    text-align: center;
+    border: 2px solid #aaaaaa;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.letreroPerfil.mostrar, .letreroMenu.mostrar, .letreroSino.mostrar {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+} 

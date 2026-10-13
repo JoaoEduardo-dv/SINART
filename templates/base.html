@@ -1,117 +1,249 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}SINART{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
     <link rel="stylesheet" href="{% static 'css/reservas/reservas.css' %}">
     <link rel="stylesheet" href="{% static 'css/reservas/cadastroReservas.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="shortcut icon" href="../static/img/ChatGPT_Image_11_de_set._de_2026__12_00_49-removebg-preview.png" type="image/x-icon" id="icone">
 </head>
+
 <body>
-    <header> <!--cabeçalho -->
 
-        <div class="coresLaterais"> <!--Linha lateral das cores-->
-            <div class="vermelhoLateral"></div> <!--cor vermelha-->
-            <div class="azulLateral"></div> <!--cor azul-->
-            <div class="verdeLateral"></div> <!--cor verde-->
-            <div class="roxoLateral"></div> <!--cor roxa-->
-        </div>
+    <!-- Ícones (sprite) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="i-home" viewBox="0 0 24 24">
+                <path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />
+            </symbol>
+            <symbol id="i-cal" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+                <path d="M8 2v4M16 2v4M3 9h18M14 15h4v3" />
+            </symbol>
+            <symbol id="i-book" viewBox="0 0 24 24">
+                <path
+                    d="M3 5a1 1 0 0 1 1-1h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4a1 1 0 0 1-1-1zM21 5a1 1 0 0 0-1-1h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6a1 1 0 0 0 1-1z" />
+                <path d="M16 8h2" />
+            </symbol>
+            <symbol id="i-cap" viewBox="0 0 24 24">
+                <path d="M12 4L2 9l10 5 10-5z" />
+                <path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6" />
+            </symbol>
+            <symbol id="i-cal2" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+                <path d="M8 2v4M16 2v4M3 9h18M7.5 13h.01M12 13h.01M16.5 13h.01M7.5 17h.01M12 17h.01M16.5 17h.01" />
+            </symbol>
+            <symbol id="i-panel" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="8" height="8" rx="2" />
+                <rect x="13" y="4" width="8" height="3" rx="1" />
+                <rect x="13" y="9" width="8" height="2" rx="1" />
+                <rect x="3" y="14" width="18" height="3" rx="1.5" />
+                <rect x="3" y="19" width="12" height="2" rx="1" />
+            </symbol>
+            <symbol id="i-users" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M5 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z" />
+                <circle cx="4.5" cy="9.5" r="2.2" />
+                <circle cx="19.5" cy="9.5" r="2.2" />
+            </symbol>
+            <symbol id="i-folder" viewBox="0 0 24 24">
+                <path d="M3 6a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            </symbol>
+            <symbol id="i-info" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9.5" />
+                <path d="M12 11v6M12 7.5v.01" />
+            </symbol>
+            <symbol id="i-gear" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                    d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+            </symbol>
+            <symbol id="i-user" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9.5" />
+                <circle cx="12" cy="10" r="3.2" />
+                <path d="M5.8 18.5c1.5-2.3 3.7-3.3 6.2-3.3s4.7 1 6.2 3.3" />
+            </symbol>
+            <symbol id="i-moon" viewBox="0 0 24 24">
+                <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z" />
+            </symbol>
+            <symbol id="i-sun" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                    d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </symbol>
+            <symbol id="i-bell" viewBox="0 0 24 24">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10.3 20a2 2 0 0 0 3.4 0" />
+            </symbol>
+            <symbol id="i-chev" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6" />
+            </symbol>
+            <symbol id="i-logout" viewBox="0 0 24 24">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+            </symbol>
+        </defs>
+    </svg>
 
-        <aside class="lateralAberta"> <!--Barra Lateral-->
-            
-            <div class="logoBarraLateral"> <!--local da barra lateral para a logo marca-->
-                <img class="logoSinart" src="../static/img/LogoSinart-removebg-preview.png" alt="Logo SINART">
-                <h3 style="margin: 0;">SINART</h3>
-            </div>
+    <div class="layout" id="layout">
 
-            <ul class="listaBarraLateral"> <!--Lista com os ícones laterais-->
-                <li><a href="{% url 'inicio' %}"><button class="lista1"><i class="fa-solid fa-house"></i> Início</button></a></li>
-                <li><a href="{% url 'reservas' %}"><button class="lista2"><i class="fa-solid fa-calendar-week"></i> Reservas de salas</button></a></li>
-                <li><a href="{% url 'emprestimos' %}"><button class="lista3"><i class="fa-solid fa-book-open"></i> Empréstimos</button></a></li>
-                <li><a><button><i class="fa-solid fa-graduation-cap"></i> Aulas e Horários</button></a></li>
-                <li><a><button><i class="fa-solid fa-table"></i> Painel de atividades</button></a></li>
-                <li><a><button><i class="fa-solid fa-folder"></i> Documentos</button></a></li>
-                <li><a><button><i class="fa-solid fa-users"></i> Usuários</button></a></li>
-                <li><a><button><i class="fa-solid fa-gear"></i> Configurações</button></a></li>
-                <li><a><button><i class="fa-solid fa-circle-user"></i> Meu Perfil</button></a></li>
-            </ul>
-            
-        </aside>
-        <aside class="lateralFechada oculta">
-            <div class="logoBarraLateral"> <!--local da barra lateral para a logo marca-->
-                <img class="logoSinart" src="../static/img/LogoSinart-removebg-preview.png" alt="Logo SINART">
-            </div>
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="color-strip"></div>
 
-            <ul class="listaBarraLateral"> <!--Lista com os ícones laterais-->
-                <li><a href="{% url 'inicio' %}"><button class="buttonIcons lista1"><i class="iconesLaterais fa-solid fa-house"></i></button></a></li>
-                <li><a href="{% url 'reservas' %}"><button class="buttonIcons lista2"><i class="iconesLaterais fa-solid fa-calendar-week"></i></button></a></li>
-                <li><a href="{% url 'emprestimos' %}"><button class="buttonIcons lista3"><i class="iconesLaterais fa-solid fa-book-open"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-graduation-cap"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-table"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-folder"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-users"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-gear"></i></button></a></li>
-                <li><a><button class="buttonIcons"><i class="iconesLaterais fa-solid fa-circle-user"></i></button></a></li>
-            </ul>
-        </aside>
-    </header>
-    <main>
+            <!-- LOGO (clicável) -->
+            <a class="brand" data-link="logo" href="#">
+                <svg class="brand-mark" viewBox="0 0 60 66" fill="none" stroke-linecap="round">
+                    <defs>
+                        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#d63b2d" />
+                            <stop offset="1" stop-color="#7b3f98" />
+                        </linearGradient>
+                        <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#2b78c2" />
+                            <stop offset=".6" stop-color="#6aa56f" />
+                            <stop offset="1" stop-color="#f0a22c" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M44 4C20 10 18 28 32 36S44 56 18 62" stroke="url(#g1)" stroke-width="7" />
+                    <path d="M16 4C40 12 42 28 28 36S16 54 42 62" stroke="url(#g2)" stroke-width="7" />
+                </svg>
+                <span class="brand-text">
+                    <strong>SINART</strong>
+                    <small>Sistema Integrado do<br>Núcleo de Arte</small>
+                </span>
+            </a>
 
-        <nav>
-            <div class="lado1Nav">
-                <div class="menu">
-                    <div class="barras"></div>
-                    <div class="barras barraCentral"></div>
-                    <div class="barras"></div>
-                </div>
-                <div class="letreroMenu">Menu</div>
-            </div>
-            <div class="lado2Nav">
-                <div class="sinoNotificacoes">
-                    <i class="fa-regular fa-bell iconNotificacoes"></i>
-                    <div class="letreroSino">Notificações</div>
-                </div>
-                <div class="notificacoes">1</div>
-                <div class="Perfil">
-                    <div class="fotoPerfil"></div>
-                    <div class="nomesPerfil">
-                        <p class="nomeUsuario">João Eduardo</p>
-                        <p class="nomeCargo">Bolsista</p>
+            <!-- MENU -->
+            <nav class="menu">
+                <!-- Para definir os links: edite o objeto LINKS no arquivo script.js -->
+                <a class="menu-item active" data-link="inicio" href="{% url 'inicio' %}"><svg>
+                        <use href="#i-home" />
+                    </svg><span>Início</span></a>
+                <a class="menu-item" data-link="reservas" href="{% url 'reservas' %}"><svg>
+                        <use href="#i-cal" />
+                    </svg><span>Reservas de Salas</span></a>
+                <a class="menu-item" data-link="emprestimos" href="{% url 'emprestimos' %}"><svg>
+                        <use href="#i-book" />
+                    </svg><span>Empréstimos</span></a>
+                <a class="menu-item" data-link="aulas" href="#"><svg>
+                        <use href="#i-cap" />
+                    </svg><span>Aulas e Horários</span></a>
+                <a class="menu-item" data-link="calendario" href="#"><svg>
+                        <use href="#i-cal2" />
+                    </svg><span>Calendário Acadêmico</span></a>
+                <a class="menu-item" data-link="painel" href="#"><svg>
+                        <use href="#i-panel" />
+                    </svg><span>Painel Semanal</span></a>
+
+                <!-- Submenu: Usuários -->
+                <div class="has-sub" id="sub-usuarios">
+                    <button class="menu-item sub-toggle" type="button" aria-expanded="false">
+                        <svg>
+                            <use href="#i-users" />
+                        </svg><span>Usuários</span>
+                        <svg class="chev">
+                            <use href="#i-chev" />
+                        </svg>
+                    </button>
+                    <div class="submenu">
+                        <a data-link="usuarios-lista" href="#">Listar usuários</a>
+                        <a data-link="usuarios-cadastro" href="#">Cadastrar usuário</a>
                     </div>
-                    <button class="informacoesUsuario"><i class="fa-solid fa-chevron-down"></i></button>
-                    <div class="informacoesPerfil">
-                        <div class="informacoes">
-                            <div class="fotoPerfilMais"></div>
-                            <div class="nomesPerfil">
-                                <p class="nomeUsuarioMais">João Eduardo</p>
-                                <p class="nomeCargoMais">Bolsista</p>
-                            </div>
-                        </div>
-                        <div class="maisInformacoes">
-                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-house"></i>Meu perfil</button>
-                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-gear"></i>Configurações</button>
-                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-left-right"></i>Trocar de conta</button>
-                            <button class="maisInfo info"><i class="iconesInfo fa-solid fa-circle-question"></i>Ajuda</button>
-                            <button class="sairPerfil info"><i class="iconesInfo fa-solid fa-right-from-bracket"></i>Sair</button>
-                        </div>
-                    </div>
-                    <div class="letreroPerfil">Informações</div>
+                </div>
+
+                <a class="menu-item" data-link="documentos" href="#"><svg>
+                        <use href="#i-folder" />
+                    </svg><span>Documentos</span></a>
+                <a class="menu-item" data-link="nuarte" href="#"><svg>
+                        <use href="#i-info" />
+                    </svg><span>Informações do NUARTE</span></a>
+                <a class="menu-item" data-link="configuracoes" href="#"><svg>
+                        <use href="#i-gear" />
+                    </svg><span>Configurações</span></a>
+                <a class="menu-item" data-link="perfil" href="#"><svg>
+                        <use href="#i-user" />
+                    </svg><span>Meu Perfil</span></a>
+            </nav>
+
+            <!-- SELETOR DE TEMA -->
+            <div class="theme-box" id="themeBox">
+                <button class="theme-btn" id="themeBtn" type="button" aria-expanded="false">
+                    <svg class="t-ico">
+                        <use id="themeIcon" href="#i-moon" />
+                    </svg>
+                    <span id="themeLabel">Tema claro</span>
+                    <svg class="chev">
+                        <use href="#i-chev" />
+                    </svg>
+                </button>
+                <div class="theme-menu">
+                    <button type="button" data-theme-set="light">Tema claro</button>
+                    <button type="button" data-theme-set="dark">Tema escuro</button>
                 </div>
             </div>
-        </nav>
-        <div class="corpoPrincipal">
-            {% block content %}
-            {% endblock %}
+        </aside>
+
+        <!-- ===================== CONTEÚDO ===================== -->
+        <div class="main">
+            <header class="topbar">
+                <button class="icon-btn hamburger" id="menuToggle" type="button" aria-label="Abrir/fechar menu">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="top-right">
+                    <!-- Notificações -->
+                    <a class="bell" data-link="notificacoes" href="#" aria-label="Notificações">
+                        <svg>
+                            <use href="#i-bell" />
+                        </svg>
+                        <b class="badge">3</b>
+                    </a>
+
+                    <!-- Usuário -->
+                    <div class="user" id="userBox">
+                        <button class="user-btn" id="userBtn" type="button" aria-expanded="false">
+                            <span class="avatar">JD</span>
+                            <span class="user-info"><strong>João da Silva</strong><small>Professor</small></span>
+                            <svg class="chev">
+                                <use href="#i-chev" />
+                            </svg>
+                        </button>
+                        <div class="user-menu">
+                            <a data-link="perfil" href="#"><svg>
+                                    <use href="#i-user" />
+                                </svg>Meu Perfil</a>
+                            <a data-link="configuracoes" href="#"><svg>
+                                    <use href="#i-gear" />
+                                </svg>Configurações</a>
+                            <a data-link="sair" href="#"><svg>
+                                    <use href="#i-logout" />
+                                </svg>Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Área de conteúdo (vazia como na imagem) -->
+            <main class="content" id="content">
+                {% block content %}
+                {% endblock %}
+            </main>
+
+            <footer class="footer">
+                SINART – Sistema Integrado do Núcleo de Arte © 2025 &nbsp;|&nbsp; Núcleo de Arte - IFRN
+            </footer>
         </div>
-    </main>
+    </div>
+
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/inicio.js' %}"></script>
     <script src="{% static 'js/reservas/reservas.js' %}"></script>
     <script src="{% static 'js/reservas/cadastroReservas.js' %}"></script>
 </body>
+
 </html>

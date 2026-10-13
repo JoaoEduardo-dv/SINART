@@ -2,275 +2,171 @@
 
 
 {% block title %}
-Início - SINART
+Início
 {% endblock %}
 
 {% block content %}
-<div class="inicioP1">
-    <div class="boasVindas">
-        <h1>Bem-vindo(a) de volta, (variável)!</h1>
-        <h2>Veja o que está acontecendo hoje no SINART</h2>
+<!-- Coloque este conteúdo dentro do <main> do seu base.html -->
+<!-- No <head>:  <link rel="stylesheet" href="inicio.css">   |   Antes de </body>:  <script src="inicio.js"></script> -->
+
+<!-- Ícones usados só nesta página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="2.5" fill="#fff" stroke="none"/></symbol>
+    <symbol id="i-dotpin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-calplus" viewBox="0 0 24 24"><path d="M20 12V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7M8 2v4M16 2v4M4 9h16M18 15v6M15 18h6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
+    <symbol id="i-cap2" viewBox="0 0 24 24"><path d="M12 4L2 9l10 5 10-5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-calbig" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></symbol>
+  </defs>
+</svg>
+
+<div class="home">
+
+  <!-- ===== Boas-vindas + data ===== -->
+  <section class="welcome">
+    <div>
+      <h1>Bem-vindo(a) de volta, João! <span class="wave">👋</span></h1>
+      <p>Veja o que está acontecendo hoje no SINART.</p>
     </div>
-    <div class="dataAtual">
-        <div class="datas">
-            <i class="fa-regular fa-calendar"></i>
-            <div class="data">
-                <p><strong>08 de maio de 2025</strong></p>
-                <p class="diaSemana">Quinta feira</p>
+    <div class="date-card">
+      <svg><use href="#i-calbig"/></svg>
+      <div>
+        <strong>08 de maio de 2025</strong>
+        <small>Quinta-feira</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ações rápidas (links: objeto LINKS_INICIO no inicio.js) ===== -->
+  <h2 class="section-title">Ações rápidas</h2>
+  <section class="quick">
+    <!-- Os links são definidos em static/sinart/script.js (objeto LINKS) -->
+    <a class="qcard red" data-inicio-link="acao-reserva" href="#">
+      <span class="qicon"><svg><use href="#i-calplus"/></svg></span>
+      <span class="qtext"><strong>Nova reserva</strong><small>Reserve uma sala</small></span>
+      <svg class="qarrow"><use href="#i-arrow"/></svg>
+    </a>
+    <a class="qcard blue" data-inicio-link="acao-emprestimo" href="#">
+      <span class="qicon"><svg><use href="#i-box"/></svg></span>
+      <span class="qtext"><strong>Novo empréstimo</strong><small>Empreste um material</small></span>
+      <svg class="qarrow"><use href="#i-arrow"/></svg>
+    </a>
+    <a class="qcard green" data-inicio-link="acao-aula" href="#">
+      <span class="qicon"><svg><use href="#i-cap2"/></svg></span>
+      <span class="qtext"><strong>Cadastrar aula</strong><small>Adicione aula e horário</small></span>
+      <svg class="qarrow"><use href="#i-arrow"/></svg>
+    </a>
+    <a class="qcard purple" data-inicio-link="acao-documentos" href="#">
+      <span class="qicon"><svg><use href="#i-doc"/></svg></span>
+      <span class="qtext"><strong>Documentos</strong><small>Acesse regulamentos</small></span>
+      <svg class="qarrow"><use href="#i-arrow"/></svg>
+    </a>
+  </section>
+
+  <div class="panels">
+
+    <!-- ===== Próximas atividades ===== -->
+    <section class="card activities">
+      <h2>Próximas atividades</h2>
+      <ul>
+        <li>
+          <div class="date-box"><b>08</b><span>MAI</span></div>
+          <div class="act-info">
+            <strong>Reserva: Sala de Música 2</strong>
+            <div class="meta">
+            <span><svg><use href="#i-clock"/></svg>09:00 - 11:00</span>
+            <span><svg><use href="#i-pin"/></svg>Sala de Música 2</span>
             </div>
+          </div>
+          <span class="pill reserva">Reserva</span>
+        </li>
+        <li>
+          <div class="date-box"><b>08</b><span>MAI</span></div>
+          <div class="act-info">
+            <strong>Aula: Violão Intermediário</strong>
+            <div class="meta">
+            <span><svg><use href="#i-clock"/></svg>14:00 - 16:00</span>
+            <span><svg><use href="#i-pin"/></svg>Sala de Música 1</span>
+            </div>
+          </div>
+          <span class="pill aula">Aula</span>
+        </li>
+        <li>
+          <div class="date-box"><b>09</b><span>MAI</span></div>
+          <div class="act-info">
+            <strong>Devolução: Microfone Shure SM58</strong>
+            <div class="meta">
+            <span><svg class="dot"><use href="#i-dotpin"/></svg>Prazo: 09/05/2025</span>
+            </div>
+          </div>
+          <span class="pill emprestimo">Empréstimo</span>
+        </li>
+        <li>
+          <div class="date-box"><b>10</b><span>MAI</span></div>
+          <div class="act-info">
+            <strong>Reunião de Núcleo</strong>
+            <div class="meta">
+            <span><svg><use href="#i-clock"/></svg>10:00 - 11:30</span>
+            <span><svg><use href="#i-pin"/></svg>Sala de Reuniões</span>
+            </div>
+          </div>
+          <span class="pill reuniao">Reunião</span>
+        </li>
+      </ul>
+      <a class="more" data-inicio-link="ver-agenda" href="#">Ver agenda completa <svg><use href="#i-arrow"/></svg></a>
+    </section>
+
+    <!-- ===== Painel semanal ===== -->
+    <section class="card week">
+      <div class="week-head">
+        <h2>Painel semanal</h2>
+        <a class="more" data-inicio-link="ver-painel" href="#">Ver painel completo <svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="week-grid">
+        <div class="wday">
+          <div class="wday-head c-vermelho"><span>SEG</span><span>05/05</span></div>
+          <ul>
+            <li class="c-vermelho"><i class="dot"></i><b>08:00</b><span>Aula de Teoria Musical</span></li>
+            <li class="c-vermelho"><i class="dot"></i><b>14:00</b><span>Ensaio Coral</span></li>
+            <li class="c-roxo"><i class="dot"></i><b>16:00</b><span>Projeto Arte e Cultura</span></li>
+          </ul>
         </div>
-    </div>
+        <div class="wday">
+          <div class="wday-head c-azul"><span>TER</span><span>06/05</span></div>
+          <ul>
+            <li class="c-azul"><i class="dot"></i><b>09:00</b><span>Aula Violão Iniciante</span></li>
+            <li class="c-azul"><i class="dot"></i><b>13:30</b><span>Aula Desenho</span></li>
+          </ul>
+        </div>
+        <div class="wday">
+          <div class="wday-head c-verde"><span>QUA</span><span>07/05</span></div>
+          <ul>
+            <li class="c-verde"><i class="dot"></i><b>08:00</b><span>Aula Piano</span></li>
+            <li class="c-vermelho"><i class="dot"></i><b>14:00</b><span>Ensaio Orquestra</span></li>
+            <li class="c-roxo"><i class="dot"></i><b>17:00</b><span>Reunião de Núcleo</span></li>
+          </ul>
+        </div>
+        <div class="wday">
+          <div class="wday-head c-roxo"><span>QUI</span><span>08/05</span></div>
+          <ul>
+            <li class="c-roxo"><i class="dot"></i><b>09:00</b><span>Aula Violão Intermediário</span></li>
+            <li class="c-azul"><i class="dot"></i><b>15:00</b><span>Oficina de Fotografia</span></li>
+          </ul>
+        </div>
+        <div class="wday">
+          <div class="wday-head c-vermelho"><span>SEX</span><span>09/05</span></div>
+          <ul>
+            <li class="c-vermelho"><i class="dot"></i><b>08:00</b><span>Aula Canto</span></li>
+            <li class="c-vermelho"><i class="dot"></i><b>14:00</b><span>Projeto Arte na Escola</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </div>
-
-<div class="inicioP2">
-    <div class="tituloAtalhosInicio">
-        <h3>Ações Rápidas</h3>
-    </div>
-    <div class="acoes">
-
-        <div class="acao">
-            <a href="{% url 'cadastroReservas' %}">
-                <div class="iconAcoes acao1"><i class="fa-regular fa-calendar-plus"></i></div>
-                <div class="nomesAcoes">
-                    <p class="tituloAcao">Nova reserva</p>
-                    <p class="descricaoAcao">Reserve uma sala <i class="icon1 fa-solid fa-arrow-right-long"></i></p>
-                </div>
-            </a>
-        </div>
-
-        <div class="acao">
-            <div class="iconAcoes acao2"><i class="fa-solid fa-box-open"></i></div>
-            <div class="nomesAcoes">
-                <p class="tituloAcao">Novo empréstimo</p>
-                <p class="descricaoAcao">Empreste um material <i class="icon2 fa-solid fa-arrow-right-long"></i></p>
-            </div>
-        </div>
-        <div class="acao">
-            <div class="iconAcoes acao3"><i class="fa-solid fa-graduation-cap"></i></div>
-            <div class="nomesAcoes">
-                <p class="tituloAcao">Cadastrar aula</p>
-                <p class="descricaoAcao">Adicione aula e horário <i class="icon3 fa-solid fa-arrow-right-long"></i></p>
-            </div>
-        </div>
-        <div class="acao">
-            <div class="iconAcoes acao4"><i class="fa-regular fa-file"></i></div>
-            <div class="nomesAcoes">
-                <p class="tituloAcao">Documentos</p>
-                <p class="descricaoAcao">Acesse regulamentos <i class="icon4 fa-solid fa-arrow-right-long"></i></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="inicioP3">
-    <div class="parte3Esquerda">
-        <div class="tituloEsquerda">
-            <h3>Próximas atividades</h3>
-        </div>
-        <div class="atividadesP3">
-            <div class="atividadeP3">
-                <div class="dataAtividadeP3">
-                    <h3>08</h3>
-                    <p>MAI</p>
-                </div>
-                <div class="textosAtividade">
-                    <p class="tituloAtividade">Reserva: sala de Música</p>
-                    <p class="descricaoAtividade"><i class="fa-regular fa-clock"></i> 09:00 - 11:00 • Sala de Música</p>
-                </div>
-                <div class="tipoAtividadeInicio">
-                    <p>Reserva</p>
-                </div>
-            </div>
-            <div class="atividadeP3">
-                <div class="dataAtividadeP3">
-                    <h3>08</h3>
-                    <p>MAI</p>
-                </div>
-                <div class="textosAtividade">
-                    <p class="tituloAtividade">Aula: Violão Intermediário</p>
-                    <p class="descricaoAtividade"><i class="fa-regular fa-clock"></i> 14:00 - 16:00 • Sala de Música</p>
-                </div>
-                <div class="tipoAtividadeInicio">
-                    <p>Aula</p>
-                </div>
-            </div>
-            <div class="atividadeP3">
-                <div class="dataAtividadeP3">
-                    <h3>09</h3>
-                    <p>MAI</p>
-                </div>
-                <div class="textosAtividade">
-                    <p class="tituloAtividade">Devolução: Microfone Shure SM58</p>
-                    <p class="descricaoAtividade">• Prazo: 09/05/2025</p>
-                </div>
-                <div class="tipoAtividadeInicio">
-                    <p>Empréstimo</p>
-                </div>
-            </div>
-            <div class="atividadeP3">
-                <div class="dataAtividadeP3">
-                    <h3>10</h3>
-                    <p>MAI</p>
-                </div>
-                <div class="textosAtividade">
-                    <p class="tituloAtividade">Reunião do Núcleo</p>
-                    <p class="descricaoAtividade"><i class="fa-regular fa-clock"></i> 10:00 - 11:30 • Sala do Nuarte</p>
-                </div>
-                <div class="tipoAtividadeInicio">
-                    <p>Reunião</p>
-                </div>
-            </div>
-            <div class="atividadeP3">
-                <div class="dataAtividadeP3">
-                    <h3>10</h3>
-                    <p>MAI</p>
-                </div>
-                <div class="textosAtividade">
-                    <p class="tituloAtividade">Reserva: sala de Música</p>
-                    <p class="descricaoAtividade"><i class="fa-regular fa-clock"></i> 09:00 - 11:00 • Sala de Música</p>
-                </div>
-                <div class="tipoAtividadeInicio">
-                    <p>Reserva</p>
-                </div>
-            </div>
-        </div>
-        <button>Ver agenda completa <i class="fa-solid fa-arrow-right-long"></i></button>
-    </div>
-    <div class="parte3Direita">
-        <div class="painelInicioTitulo">
-            <h3>Painel semanal</h3>
-            <button>Ver painel completo <i class="fa-solid fa-arrow-right-long"></i></button>
-        </div>
-        <div class="tudoPainelInicio">
-            <div class="gradePainelInicio">
-                <div class="diaPainelInicio painelInicioSegunda">
-                    <div class="dataPainelInicio">
-                        <h4>SEG</h4>
-                        <p>05/05</p>
-                    </div>
-                    <div class="atividadesPainelInicio">
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 08:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Aula de Teoria Musical</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 14:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Ensaio cultural</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 16:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Projeto Arte e Cultura</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="diaPainelInicio painelInicioTerca">
-                    <div class="dataPainelInicio">
-                        <h4>TER</h4>
-                        <p>06/05</p>
-                    </div>
-                    <div class="atividadesPainelInicio">
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 09:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Aula de violão iniciante</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 13:30</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Aula desenho</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="diaPainelInicio painelInicioQuarta">
-                    <div class="dataPainelInicio">
-                        <h4>QUA</h4>
-                        <p>07/05</p>
-                    </div>
-                    <div class="atividadesPainelInicio">
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 08:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Aula piano</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 14:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Ensaio orquestra</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 17:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Reunião do Núcleo</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="diaPainelInicio painelInicioQuinta">
-                    <div class="dataPainelInicio">
-                        <h4>QUI</h4>
-                        <p>08/05</p>
-                    </div>
-                    <div class="atividadesPainelInicio">
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 09:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Aula violão intermediário</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 15:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Oficina de fotografia</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="diaPainelInicio painelInicioSexta">
-                    <div class="dataPainelInicio">
-                        <h4>SEX</h4>
-                        <p>09/05</p>
-                    </div>
-                    <div class="atividadesPainelInicio">
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 08:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Aula Canto</p>
-                            </div>
-                        </div>
-                        <div class="compromissoPainelInicio">
-                            <div class="horaCompromissoPainelInicio">•<p> 14:00</p>
-                            </div>
-                            <div class="descricaoCompromissoPainelInicio">
-                                <p>Projeto Arte na Escola</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="footerInicio">SINART - Sistema Integrado do Núcleo de Arte © 2026 | Núcleo de Arte - IFRN/SGA</footer>
 {% endblock %}
