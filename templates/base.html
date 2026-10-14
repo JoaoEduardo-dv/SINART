@@ -6,12 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}SINART{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'img/LogoIcon.png' %}" type="image/x-icon" id="icone">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/inicio.css' %}">
     <link rel="stylesheet" href="{% static 'css/reservas/reservas.css' %}">
     <link rel="stylesheet" href="{% static 'css/reservas/cadastroReservas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/emprestimos/emprestimo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/emprestimos/cadastroEmprestimos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Painel de atividades/atividades.css' %}">
 </head>
 
 <body>
@@ -91,13 +95,14 @@
 
     <div class="layout" id="layout">
 
+        <div class="color-strip"></div>
+        <div class="overlay" id="overlay"></div>
+
         <!-- ===================== SIDEBAR ===================== -->
         <aside class="sidebar" id="sidebar">
-            <div class="color-strip"></div>
-
             <!-- LOGO (clicável) -->
             <a class="brand" data-link="logo" href="#">
-                <svg class="brand-mark" viewBox="0 0 60 66" fill="none" stroke-linecap="round">
+                <!-- <svg class="brand-mark" viewBox="0 0 60 66" fill="none" stroke-linecap="round">
                     <defs>
                         <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="0" stop-color="#d63b2d" />
@@ -111,7 +116,8 @@
                     </defs>
                     <path d="M44 4C20 10 18 28 32 36S44 56 18 62" stroke="url(#g1)" stroke-width="7" />
                     <path d="M16 4C40 12 42 28 28 36S16 54 42 62" stroke="url(#g2)" stroke-width="7" />
-                </svg>
+                </svg> -->
+                <img class="logoSinart" src="{% static 'img/LogoSinart-removebg-preview.png' %}" alt="Logo SINART">
                 <span class="brand-text">
                     <strong>SINART</strong>
                     <small>Sistema Integrado do<br>Núcleo de Arte</small>
@@ -120,8 +126,8 @@
 
             <!-- MENU -->
             <nav class="menu">
-                <!-- Para definir os links: edite o objeto LINKS no arquivo script.js -->
-                <a class="menu-item active" data-link="inicio" href="{% url 'inicio' %}"><svg>
+                <!-- LINKS: troque o href="#" de cada item por url 'nome_da_url' (ou use o objeto LINKS no script.js) -->
+                <a class="menu-item" data-link="inicio" href="{% url 'inicio' %}"><svg>
                         <use href="#i-home" />
                     </svg><span>Início</span></a>
                 <a class="menu-item" data-link="reservas" href="{% url 'reservas' %}"><svg>
@@ -133,12 +139,9 @@
                 <a class="menu-item" data-link="aulas" href="#"><svg>
                         <use href="#i-cap" />
                     </svg><span>Aulas e Horários</span></a>
-                <a class="menu-item" data-link="calendario" href="#"><svg>
+                <a class="menu-item" data-link="calendario" href="{% url 'atividades' %}"><svg>
                         <use href="#i-cal2" />
-                    </svg><span>Calendário Acadêmico</span></a>
-                <a class="menu-item" data-link="painel" href="#"><svg>
-                        <use href="#i-panel" />
-                    </svg><span>Painel Semanal</span></a>
+                    </svg><span>Painel de atividades</span></a>
 
                 <!-- Submenu: Usuários -->
                 <div class="has-sub" id="sub-usuarios">
@@ -230,8 +233,7 @@
 
             <!-- Área de conteúdo (vazia como na imagem) -->
             <main class="content" id="content">
-                {% block content %}
-                {% endblock %}
+                {% block content %}{% endblock %}
             </main>
 
             <footer class="footer">
@@ -244,6 +246,9 @@
     <script src="{% static 'js/inicio.js' %}"></script>
     <script src="{% static 'js/reservas/reservas.js' %}"></script>
     <script src="{% static 'js/reservas/cadastroReservas.js' %}"></script>
+    <script src="{% static 'js/emprestimos/emprestimo.js' %}"></script>
+    <script src="{% static 'js/emprestimos/cadastroEmprestimos.js' %}"></script>
+    <script src="{% static 'js/painel de atividades/atividades.js' %}"></script>
 </body>
 
 </html>

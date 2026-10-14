@@ -1,43 +1,207 @@
 {% extends "base.html" %}
 
 {% block title %}
-Reservas
+Reservas de Salas
 {% endblock %}
 
+
 {% block content %}
-<div class="containerReservas">
-    <div class="conteudoReservas">
-        <div class="reservasParte1">
-            <div class="tituloReservas">
-                <h1>Reservas</h1>
-                <p>Visualize, gerencie e faça reservas de salas.</p>
-            </div>
-            <a href="{% url 'cadastroReservas' %}"><button><i class="fa-solid fa-plus"></i> Nova reserva</button></a>
-        </div>
-        <div class="reservasParte2">
-            <div class="esquerdaReservasP2">
-                <div class="blocoDataReservas">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <div class="dataAtualBlocoReservas"><i class="fa-regular fa-calendar"></i> 12 - 18 de maio de 2025
-                    </div>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-                <div class="statusDiaReservas">Hoje</div>
-            </div>
-            <div class="direitaReservasP2">
-                <div class="selecionarSalasReservasP2">
-                    <i class="fa-solid fa-filter"></i>
-                    <p>Todas as salas</p>
-                    <button><i class="fa-solid fa-chevron-down"></i></button>
-                </div>
-                <div class="opcaoVisualizacaoReservasP2">
-                    <div class="diaReservasP2">Dia</div>
-                    <div class="semanaReservasP2">Semana</div>
-                    <div class="mesReservasP2">Mês</div>
-                </div>
-            </div>
-        </div>
-        <div class="reservasParte3"></div>
+<!-- Ícones usados só nesta página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="r-prev" viewBox="0 0 24 24">
+      <path d="M15 5l-7 7 7 7" />
+    </symbol>
+    <symbol id="r-next" viewBox="0 0 24 24">
+      <path d="M9 5l7 7-7 7" />
+    </symbol>
+    <symbol id="r-cal" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M8 2v4M16 2v4M3 10h18" />
+    </symbol>
+    <symbol id="r-plus" viewBox="0 0 24 24">
+      <path d="M12 4v16M4 12h16" />
+    </symbol>
+    <symbol id="r-filter" viewBox="0 0 24 24">
+      <path d="M3 4h18l-7 8.5V20l-4-2v-5.5z" />
+    </symbol>
+    <symbol id="r-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7" />
+      <path d="M20 20l-4-4" />
+    </symbol>
+    <symbol id="r-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h16M14 6l6 6-6 6" />
+    </symbol>
+    <symbol id="r-list" viewBox="0 0 24 24">
+      <path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01" />
+    </symbol>
+  </defs>
+</svg>
+
+<div class="reservas-wrap">
+  <div class="reservas">
+
+    <!-- ===== Cabeçalho ===== -->
+    <header class="r-head">
+      <div>
+        <h1>Reservas de Salas</h1>
+        <p>Visualize, gerencie e faça reservas de salas.</p>
+      </div>
+      <a class="btn-new" data-reservas-link="nova-reserva" href="{% url 'cadastroReservas' %}"><svg>
+          <use href="#r-plus" />
+        </svg>Nova reserva</a>
+    </header>
+
+    <!-- ===== Barra de ferramentas ===== -->
+    <div class="toolbar">
+      <div class="date-nav">
+        <a class="nav-arrow" data-reservas-link="semana-anterior" href="#" aria-label="Semana anterior"><svg>
+            <use href="#r-prev" />
+          </svg></a>
+        <span class="range"><svg>
+            <use href="#r-cal" />
+          </svg>12 - 18 de maio de 2025</span>
+        <a class="nav-arrow" data-reservas-link="semana-proxima" href="#" aria-label="Próxima semana"><svg>
+            <use href="#r-next" />
+          </svg></a>
+      </div>
+      <a class="btn-box" data-reservas-link="hoje" href="#">Hoje</a>
+
+      <div class="spacer"></div>
+
+      <label class="select-box">
+        <svg class="s-ico">
+          <use href="#r-filter" />
+        </svg>
+        <select id="filtroSala" aria-label="Filtrar salas">
+          <option value="">Todas as salas</option>
+          <option value="1">Sala de Música 1</option>
+          <option value="2">Sala de Música 2</option>
+          <option value="3">Sala de Artes</option>
+          <option value="4">Sala de Reuniões</option>
+          <option value="5">Auditório</option>
+          <option value="6">Sala de Dança</option>
+          <option value="7">Sala de Fotografia</option>
+        </select>
+        <svg class="s-chev">
+          <use href="#i-chev" />
+        </svg>
+      </label>
+
+      <div class="seg" id="visoes">
+        <a data-reservas-link="visao-dia" href="#">Dia</a>
+        <a class="active" data-reservas-link="visao-semana" href="#">Semana</a>
+        <a data-reservas-link="visao-mes" href="#">Mês</a>
+      </div>
     </div>
-</div>
+
+    <div class="r-grid">
+
+      <!-- ===== Lista de salas ===== -->
+      <section class="r-card salas">
+        <h2>Salas</h2>
+        <label class="search">
+          <svg>
+            <use href="#r-search" />
+          </svg>
+          <input type="search" id="buscaSala" placeholder="Buscar sala..." autocomplete="off">
+        </label>
+        <ul id="listaSalas">
+          <li><a class="room active" data-reservas-link="sala-1" data-nome="Sala de Música 1" href="#">
+              <i class="rdot red"></i>
+              <span><strong>Sala de Música 1</strong><small>Capacidade: 25 pessoas</small></span>
+            </a></li>
+          <li><a class="room" data-reservas-link="sala-2" data-nome="Sala de Música 2" href="#">
+              <i class="rdot blue"></i>
+              <span><strong>Sala de Música 2</strong><small>Capacidade: 20 pessoas</small></span>
+            </a></li>
+          <li><a class="room" data-reservas-link="sala-3" data-nome="Sala de Artes" href="#">
+              <i class="rdot purple"></i>
+              <span><strong>Sala de Artes</strong><small>Capacidade: 30 pessoas</small></span>
+            </a></li>
+          <li><a class="room" data-reservas-link="sala-4" data-nome="Sala de Reuniões" href="#">
+              <i class="rdot green"></i>
+              <span><strong>Sala de Reuniões</strong><small>Capacidade: 15 pessoas</small></span>
+            </a></li>
+          <li><a class="room" data-reservas-link="sala-5" data-nome="Auditório" href="#">
+              <i class="rdot orange"></i>
+              <span><strong>Auditório</strong><small>Capacidade: 80 pessoas</small></span>
+            </a></li>
+          <li><a class="room" data-reservas-link="sala-6" data-nome="Sala de Dança" href="#">
+              <i class="rdot purple"></i>
+              <span><strong>Sala de Dança</strong><small>Capacidade: 25 pessoas</small></span>
+            </a></li>
+          <li><a class="room" data-reservas-link="sala-7" data-nome="Sala de Fotografia" href="#">
+              <i class="rdot blue"></i>
+              <span><strong>Sala de Fotografia</strong><small>Capacidade: 20 pessoas</small></span>
+            </a></li>
+        </ul>
+        <a class="btn-wide" data-reservas-link="ver-salas" href="#"><span>Ver todas as salas</span><svg>
+            <use href="#r-arrow" />
+          </svg></a>
+      </section>
+
+      <!-- ===== Calendário ===== -->
+      <section class="r-card agenda">
+        <h2 id="salaTitulo">Sala de Música 1</h2>
+
+        <div class="cal-scroll">
+          <div class="cal">
+            <div class="cal-head"><i></i>
+              <div class="cd"><b>Seg</b><span>12/05</span></div>
+              <div class="cd"><b>Ter</b><span>13/05</span></div>
+              <div class="cd"><b>Qua</b><span>14/05</span></div>
+              <div class="cd"><b>Qui</b><span>15/05</span></div>
+              <div class="cd"><b>Sex</b><span>16/05</span></div>
+              <div class="cd"><b>Sáb</b><span>17/05</span></div>
+              <div class="cd"><b>Dom</b><span>18/05</span></div>
+            </div>
+            <div class="cal-body">
+              <div class="horas"><span style="--i:0">07:00</span><span style="--i:1">08:00</span><span
+                  style="--i:2">09:00</span><span style="--i:3">10:00</span><span style="--i:4">11:00</span><span
+                  style="--i:5">12:00</span><span style="--i:6">13:00</span><span style="--i:7">14:00</span><span
+                  style="--i:8">15:00</span><span style="--i:9">16:00</span><span style="--i:10">17:00</span><span
+                  style="--i:11">18:00</span></div>
+              <div class="cal-cols">
+                <div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <a class="ev aula" href="#" style="--dia:0;--ini:9;--dur:2">
+                  <b>Aula de Violão</b><span>09:00 - 11:00</span><span>Prof. Carlos</span>
+                </a>
+                <a class="ev ensaio" href="#" style="--dia:1;--ini:14;--dur:2">
+                  <b>Ensaio Coral</b><span>14:00 - 16:00</span><span>Coral do NUARTE</span>
+                </a>
+                <a class="ev outro" href="#" style="--dia:2;--ini:10;--dur:2">
+                  <b>Aula de Teoria Musical</b><span>10:00 - 12:00</span><span>Prof. Ana Beatriz</span>
+                </a>
+                <a class="ev reuniao" href="#" style="--dia:3;--ini:8;--dur:2">
+                  <b>Aula de Piano</b><span>08:00 - 10:00</span><span>Prof. Lucas</span>
+                </a>
+                <a class="ev projeto" href="#" style="--dia:4;--ini:13;--dur:2">
+                  <b>Projeto Arte e Cultura</b><span>13:00 - 15:00</span><span>NUARTE</span>
+                </a>
+                <a class="ev reuniao" href="#" style="--dia:4;--ini:16;--dur:2">
+                  <b>Ensaio Banda</b><span>16:00 - 18:00</span><span>Banda Experimental</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-foot">
+          <ul class="legend">
+            <li><i class="aula"></i>Aula</li>
+            <li><i class="ensaio"></i>Ensaio</li>
+            <li><i class="projeto"></i>Projeto</li>
+            <li><i class="reuniao"></i>Reunião</li>
+            <li><i class="outro"></i>Outro</li>
+          </ul>
+          <a class="btn-outline" data-reservas-link="minhas-reservas" href="#"><svg>
+              <use href="#r-list" />
+            </svg>Ver minhas reservas</a>
+        </div>
+      </section>
+
+    </div>
+  </div><!-- fecha .reservas -->
+</div><!-- fecha .reservas-wrap -->
 {% endblock %}

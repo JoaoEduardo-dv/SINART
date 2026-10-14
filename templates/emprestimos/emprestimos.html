@@ -1,15 +1,600 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-Empréstimos
+    Empréstimos
 {% endblock %}
 
+
 {% block content %}
-<main>
-    <div>
-        <h1>Empréstimos</h1>
-    </div>
-    <div></div>
-    <div></div>
-</main>
+<div class="emp" data-emp data-page-size="5">
+
+    {# Sprite de ícones (usado via <use href="#i-...">) #}
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+            <defs>
+                <symbol id="i-filter" viewBox="0 0 24 24">
+                    <path d="M3 5h18l-7 8v6l-4-2v-4L3 5z" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-plus" viewBox="0 0 24 24">
+                    <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                </symbol>
+                <symbol id="i-box" viewBox="0 0 24 24">
+                    <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM4 7.5l8 4.5 8-4.5M12 12v9" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-check" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M8 12.5l3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-clock" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-alert" viewBox="0 0 24 24">
+                    <path d="M12 4l9 16H3L12 4zM12 10v4M12 17v.5" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-arrow" viewBox="0 0 24 24">
+                    <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-search" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M16 16l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </symbol>
+                <symbol id="i-chevron-down" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-chevron-left" viewBox="0 0 24 24">
+                    <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-chevron-right" viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </symbol>
+                <symbol id="i-calendar" viewBox="0 0 24 24">
+                    <rect x="4" y="5.5" width="16" height="14.5" rx="2" fill="none" stroke="currentColor"
+                        stroke-width="1.8" />
+                    <path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" />
+                </symbol>
+                <symbol id="i-dots" viewBox="0 0 24 24">
+                    <circle cx="12" cy="5.5" r="1.7" fill="currentColor" />
+                    <circle cx="12" cy="12" r="1.7" fill="currentColor" />
+                    <circle cx="12" cy="18.5" r="1.7" fill="currentColor" />
+                </symbol>
+            </defs>
+        </svg>
+
+        <div class="emp-page">
+
+            <!-- Cabeçalho -->
+            <header class="emp-header">
+                <div class="emp-header__text">
+                    <h1 class="emp-title">Empréstimos</h1>
+                    <p class="emp-subtitle">Gerencie os empréstimos de materiais do núcleo.</p>
+                </div>
+                <div class="emp-header__actions">
+                    <button type="button" class="emp-btn emp-btn--outline" data-filters-toggle aria-expanded="false"
+                        aria-controls="emp-filters-extra">
+                        <svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-filter" />
+                        </svg>
+                        Filtros
+                    </button>
+                    <!-- LINK: novo empréstimo -->
+                    <a href="{% url 'cadastroEmprestimos' %}" class="emp-btn emp-btn--primary">
+                        <svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-plus" />
+                        </svg>
+                        Novo empréstimo
+                    </a>
+                </div>
+            </header>
+
+            <!-- Indicadores (os números virão do Django) -->
+            <section class="emp-kpis" aria-label="Resumo dos empréstimos">
+                <article class="emp-kpi emp-kpi--blue">
+                    <span class="emp-kpi__icon"><svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-box" />
+                        </svg></span>
+                    <div class="emp-kpi__body">
+                        <strong class="emp-kpi__value">8</strong>
+                        <span class="emp-kpi__label">Empréstimos ativos</span>
+                        <!-- LINK: ver todos -->
+                        <a href="#" class="emp-kpi__link">Ver todos <svg class="emp-icon" aria-hidden="true">
+                                <use href="#i-arrow" />
+                            </svg></a>
+                    </div>
+                </article>
+                <article class="emp-kpi emp-kpi--green">
+                    <span class="emp-kpi__icon"><svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-check" />
+                        </svg></span>
+                    <div class="emp-kpi__body">
+                        <strong class="emp-kpi__value">23</strong>
+                        <span class="emp-kpi__label">Empréstimos concluídos</span>
+                        <!-- LINK: ver histórico -->
+                        <a href="#" class="emp-kpi__link">Ver histórico <svg class="emp-icon" aria-hidden="true">
+                                <use href="#i-arrow" />
+                            </svg></a>
+                    </div>
+                </article>
+                <article class="emp-kpi emp-kpi--purple">
+                    <span class="emp-kpi__icon"><svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-clock" />
+                        </svg></span>
+                    <div class="emp-kpi__body">
+                        <strong class="emp-kpi__value">2</strong>
+                        <span class="emp-kpi__label">Atrasados</span>
+                        <!-- LINK: ver atrasados -->
+                        <a href="#" class="emp-kpi__link">Ver atrasados <svg class="emp-icon" aria-hidden="true">
+                                <use href="#i-arrow" />
+                            </svg></a>
+                    </div>
+                </article>
+                <article class="emp-kpi emp-kpi--red">
+                    <span class="emp-kpi__icon"><svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-alert" />
+                        </svg></span>
+                    <div class="emp-kpi__body">
+                        <strong class="emp-kpi__value">1</strong>
+                        <span class="emp-kpi__label">Devoluções pendentes</span>
+                        <!-- LINK: ver pendentes -->
+                        <a href="#" class="emp-kpi__link">Ver pendentes <svg class="emp-icon" aria-hidden="true">
+                                <use href="#i-arrow" />
+                            </svg></a>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Abas -->
+            <div class="emp-tabs" role="tablist" aria-label="Situação dos empréstimos">
+                <button type="button" class="emp-tab is-active" role="tab" aria-selected="true" data-tab="andamento">Em
+                    andamento</button>
+                <button type="button" class="emp-tab" role="tab" aria-selected="false" tabindex="-1"
+                    data-tab="historico">Histórico</button>
+                <button type="button" class="emp-tab" role="tab" aria-selected="false" tabindex="-1"
+                    data-tab="devolvidos">Devolvidos</button>
+                <button type="button" class="emp-tab" role="tab" aria-selected="false" tabindex="-1"
+                    data-tab="atrasados">Atrasados</button>
+            </div>
+
+            <!-- Painel com filtros e tabela -->
+            <section class="emp-panel">
+
+                <div class="emp-filters">
+                    <label class="emp-search">
+                        <svg class="emp-icon" aria-hidden="true">
+                            <use href="#i-search" />
+                        </svg>
+                        <span class="emp-sr">Buscar empréstimos</span>
+                        <input type="search" placeholder="Buscar por item, pessoa ou número de patrimônio..."
+                            data-search autocomplete="off">
+                    </label>
+
+                    <div class="emp-filters__extra" id="emp-filters-extra" data-filters-extra>
+                        <div class="emp-select">
+                            <select aria-label="Filtrar por tipo" data-filter-type>
+                                <option value="">Todos os tipos</option>
+                                <option value="audio">Áudio</option>
+                                <option value="foto-video">Foto e vídeo</option>
+                                <option value="projecao">Projeção</option>
+                                <option value="instrumentos">Instrumentos</option>
+                            </select>
+                            <svg class="emp-icon" aria-hidden="true">
+                                <use href="#i-chevron-down" />
+                            </svg>
+                        </div>
+
+                        <div class="emp-select">
+                            <select aria-label="Filtrar por status" data-filter-status>
+                                <option value="">Todos os status</option>
+                                <option value="andamento">Em andamento</option>
+                                <option value="atrasado">Atrasado</option>
+                                <option value="devolvido">Devolvido</option>
+                            </select>
+                            <svg class="emp-icon" aria-hidden="true">
+                                <use href="#i-chevron-down" />
+                            </svg>
+                        </div>
+
+                        <div class="emp-period" data-popover>
+                            <button type="button" class="emp-period__btn" aria-haspopup="dialog" aria-expanded="false"
+                                data-popover-toggle>
+                                <svg class="emp-icon" aria-hidden="true">
+                                    <use href="#i-calendar" />
+                                </svg>
+                                <span data-period-label>Período</span>
+                                <svg class="emp-icon emp-period__chev" aria-hidden="true">
+                                    <use href="#i-chevron-down" />
+                                </svg>
+                            </button>
+                            <div class="emp-popover" role="dialog" aria-label="Filtrar por período" hidden>
+                                <label class="emp-field">
+                                    <span>De</span>
+                                    <input type="date" data-period-from>
+                                </label>
+                                <label class="emp-field">
+                                    <span>Até</span>
+                                    <input type="date" data-period-to>
+                                </label>
+                                <div class="emp-popover__actions">
+                                    <button type="button" class="emp-btn emp-btn--outline emp-btn--sm"
+                                        data-period-clear>Limpar</button>
+                                    <button type="button" class="emp-btn emp-btn--primary emp-btn--sm"
+                                        data-period-apply>Aplicar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+        TABELA — cada <tr data-emp-row> guarda os dados usados pelos filtros:
+        data-type, data-status (andamento | atrasado | devolvido) e data-loan (AAAA-MM-DD).
+        Com Django, é só colocar um for em volta do <tr>.
+      -->
+                <div class="emp-table-wrap">
+                    <table class="emp-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Emprestado para</th>
+                                <th scope="col">Data do empréstimo</th>
+                                <th scope="col">Previsão de devolução</th>
+                                <th scope="col">Status</th>
+                                <th scope="col" class="emp-th-actions">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody data-tbody>
+
+                            <tr data-emp-row data-type="audio" data-status="andamento" data-loan="2025-05-02">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/microfone.webp' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Microfone Shure SM58</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00045</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">João da
+                                        Silva</span><span class="emp-person__role">Professor</span></td>
+                                <td data-label="Data do empréstimo">02/05/2025</td>
+                                <td data-label="Previsão de devolução">09/05/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--andamento">Em andamento</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="foto-video" data-status="andamento" data-loan="2025-05-03">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/camera.jpg' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Câmera Canon T7</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00018</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Ana Beatriz
+                                        Rocha</span><span class="emp-person__role">Bolsista</span></td>
+                                <td data-label="Data do empréstimo">03/05/2025</td>
+                                <td data-label="Previsão de devolução">10/05/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--andamento">Em andamento</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="audio" data-status="andamento" data-loan="2025-04-28">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/caixadesom.jpg' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Caixa de Som Behringer B115</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00032</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Carlos Eduardo
+                                        Lima</span><span class="emp-person__role">Servidor</span></td>
+                                <td data-label="Data do empréstimo">28/04/2025</td>
+                                <td data-label="Previsão de devolução">05/05/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--andamento">Em andamento</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="projecao" data-status="atrasado" data-loan="2025-04-25">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/projetor.png' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Projetor Epson X49</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00021</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Maria Clara
+                                        Souza</span><span class="emp-person__role">Bolsista</span></td>
+                                <td data-label="Data do empréstimo">25/04/2025</td>
+                                <td data-label="Previsão de devolução">02/05/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--atrasado">Atrasado</span></td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="instrumentos" data-status="andamento" data-loan="2025-04-20">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/violao.png' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Violão Yamaha C40</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00027</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Pedro Henrique
+                                        Alves</span><span class="emp-person__role">Professor</span></td>
+                                <td data-label="Data do empréstimo">20/04/2025</td>
+                                <td data-label="Previsão de devolução">27/04/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--andamento">Em andamento</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="foto-video" data-status="andamento" data-loan="2025-05-05">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/tripe.png' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Tripé Manfrotto Compact</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00011</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Luciana
+                                        Prado</span><span class="emp-person__role">Professora</span></td>
+                                <td data-label="Data do empréstimo">05/05/2025</td>
+                                <td data-label="Previsão de devolução">12/05/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--andamento">Em andamento</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="audio" data-status="andamento" data-loan="2025-05-06">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/mesa-som.png' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Mesa de Som Yamaha MG10</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00039</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Rafael
+                                        Martins</span><span class="emp-person__role">Servidor</span></td>
+                                <td data-label="Data do empréstimo">06/05/2025</td>
+                                <td data-label="Previsão de devolução">13/05/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--andamento">Em andamento</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="projecao" data-status="atrasado" data-loan="2025-04-22">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/telao.png' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Telão Retrátil 120"</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00014</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Fernanda
+                                        Lopes</span><span class="emp-person__role">Bolsista</span></td>
+                                <td data-label="Data do empréstimo">22/04/2025</td>
+                                <td data-label="Previsão de devolução">29/04/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--atrasado">Atrasado</span></td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Registrar devolução</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="audio" data-status="devolvido" data-loan="2025-04-10">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img
+                                                src="{% static 'img/emprestimos/microfone-sem-fio.png' %}" alt=""
+                                                loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Microfone Sem Fio Sennheiser</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00050</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Bruno
+                                        Carvalho</span><span class="emp-person__role">Professor</span></td>
+                                <td data-label="Data do empréstimo">10/04/2025</td>
+                                <td data-label="Previsão de devolução">17/04/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--devolvido">Devolvido</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-emp-row data-type="foto-video" data-status="devolvido" data-loan="2025-04-12">
+                                <td data-label="Item">
+                                    <div class="emp-item">
+                                        <span class="emp-thumb"><img src="{% static 'img/emprestimos/gopro.png' %}"
+                                                alt="" loading="lazy"><svg class="emp-icon" aria-hidden="true">
+                                                <use href="#i-box" />
+                                            </svg></span>
+                                        <div><span class="emp-item__name">Câmera GoPro Hero 9</span><span
+                                                class="emp-item__meta">Patrimônio: MAT-00023</span></div>
+                                    </div>
+                                </td>
+                                <td data-label="Emprestado para"><span class="emp-person__name">Juliana
+                                        Freitas</span><span class="emp-person__role">Bolsista</span></td>
+                                <td data-label="Data do empréstimo">12/04/2025</td>
+                                <td data-label="Previsão de devolução">19/04/2025</td>
+                                <td data-label="Status"><span class="emp-badge emp-badge--devolvido">Devolvido</span>
+                                </td>
+                                <td class="emp-td-actions">
+                                    <div class="emp-actions" data-popover>
+                                        <button type="button" class="emp-iconbtn" aria-label="Ações do empréstimo"
+                                            aria-haspopup="menu" aria-expanded="false" data-popover-toggle><svg
+                                                class="emp-icon" aria-hidden="true">
+                                                <use href="#i-dots" />
+                                            </svg></button>
+                                        <ul class="emp-menu" role="menu" hidden>
+                                            <li role="none"><a role="menuitem" href="#">Ver detalhes</a></li>
+                                            <li role="none"><a role="menuitem" href="#">Editar empréstimo</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <p class="emp-empty" data-empty hidden>Nenhum empréstimo encontrado com os filtros atuais.</p>
+                </div>
+
+                <!-- Rodapé: contador e paginação -->
+                <footer class="emp-footer">
+                    <p class="emp-count" data-count aria-live="polite"></p>
+                    <nav class="emp-pagination" aria-label="Paginação" data-pagination></nav>
+                </footer>
+
+            </section>
+        </div>
+</div>
 {% endblock %}

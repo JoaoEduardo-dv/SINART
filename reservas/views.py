@@ -7,8 +7,8 @@ def inicio (request):
 def reservas (request):
     return render (request, 'reservas/reservas.html')
 
-def emprestimos (request):
-    return render (request, 'emprestimos/emprestimos.html')
-
 def cadastroReservas (request):
     return render (request, 'reservas/cadastroReservas.html')
+
+def atividades (request):
+    return render (request, 'Painel de atividades/atividades.html')

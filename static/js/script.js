@@ -29,6 +29,11 @@ document.querySelectorAll("[data-link]").forEach(el => {
   if (el.getAttribute("href") === "#") el.addEventListener("click", e => e.preventDefault());
 });
 
+/* ---- marca como ativo o item do menu da página atual ---- */
+document.querySelectorAll(".menu-item[href]").forEach(a => {
+  if (a.getAttribute("href") !== "#" && a.pathname === location.pathname) a.classList.add("active");
+});
+
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
 const layout = $("#layout");
@@ -77,3 +82,12 @@ document.addEventListener("click", () => {
   userBox.classList.remove("open");
   themeBox.classList.remove("open");
 });
+
+/* ---- menu mobile: fechar ao tocar fora, em um link ou no ESC ---- */
+const closeMobileMenu = () => layout.classList.remove("open-mobile");
+$("#overlay").addEventListener("click", closeMobileMenu);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMobileMenu(); });
+document.querySelectorAll(".sidebar a").forEach(a =>
+  a.addEventListener("click", () => { if (window.innerWidth <= 900) closeMobileMenu(); })
+);
+window.addEventListener("resize", () => { if (window.innerWidth > 900) closeMobileMenu(); });

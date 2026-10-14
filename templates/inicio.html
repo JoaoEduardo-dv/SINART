@@ -1,26 +1,43 @@
 {% extends "base.html" %}
 
-
 {% block title %}
-Início
+Início - SINART
 {% endblock %}
 
 {% block content %}
-<!-- Coloque este conteúdo dentro do <main> do seu base.html -->
-<!-- No <head>:  <link rel="stylesheet" href="inicio.css">   |   Antes de </body>:  <script src="inicio.js"></script> -->
-
 <!-- Ícones usados só nesta página -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="2.5" fill="#fff" stroke="none"/></symbol>
-    <symbol id="i-dotpin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/></symbol>
-    <symbol id="i-calplus" viewBox="0 0 24 24"><path d="M20 12V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7M8 2v4M16 2v4M4 9h16M18 15v6M15 18h6"/></symbol>
-    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
-    <symbol id="i-cap2" viewBox="0 0 24 24"><path d="M12 4L2 9l10 5 10-5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6"/></symbol>
-    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
-    <symbol id="i-calbig" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h16M14 6l6 6-6 6" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="10" r="2.5" fill="#fff" stroke="none" />
+    </symbol>
+    <symbol id="i-dotpin" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="6" fill="currentColor" stroke="none" />
+    </symbol>
+    <symbol id="i-calplus" viewBox="0 0 24 24">
+      <path d="M20 12V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7M8 2v4M16 2v4M4 9h16M18 15v6M15 18h6" />
+    </symbol>
+    <symbol id="i-box" viewBox="0 0 24 24">
+      <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" />
+    </symbol>
+    <symbol id="i-cap2" viewBox="0 0 24 24">
+      <path d="M12 4L2 9l10 5 10-5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6" />
+    </symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4" />
+    </symbol>
+    <symbol id="i-calbig" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M8 2v4M16 2v4M3 10h18" />
+    </symbol>
   </defs>
 </svg>
 
@@ -33,7 +50,9 @@ Início
       <p>Veja o que está acontecendo hoje no SINART.</p>
     </div>
     <div class="date-card">
-      <svg><use href="#i-calbig"/></svg>
+      <svg>
+        <use href="#i-calbig" />
+      </svg>
       <div>
         <strong>08 de maio de 2025</strong>
         <small>Quinta-feira</small>
@@ -45,25 +64,41 @@ Início
   <h2 class="section-title">Ações rápidas</h2>
   <section class="quick">
     <!-- Os links são definidos em static/sinart/script.js (objeto LINKS) -->
-    <a class="qcard red" data-inicio-link="acao-reserva" href="#">
-      <span class="qicon"><svg><use href="#i-calplus"/></svg></span>
+    <a class="qcard red" data-inicio-link="acao-reserva" href="{% url 'cadastroReservas' %}">
+      <span class="qicon"><svg>
+          <use href="#i-calplus" />
+        </svg></span>
       <span class="qtext"><strong>Nova reserva</strong><small>Reserve uma sala</small></span>
-      <svg class="qarrow"><use href="#i-arrow"/></svg>
+      <svg class="qarrow">
+        <use href="#i-arrow" />
+      </svg>
     </a>
-    <a class="qcard blue" data-inicio-link="acao-emprestimo" href="#">
-      <span class="qicon"><svg><use href="#i-box"/></svg></span>
+    <a class="qcard blue" data-inicio-link="acao-emprestimo" href="{% url 'cadastroEmprestimos' %}">
+      <span class="qicon"><svg>
+          <use href="#i-box" />
+        </svg></span>
       <span class="qtext"><strong>Novo empréstimo</strong><small>Empreste um material</small></span>
-      <svg class="qarrow"><use href="#i-arrow"/></svg>
+      <svg class="qarrow">
+        <use href="#i-arrow" />
+      </svg>
     </a>
     <a class="qcard green" data-inicio-link="acao-aula" href="#">
-      <span class="qicon"><svg><use href="#i-cap2"/></svg></span>
+      <span class="qicon"><svg>
+          <use href="#i-cap2" />
+        </svg></span>
       <span class="qtext"><strong>Cadastrar aula</strong><small>Adicione aula e horário</small></span>
-      <svg class="qarrow"><use href="#i-arrow"/></svg>
+      <svg class="qarrow">
+        <use href="#i-arrow" />
+      </svg>
     </a>
     <a class="qcard purple" data-inicio-link="acao-documentos" href="#">
-      <span class="qicon"><svg><use href="#i-doc"/></svg></span>
+      <span class="qicon"><svg>
+          <use href="#i-doc" />
+        </svg></span>
       <span class="qtext"><strong>Documentos</strong><small>Acesse regulamentos</small></span>
-      <svg class="qarrow"><use href="#i-arrow"/></svg>
+      <svg class="qarrow">
+        <use href="#i-arrow" />
+      </svg>
     </a>
   </section>
 
@@ -78,8 +113,12 @@ Início
           <div class="act-info">
             <strong>Reserva: Sala de Música 2</strong>
             <div class="meta">
-            <span><svg><use href="#i-clock"/></svg>09:00 - 11:00</span>
-            <span><svg><use href="#i-pin"/></svg>Sala de Música 2</span>
+              <span><svg>
+                  <use href="#i-clock" />
+                </svg>09:00 - 11:00</span>
+              <span><svg>
+                  <use href="#i-pin" />
+                </svg>Sala de Música 2</span>
             </div>
           </div>
           <span class="pill reserva">Reserva</span>
@@ -89,8 +128,12 @@ Início
           <div class="act-info">
             <strong>Aula: Violão Intermediário</strong>
             <div class="meta">
-            <span><svg><use href="#i-clock"/></svg>14:00 - 16:00</span>
-            <span><svg><use href="#i-pin"/></svg>Sala de Música 1</span>
+              <span><svg>
+                  <use href="#i-clock" />
+                </svg>14:00 - 16:00</span>
+              <span><svg>
+                  <use href="#i-pin" />
+                </svg>Sala de Música 1</span>
             </div>
           </div>
           <span class="pill aula">Aula</span>
@@ -100,7 +143,9 @@ Início
           <div class="act-info">
             <strong>Devolução: Microfone Shure SM58</strong>
             <div class="meta">
-            <span><svg class="dot"><use href="#i-dotpin"/></svg>Prazo: 09/05/2025</span>
+              <span><svg class="dot">
+                  <use href="#i-dotpin" />
+                </svg>Prazo: 09/05/2025</span>
             </div>
           </div>
           <span class="pill emprestimo">Empréstimo</span>
@@ -110,21 +155,29 @@ Início
           <div class="act-info">
             <strong>Reunião de Núcleo</strong>
             <div class="meta">
-            <span><svg><use href="#i-clock"/></svg>10:00 - 11:30</span>
-            <span><svg><use href="#i-pin"/></svg>Sala de Reuniões</span>
+              <span><svg>
+                  <use href="#i-clock" />
+                </svg>10:00 - 11:30</span>
+              <span><svg>
+                  <use href="#i-pin" />
+                </svg>Sala de Reuniões</span>
             </div>
           </div>
           <span class="pill reuniao">Reunião</span>
         </li>
       </ul>
-      <a class="more" data-inicio-link="ver-agenda" href="#">Ver agenda completa <svg><use href="#i-arrow"/></svg></a>
+      <a class="more" data-inicio-link="ver-agenda" href="{% url 'atividades' %}">Ver agenda completa <svg>
+          <use href="#i-arrow" />
+        </svg></a>
     </section>
 
     <!-- ===== Painel semanal ===== -->
     <section class="card week">
       <div class="week-head">
         <h2>Painel semanal</h2>
-        <a class="more" data-inicio-link="ver-painel" href="#">Ver painel completo <svg><use href="#i-arrow"/></svg></a>
+        <a class="more" data-inicio-link="ver-painel" href="#">Ver painel completo <svg>
+            <use href="#i-arrow" />
+          </svg></a>
       </div>
       <div class="week-grid">
         <div class="wday">

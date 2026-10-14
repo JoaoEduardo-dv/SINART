@@ -1,6 +1,7 @@
 /* =====================================================================
-   TELA INÍCIO - CONFIGURAÇÃO DE LINKS
-   Coloque o endereço de cada botão (ex.: "/reservas/nova"). Vazio = não faz nada.
+   TELA INÍCIO - LINKS
+   Opção A: coloque o endereço aqui. Opção B: troque o href="#" no HTML por {% url %}.
+   Vazio = não faz nada.
    ===================================================================== */
 const LINKS_INICIO = {
   "acao-reserva":    "",   // card Nova reserva
@@ -13,6 +14,6 @@ const LINKS_INICIO = {
 
 document.querySelectorAll("[data-inicio-link]").forEach(el => {
   const url = LINKS_INICIO[el.dataset.inicioLink];
-  if (url) el.setAttribute("href", url);
-  else el.addEventListener("click", e => e.preventDefault());
+  if (url) { el.setAttribute("href", url); return; }
+  if (el.getAttribute("href") === "#") el.addEventListener("click", e => e.preventDefault());
 });

@@ -25,19 +25,23 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
 html,
 body {
-    height: 100%;
+    height: 100%
 }
 
 body {
     font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
     background: var(--bg);
     color: var(--text);
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased
+}
+
+.logoSinart{
+    width: 50px;
 }
 
 a {
@@ -270,14 +274,14 @@ svg {
 }
 
 /* ---------- MAIN ---------- */
-.main{
-  flex:1;
-  min-width:0;          /* deixa o main encolher em vez de estourar a tela */
-  margin-left:290px;    /* largura da sidebar */
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  transition:margin .25s;
+.main {
+    flex: 1;
+    min-width: 0;
+    margin-left: 290px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin .25s
 }
 
 .topbar {
@@ -443,13 +447,17 @@ svg {
     padding: 0 20px 28px
 }
 
-/* ---------- MENU RECOLHIDO / MOBILE ---------- */
-.layout.collapsed .sidebar {
-    transform: translateX(-100%)
+/* ---------- MENU RECOLHIDO / RESPONSIVO ---------- */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 25, .5);
+    z-index: 15
 }
 
-.layout.collapsed .color-strip {
-    transform: none
+.layout.collapsed .sidebar {
+    transform: translateX(-100%)
 }
 
 .layout.collapsed .main {
@@ -457,27 +465,52 @@ svg {
 }
 
 @media (max-width:900px) {
-    .main {
-        margin-left: 19px
-    }
-
     .sidebar {
-        transform: translateX(-100%)
+        transform: translateX(-100%);
+        max-width: 86vw
     }
 
     .layout.open-mobile .sidebar {
-        transform: none
+        transform: none;
+        box-shadow: 0 0 30px rgba(0, 0, 0, .25)
     }
 
-    .layout.collapsed .sidebar {
-        transform: translateX(-100%)
+    .layout.open-mobile .overlay {
+        display: block
+    }
+
+    body:has(.layout.open-mobile) {
+        overflow: hidden
+    }
+
+    .main,
+    .layout.collapsed .main {
+        margin-left: 19px
     }
 
     .topbar {
-        padding: 0 16px
+        padding: 0 16px;
+        height: 70px
+    }
+
+    .top-right {
+        gap: 20px
     }
 
     .user-info {
         display: none
+    }
+
+    .user-btn .chev {
+        margin-left: 6px
+    }
+
+    .content {
+        padding: 20px 16px
+    }
+
+    .footer {
+        font-size: 12px;
+        padding: 0 16px 20px
     }
 }
