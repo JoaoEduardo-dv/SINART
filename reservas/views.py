@@ -12,3 +12,6 @@ def cadastroReservas (request):
 
 def atividades (request):
     return render (request, 'Painel de atividades/atividades.html')
+
+def login (request):
+    return render (request, 'index.html')
