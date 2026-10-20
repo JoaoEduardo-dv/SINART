@@ -2,188 +2,421 @@
 {% load static %}
 
 {% block title %}
-    Aulas e Horários
+Aulas e Horários
 {% endblock %}
 
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/aulas_horarios.css' %}">
+<link rel="stylesheet" href="{% static 'css/aulas/aulas.css' %}">
 
 <!-- Ícones usados só nesta página -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="ah-user" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M2.5 21v-1a6 6 0 0 1 6-6h3a6 6 0 0 1 6 6v1M18 3.5v4M16 5.5h4"/></symbol>
-    <symbol id="ah-cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 9.5h18"/></symbol>
-    <symbol id="ah-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
-    <symbol id="ah-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
-    <symbol id="ah-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
-    <symbol id="ah-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
-    <symbol id="ah-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M12 11v6M12 7.5v.01" stroke="#fff" stroke-width="2.4"/></symbol>
-  </defs>
+    <defs>
+        <symbol id="ah-user" viewBox="0 0 24 24">
+            <circle cx="10" cy="8" r="4" />
+            <path d="M2.5 21v-1a6 6 0 0 1 6-6h3a6 6 0 0 1 6 6v1M18 3.5v4M16 5.5h4" />
+        </symbol>
+        <symbol id="ah-cal" viewBox="0 0 24 24">
+            <rect x="3" y="4.5" width="18" height="16.5" rx="2.5" />
+            <path d="M8 2.5v4M16 2.5v4M3 9.5h18" />
+        </symbol>
+        <symbol id="ah-chev" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" />
+        </symbol>
+        <symbol id="ah-prev" viewBox="0 0 24 24">
+            <path d="M15 5l-7 7 7 7" />
+        </symbol>
+        <symbol id="ah-next" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+        </symbol>
+        <symbol id="ah-list" viewBox="0 0 24 24">
+            <path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01" />
+        </symbol>
+        <symbol id="ah-info" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
+            <path d="M12 11v6M12 7.5v.01" stroke="#fff" stroke-width="2.4" />
+        </symbol>
+    </defs>
 </svg>
 
 <div class="ah-wrap">
-<div class="ah">
+    <div class="ah">
 
-  <!-- ===== Cabeçalho ===== -->
-  <header class="ah-head-top">
-    <h1>Aulas e Horários</h1>
-    <p>Visualize e gerencie as aulas e os horários das disciplinas.</p>
-  </header>
-
-  <!-- ===== Abas + filtros ===== -->
-  <div class="ah-bar">
-    <nav class="ah-tabs" id="ahAbas" aria-label="Seções">
-      <a class="active" data-ah-link="aba-grade" href="#">Grade de horários</a>
-      <a data-ah-link="aba-disciplinas" href="#">Disciplinas</a>
-      <a data-ah-link="aba-professores" href="#">Professores</a>
-    </nav>
-
-    <div class="ah-spacer"></div>
-
-    <!-- Filtros: o semestre envia o formulário (GET); o professor filtra a grade na própria página -->
-    <form class="ah-filters" id="formFiltros" method="get" action="">
-      <label class="ah-select">
-        <svg class="ah-s-ico"><use href="#ah-user"/></svg>
-        <select id="filtroProf" name="professor" aria-label="Filtrar por professor">
-          <option value="">Todos os professores</option>
-            <option value="Lucas">Lucas</option>
-            <option value="Carlos">Carlos</option>
-            <option value="Ana Beatriz">Ana Beatriz</option>
-            <option value="Mariana">Mariana</option>
-            <option value="João">João</option>
-            <option value="Fernanda">Fernanda</option>
-            <option value="Rafael">Rafael</option>
-        </select>
-        <svg class="ah-s-chev"><use href="#ah-chev"/></svg>
-      </label>
-      <label class="ah-select ah-select-sm">
-        <svg class="ah-s-ico"><use href="#ah-cal"/></svg>
-        <select id="filtroSemestre" name="semestre" aria-label="Semestre">
-          {# VARIÁVEL: {% for s in semestres %}<option value="{{ s }}">{{ s }}</option>{% endfor %} #}
-          <option value="2025.1" selected>2025.1</option>
-          <option value="2024.2">2024.2</option>
-          <option value="2024.1">2024.1</option>
-        </select>
-        <svg class="ah-s-chev"><use href="#ah-chev"/></svg>
-      </label>
-    </form>
-  </div>
-
-  <!-- ===== Cartão da grade ===== -->
-  <section class="ah-box">
-
-    <div class="ah-toolbar">
-      <div class="ah-datenav">
-        <a class="ah-arrow" data-ah-link="semana-anterior" href="#" aria-label="Semana anterior"><svg><use href="#ah-prev"/></svg></a>
-        <span class="ah-range"><svg><use href="#ah-cal"/></svg>12 - 18 de maio de 2025</span>
-        <a class="ah-arrow" data-ah-link="semana-proxima" href="#" aria-label="Próxima semana"><svg><use href="#ah-next"/></svg></a>
-      </div>
-      <a class="ah-btn-list" data-ah-link="ver-lista" href="#"><svg><use href="#ah-list"/></svg>Ver em lista</a>
-    </div>
-
-    <div class="ah-scroll">
-      <div class="ah-table">
-        <div class="ah-head"><i></i><div class="ah-day"><b>SEG</b><span>12/05</span></div><div class="ah-day"><b>TER</b><span>13/05</span></div><div class="ah-day"><b>QUA</b><span>14/05</span></div><div class="ah-day"><b>QUI</b><span>15/05</span></div><div class="ah-day"><b>SEX</b><span>16/05</span></div></div>
-
-        <!-- Corpo: uma grade só. Linhas = 12 aulas de 45 min + intervalos + almoço -->
-        <div class="ah-body">
-          <div class="ah-hlines" aria-hidden="true"><i style="--r:2"></i><i style="--r:3"></i><i style="--r:4"></i><i style="--r:5"></i><i style="--r:6"></i><i style="--r:7"></i><i style="--r:8"></i><i style="--r:9"></i><i style="--r:10"></i><i style="--r:11"></i><i style="--r:12"></i><i style="--r:13"></i><i style="--r:14"></i><i style="--r:15"></i><i style="--r:16"></i><i style="--r:17"></i><i style="--r:18"></i><i style="--r:19"></i></div>
-          <div class="ah-vlines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-
-          <!-- horários (coluna da esquerda) -->
-            <span class="ah-t" style="--r:2">07:00</span>
-            <span class="ah-t" style="--r:3">07:45</span>
-            <span class="ah-t" style="--r:4">08:30</span>
-            <span class="ah-t" style="--r:5">08:50</span>
-            <span class="ah-t" style="--r:6">09:35</span>
-            <span class="ah-t" style="--r:7">10:20</span>
-            <span class="ah-t" style="--r:8">10:30</span>
-            <span class="ah-t" style="--r:9">11:15</span>
-            <span class="ah-t" style="--r:10">12:00</span>
-            <span class="ah-t" style="--r:11">13:00</span>
-            <span class="ah-t" style="--r:12">13:45</span>
-            <span class="ah-t" style="--r:13">14:30</span>
-            <span class="ah-t" style="--r:14">14:50</span>
-            <span class="ah-t" style="--r:15">15:35</span>
-            <span class="ah-t" style="--r:16">16:20</span>
-            <span class="ah-t" style="--r:17">16:30</span>
-            <span class="ah-t" style="--r:18">17:15</span>
-            <span class="ah-t" style="--r:19">18:00</span>
-
-          <!-- intervalos e almoço -->
-          <div class="ah-gap" style="--r:4">Intervalo · 20 min</div>
-          <div class="ah-gap" style="--r:7">Intervalo · 10 min</div>
-          <div class="ah-gap" style="--r:10">Almoço · 1 hora</div>
-          <div class="ah-gap" style="--r:13">Intervalo · 20 min</div>
-          <div class="ah-gap" style="--r:16">Intervalo · 10 min</div>
-
-          {% comment %} AULAS: use a classe ah-b1 a ah-b6 (cada uma ocupa 2 aulas de 45 min):
-              ah-b1 = 07:00-08:30 | ah-b2 = 08:50-10:20 | ah-b3 = 10:30-12:00
-              ah-b4 = 13:00-14:30 | ah-b5 = 14:50-16:20 | ah-b6 = 16:30-18:00
-              style="--dia:0 a 4" escolhe o dia (0 = SEG ... 4 = SEX).
-              Para uma aula de 45 min só: troque a classe ah-bN por style="--dia:0;--r:LINHA;--span:1", com LINHA =
-              07:00=2 | 07:45=3 | 08:50=5 | 09:35=6 | 10:30=8 | 11:15=9 | 13:00=11 | 13:45=12 | 14:50=14 | 15:35=15 | 16:30=17 | 17:15=18 {% endcomment %}
-          <a class="ah-card c-red ah-b1" data-prof="Lucas" href="#" style="--dia:0">
-            <strong>Teoria Musical I</strong><span>07:00 – 08:30</span><span>Prof. Lucas</span><span>Sala de Música 1</span>
-          </a>
-          <a class="ah-card c-blue ah-b3" data-prof="Carlos" href="#" style="--dia:0">
-            <strong>Violão Intermediário</strong><span>10:30 – 12:00</span><span>Prof. Carlos</span><span>Sala de Música 2</span>
-          </a>
-          <a class="ah-card c-green ah-b5" data-prof="Ana Beatriz" href="#" style="--dia:0">
-            <strong>Coral</strong><span>14:50 – 16:20</span><span>Prof. Ana Beatriz</span><span>Sala de Música 1</span>
-          </a>
-          <a class="ah-card c-purple ah-b6" data-prof="Mariana" href="#" style="--dia:0">
-            <strong>Desenho Artístico</strong><span>16:30 – 18:00</span><span>Prof. Mariana</span><span>Sala de Artes</span>
-          </a>
-          <a class="ah-card c-orange ah-b2" data-prof="João" href="#" style="--dia:1">
-            <strong>Piano Iniciante</strong><span>08:50 – 10:20</span><span>Prof. João</span><span>Sala de Música 3</span>
-          </a>
-          <a class="ah-card c-purple ah-b4" data-prof="Fernanda" href="#" style="--dia:1">
-            <strong>Fotografia Básica</strong><span>13:00 – 14:30</span><span>Prof. Fernanda</span><span>Sala de Fotografia</span>
-          </a>
-          <a class="ah-card c-red ah-b5" data-prof="Rafael" href="#" style="--dia:1">
-            <strong>Ritmo e Percussão</strong><span>14:50 – 16:20</span><span>Prof. Rafael</span><span>Sala de Música 1</span>
-          </a>
-          <a class="ah-card c-green ah-b1" data-prof="Mariana" href="#" style="--dia:2">
-            <strong>História da Arte</strong><span>07:00 – 08:30</span><span>Prof. Mariana</span><span>Sala de Artes</span>
-          </a>
-          <a class="ah-card c-blue ah-b3" data-prof="Lucas" href="#" style="--dia:2">
-            <strong>Teoria Musical II</strong><span>10:30 – 12:00</span><span>Prof. Lucas</span><span>Sala de Música 1</span>
-          </a>
-          <a class="ah-card c-orange ah-b5" data-prof="João" href="#" style="--dia:2">
-            <strong>Orquestra</strong><span>14:50 – 16:20</span><span>Prof. João</span><span>Auditório</span>
-          </a>
-          <a class="ah-card c-purple ah-b6" data-prof="Rafael" href="#" style="--dia:2">
-            <strong>Edição de Áudio</strong><span>16:30 – 18:00</span><span>Prof. Rafael</span><span>Sala de Informática</span>
-          </a>
-          <a class="ah-card c-red ah-b2" data-prof="Ana Beatriz" href="#" style="--dia:3">
-            <strong>Canto Coral</strong><span>08:50 – 10:20</span><span>Prof. Ana Beatriz</span><span>Sala de Música 2</span>
-          </a>
-          <a class="ah-card c-blue ah-b4" data-prof="Carlos" href="#" style="--dia:3">
-            <strong>Violão Avançado</strong><span>13:00 – 14:30</span><span>Prof. Carlos</span><span>Sala de Música 1</span>
-          </a>
-          <a class="ah-card c-green ah-b5" data-prof="João" href="#" style="--dia:3">
-            <strong>Prática de Conjunto</strong><span>14:50 – 16:20</span><span>Prof. João</span><span>Sala de Música 3</span>
-          </a>
-          <a class="ah-card c-orange ah-b1" data-prof="Mariana" href="#" style="--dia:4">
-            <strong>Desenho Técnico</strong><span>07:00 – 08:30</span><span>Prof. Mariana</span><span>Sala de Artes</span>
-          </a>
-          <a class="ah-card c-purple ah-b3" data-prof="Lucas" href="#" style="--dia:4">
-            <strong>Apreciação Musical</strong><span>10:30 – 12:00</span><span>Prof. Lucas</span><span>Sala de Música 1</span>
-          </a>
-          <a class="ah-card c-red ah-b5" data-prof="Fernanda" href="#" style="--dia:4">
-            <strong>Arte e Cultura</strong><span>14:50 – 16:20</span><span>Prof. Fernanda</span><span>Sala de Artes</span>
-          </a>
+        <!-- ===== Cabeçalho ===== -->
+        <div class="ah-head-top">
+            <div class="ah-title-copy">
+                <h1>Aulas e Horários</h1>
+                <p>Visualize e gerencie as aulas e os horários das disciplinas.</p>
+            </div>
+            <a class="ah-btn-primary" data-ah-link="cadastrar-aula" href="#">
+                <span aria-hidden="true">＋</span> Cadastrar aula
+            </a>
         </div>
-      </div>
-    </div>
 
-    <p class="ah-note"><svg><use href="#ah-info"/></svg>Os horários podem sofrer alterações. Verifique sempre o painel semanal para atualizações.</p>
-  </section>
+        <!-- ===== Abas + filtros ===== -->
+        <div class="ah-bar">
+            <nav class="ah-tabs" id="ahAbas" role="tablist" aria-label="Seções">
+                <button class="active" type="button" role="tab" id="tab-grade" aria-selected="true"
+                    aria-controls="painel-grade" data-tab="grade">Grade de horários</button>
+                <button type="button" role="tab" id="tab-disciplinas" aria-selected="false"
+                    aria-controls="painel-disciplinas" data-tab="disciplinas" tabindex="-1">Disciplinas</button>
+                <button type="button" role="tab" id="tab-professores" aria-selected="false"
+                    aria-controls="painel-professores" data-tab="professores" tabindex="-1">Professores</button>
+            </nav>
 
-</div><!-- fecha .ah -->
+            <div class="ah-spacer"></div>
+
+            <!-- Filtros da grade de horários -->
+            <form class="ah-filters" id="formFiltros" method="get" action="" data-grade-filters>
+                <label class="ah-select">
+                    <svg class="ah-s-ico">
+                        <use href="#ah-user" />
+                    </svg>
+                    <select id="filtroProf" name="professor" aria-label="Filtrar por professor">
+                        <option value="">Todos os professores</option>
+                        <option value="Lucas">Lucas</option>
+                        <option value="Carlos">Carlos</option>
+                        <option value="Ana Beatriz">Ana Beatriz</option>
+                        <option value="Mariana">Mariana</option>
+                        <option value="João">João</option>
+                        <option value="Fernanda">Fernanda</option>
+                        <option value="Rafael">Rafael</option>
+                    </select>
+                    <svg class="ah-s-chev">
+                        <use href="#ah-chev" />
+                    </svg>
+                </label>
+                <label class="ah-select ah-select-sm">
+                    <svg class="ah-s-ico">
+                        <use href="#ah-cal" />
+                    </svg>
+                    <select id="filtroSemestre" name="semestre" aria-label="Semestre">
+                        {# VARIÁVEL: {% for s in semestres %}<option value="{{ s }}">{{ s }}</option>{% endfor %} #}
+                        <option value="2025.1" selected>2025.1</option>
+                        <option value="2024.2">2024.2</option>
+                        <option value="2024.1">2024.1</option>
+                    </select>
+                    <svg class="ah-s-chev">
+                        <use href="#ah-chev" />
+                    </svg>
+                </label>
+            </form>
+        </div>
+
+        <!-- ===== Cartão da grade ===== -->
+        <section class="ah-box ah-tab-panel" id="painel-grade" role="tabpanel" aria-labelledby="tab-grade"
+            data-panel="grade">
+
+            <div class="ah-toolbar">
+                <div class="ah-datenav">
+                    <a class="ah-arrow" data-ah-link="semana-anterior" href="#" aria-label="Semana anterior"><svg>
+                            <use href="#ah-prev" />
+                        </svg></a>
+                    <span class="ah-range"><svg>
+                            <use href="#ah-cal" />
+                        </svg>12 - 18 de maio de 2025</span>
+                    <a class="ah-arrow" data-ah-link="semana-proxima" href="#" aria-label="Próxima semana"><svg>
+                            <use href="#ah-next" />
+                        </svg></a>
+                </div>
+                <a class="ah-btn-list" data-ah-link="ver-lista" href="#"><svg>
+                        <use href="#ah-list" />
+                    </svg>Ver em lista</a>
+            </div>
+
+            <div class="ah-scroll">
+                <div class="ah-table">
+                    <div class="ah-head"><i></i>
+                        <div class="ah-day"><b>SEG</b><span>12/05</span></div>
+                        <div class="ah-day"><b>TER</b><span>13/05</span></div>
+                        <div class="ah-day"><b>QUA</b><span>14/05</span></div>
+                        <div class="ah-day"><b>QUI</b><span>15/05</span></div>
+                        <div class="ah-day"><b>SEX</b><span>16/05</span></div>
+                    </div>
+
+                    <!-- Corpo: uma grade só. Linhas = 12 aulas de 45 min + intervalos + almoço -->
+                    <div class="ah-body">
+                        <div class="ah-hlines" aria-hidden="true"><i style="--r:2"></i><i style="--r:3"></i><i
+                                style="--r:4"></i><i style="--r:5"></i><i style="--r:6"></i><i style="--r:7"></i><i
+                                style="--r:8"></i><i style="--r:9"></i><i style="--r:10"></i><i style="--r:11"></i><i
+                                style="--r:12"></i><i style="--r:13"></i><i style="--r:14"></i><i style="--r:15"></i><i
+                                style="--r:16"></i><i style="--r:17"></i><i style="--r:18"></i><i style="--r:19"></i>
+                        </div>
+                        <div class="ah-vlines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+                        <!-- horários (coluna da esquerda) -->
+                        <span class="ah-t" style="--r:2">07:00</span>
+                        <span class="ah-t" style="--r:3">07:45</span>
+                        <span class="ah-t" style="--r:4">08:30</span>
+                        <span class="ah-t" style="--r:5">08:50</span>
+                        <span class="ah-t" style="--r:6">09:35</span>
+                        <span class="ah-t" style="--r:7">10:20</span>
+                        <span class="ah-t" style="--r:8">10:30</span>
+                        <span class="ah-t" style="--r:9">11:15</span>
+                        <span class="ah-t" style="--r:10">12:00</span>
+                        <span class="ah-t" style="--r:11">13:00</span>
+                        <span class="ah-t" style="--r:12">13:45</span>
+                        <span class="ah-t" style="--r:13">14:30</span>
+                        <span class="ah-t" style="--r:14">14:50</span>
+                        <span class="ah-t" style="--r:15">15:35</span>
+                        <span class="ah-t" style="--r:16">16:20</span>
+                        <span class="ah-t" style="--r:17">16:30</span>
+                        <span class="ah-t" style="--r:18">17:15</span>
+                        <span class="ah-t" style="--r:19">18:00</span>
+
+                        <!-- intervalos e almoço -->
+                        <div class="ah-gap" style="--r:4">Intervalo · 20 min</div>
+                        <div class="ah-gap" style="--r:7">Intervalo · 10 min</div>
+                        <div class="ah-gap" style="--r:10">Almoço · 1 hora</div>
+                        <div class="ah-gap" style="--r:13">Intervalo · 20 min</div>
+                        <div class="ah-gap" style="--r:16">Intervalo · 10 min</div>
+
+                        {% comment %} AULAS: use a classe ah-b1 a ah-b6 (cada uma ocupa 2 aulas de 45 min):
+                        ah-b1 = 07:00-08:30 | ah-b2 = 08:50-10:20 | ah-b3 = 10:30-12:00
+                        ah-b4 = 13:00-14:30 | ah-b5 = 14:50-16:20 | ah-b6 = 16:30-18:00
+                        style="--dia:0 a 4" escolhe o dia (0 = SEG ... 4 = SEX).
+                        Para uma aula de 45 min só: troque a classe ah-bN por style="--dia:0;--r:LINHA;--span:1", com
+                        LINHA =
+                        07:00=2 | 07:45=3 | 08:50=5 | 09:35=6 | 10:30=8 | 11:15=9 | 13:00=11 | 13:45=12 | 14:50=14 |
+                        15:35=15 | 16:30=17 | 17:15=18 {% endcomment %}
+                        <a class="ah-card c-red ah-b1" data-prof="Lucas" href="#" style="--dia:0">
+                            <strong>Teoria Musical I</strong><span>07:00 – 08:30</span><span>Prof.
+                                Lucas</span><span>Sala de Música 1</span>
+                        </a>
+                        <a class="ah-card c-blue ah-b3" data-prof="Carlos" href="#" style="--dia:0">
+                            <strong>Violão Intermediário</strong><span>10:30 – 12:00</span><span>Prof.
+                                Carlos</span><span>Sala de Música 2</span>
+                        </a>
+                        <a class="ah-card c-green ah-b5" data-prof="Ana Beatriz" href="#" style="--dia:0">
+                            <strong>Coral</strong><span>14:50 – 16:20</span><span>Prof. Ana Beatriz</span><span>Sala de
+                                Música 1</span>
+                        </a>
+                        <a class="ah-card c-purple ah-b6" data-prof="Mariana" href="#" style="--dia:0">
+                            <strong>Desenho Artístico</strong><span>16:30 – 18:00</span><span>Prof.
+                                Mariana</span><span>Sala de Artes</span>
+                        </a>
+                        <a class="ah-card c-orange ah-b2" data-prof="João" href="#" style="--dia:1">
+                            <strong>Piano Iniciante</strong><span>08:50 – 10:20</span><span>Prof. João</span><span>Sala
+                                de Música 3</span>
+                        </a>
+                        <a class="ah-card c-purple ah-b4" data-prof="Fernanda" href="#" style="--dia:1">
+                            <strong>Fotografia Básica</strong><span>13:00 – 14:30</span><span>Prof.
+                                Fernanda</span><span>Sala de Fotografia</span>
+                        </a>
+                        <a class="ah-card c-red ah-b5" data-prof="Rafael" href="#" style="--dia:1">
+                            <strong>Ritmo e Percussão</strong><span>14:50 – 16:20</span><span>Prof.
+                                Rafael</span><span>Sala de Música 1</span>
+                        </a>
+                        <a class="ah-card c-green ah-b1" data-prof="Mariana" href="#" style="--dia:2">
+                            <strong>História da Arte</strong><span>07:00 – 08:30</span><span>Prof.
+                                Mariana</span><span>Sala de Artes</span>
+                        </a>
+                        <a class="ah-card c-blue ah-b3" data-prof="Lucas" href="#" style="--dia:2">
+                            <strong>Teoria Musical II</strong><span>10:30 – 12:00</span><span>Prof.
+                                Lucas</span><span>Sala de Música 1</span>
+                        </a>
+                        <a class="ah-card c-orange ah-b5" data-prof="João" href="#" style="--dia:2">
+                            <strong>Orquestra</strong><span>14:50 – 16:20</span><span>Prof.
+                                João</span><span>Auditório</span>
+                        </a>
+                        <a class="ah-card c-purple ah-b6" data-prof="Rafael" href="#" style="--dia:2">
+                            <strong>Edição de Áudio</strong><span>16:30 – 18:00</span><span>Prof.
+                                Rafael</span><span>Sala de Informática</span>
+                        </a>
+                        <a class="ah-card c-red ah-b2" data-prof="Ana Beatriz" href="#" style="--dia:3">
+                            <strong>Canto Coral</strong><span>08:50 – 10:20</span><span>Prof. Ana
+                                Beatriz</span><span>Sala de Música 2</span>
+                        </a>
+                        <a class="ah-card c-blue ah-b4" data-prof="Carlos" href="#" style="--dia:3">
+                            <strong>Violão Avançado</strong><span>13:00 – 14:30</span><span>Prof.
+                                Carlos</span><span>Sala de Música 1</span>
+                        </a>
+                        <a class="ah-card c-green ah-b5" data-prof="João" href="#" style="--dia:3">
+                            <strong>Prática de Conjunto</strong><span>14:50 – 16:20</span><span>Prof.
+                                João</span><span>Sala de Música 3</span>
+                        </a>
+                        <a class="ah-card c-orange ah-b1" data-prof="Mariana" href="#" style="--dia:4">
+                            <strong>Desenho Técnico</strong><span>07:00 – 08:30</span><span>Prof.
+                                Mariana</span><span>Sala de Artes</span>
+                        </a>
+                        <a class="ah-card c-purple ah-b3" data-prof="Lucas" href="#" style="--dia:4">
+                            <strong>Apreciação Musical</strong><span>10:30 – 12:00</span><span>Prof.
+                                Lucas</span><span>Sala de Música 1</span>
+                        </a>
+                        <a class="ah-card c-red ah-b5" data-prof="Fernanda" href="#" style="--dia:4">
+                            <strong>Arte e Cultura</strong><span>14:50 – 16:20</span><span>Prof.
+                                Fernanda</span><span>Sala de Artes</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ah-note"><svg>
+                    <use href="#ah-info" />
+                </svg>Os horários podem sofrer alterações. Verifique sempre o painel semanal para atualizações.</p>
+        </section>
+
+        <!-- ===== Aba Disciplinas ===== -->
+        <section class="ah-box ah-tab-panel" id="painel-disciplinas" role="tabpanel" aria-labelledby="tab-disciplinas"
+            data-panel="disciplinas" hidden>
+            <div class="ah-list-head">
+                <div>
+                    <h2>Disciplinas cadastradas</h2>
+                    <p>Consulte as disciplinas oferecidas pelo Núcleo de Arte.</p>
+                </div>
+                <label class="ah-search"><span aria-hidden="true">⌕</span><input type="search" id="buscarDisciplina"
+                        placeholder="Buscar disciplina..." aria-label="Buscar disciplina"></label>
+            </div>
+            <div class="ah-data-table-wrap">
+                <table class="ah-data-table">
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>Professor(a)</th>
+                            <th>Carga horária</th>
+                            <th>Local</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaDisciplinas">
+                        <tr data-search="teoria musical i lucas sala de música 1">
+                            <td><strong>Teoria Musical I</strong><small>Música</small></td>
+                            <td>Lucas</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Música 1</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="violão intermediário carlos sala de música 2">
+                            <td><strong>Violão Intermediário</strong><small>Música</small></td>
+                            <td>Carlos</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Música 2</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="coral ana beatriz sala de música 1">
+                            <td><strong>Coral</strong><small>Música</small></td>
+                            <td>Ana Beatriz</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Música 1</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="desenho artístico mariana sala de artes">
+                            <td><strong>Desenho Artístico</strong><small>Artes visuais</small></td>
+                            <td>Mariana</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Artes</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="piano iniciante joão sala de música 3">
+                            <td><strong>Piano Iniciante</strong><small>Música</small></td>
+                            <td>João</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Música 3</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="fotografia básica fernanda sala de fotografia">
+                            <td><strong>Fotografia Básica</strong><small>Fotografia</small></td>
+                            <td>Fernanda</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Fotografia</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="história da arte mariana sala de artes">
+                            <td><strong>História da Arte</strong><small>Artes visuais</small></td>
+                            <td>Mariana</td>
+                            <td>90 min/aula</td>
+                            <td>Sala de Artes</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                        <tr data-search="orquestra joão auditório">
+                            <td><strong>Orquestra</strong><small>Música</small></td>
+                            <td>João</td>
+                            <td>90 min/aula</td>
+                            <td>Auditório</td>
+                            <td><a class="ah-action-link" data-ah-link="editar-disciplina" href="#">Editar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="ah-empty" id="semDisciplinas" hidden>Nenhuma disciplina encontrada.</p>
+            </div>
+        </section>
+
+        <!-- ===== Aba Professores ===== -->
+        <section class="ah-box ah-tab-panel" id="painel-professores" role="tabpanel" aria-labelledby="tab-professores"
+            data-panel="professores" hidden>
+            <div class="ah-list-head">
+                <div>
+                    <h2>Professores</h2>
+                    <p>Consulte os professores e as disciplinas sob sua responsabilidade.</p>
+                </div>
+                <label class="ah-search"><span aria-hidden="true">⌕</span><input type="search" id="buscarProfessor"
+                        placeholder="Buscar professor..." aria-label="Buscar professor"></label>
+            </div>
+            <div class="ah-teacher-grid" id="listaProfessores">
+                <article class="ah-teacher-card"
+                    data-search="lucas teoria musical i teoria musical ii apreciação musical">
+                    <div class="ah-avatar">LU</div>
+                    <div class="ah-teacher-info">
+                        <h3>Lucas</h3>
+                        <p>Teoria Musical I, Teoria Musical II e Apreciação Musical</p><span>Música</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de Lucas">Ver detalhes
+                        →</a>
+                </article>
+                <article class="ah-teacher-card" data-search="carlos violão intermediário violão avançado">
+                    <div class="ah-avatar">CA</div>
+                    <div class="ah-teacher-info">
+                        <h3>Carlos</h3>
+                        <p>Violão Intermediário e Violão Avançado</p><span>Música</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de Carlos">Ver detalhes
+                        →</a>
+                </article>
+                <article class="ah-teacher-card" data-search="ana beatriz coral canto coral">
+                    <div class="ah-avatar">AB</div>
+                    <div class="ah-teacher-info">
+                        <h3>Ana Beatriz</h3>
+                        <p>Coral e Canto Coral</p><span>Música</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de Ana Beatriz">Ver
+                        detalhes →</a>
+                </article>
+                <article class="ah-teacher-card"
+                    data-search="mariana desenho artístico história da arte desenho técnico">
+                    <div class="ah-avatar">MA</div>
+                    <div class="ah-teacher-info">
+                        <h3>Mariana</h3>
+                        <p>Desenho Artístico, História da Arte e Desenho Técnico</p><span>Artes visuais</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de Mariana">Ver
+                        detalhes →</a>
+                </article>
+                <article class="ah-teacher-card" data-search="joão piano iniciante orquestra prática de conjunto">
+                    <div class="ah-avatar">JO</div>
+                    <div class="ah-teacher-info">
+                        <h3>João</h3>
+                        <p>Piano Iniciante, Orquestra e Prática de Conjunto</p><span>Música</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de João">Ver detalhes
+                        →</a>
+                </article>
+                <article class="ah-teacher-card" data-search="fernanda fotografia básica arte e cultura">
+                    <div class="ah-avatar">FE</div>
+                    <div class="ah-teacher-info">
+                        <h3>Fernanda</h3>
+                        <p>Fotografia Básica e Arte e Cultura</p><span>Fotografia e artes</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de Fernanda">Ver
+                        detalhes →</a>
+                </article>
+                <article class="ah-teacher-card" data-search="rafael ritmo percussão edição de áudio">
+                    <div class="ah-avatar">RA</div>
+                    <div class="ah-teacher-info">
+                        <h3>Rafael</h3>
+                        <p>Ritmo e Percussão e Edição de Áudio</p><span>Música</span>
+                    </div><a data-ah-link="detalhes-professor" href="#" aria-label="Ver detalhes de Rafael">Ver detalhes
+                        →</a>
+                </article>
+            </div>
+            <p class="ah-empty" id="semProfessores" hidden>Nenhum professor encontrado.</p>
+        </section>
+
+    </div><!-- fecha .ah -->
 </div><!-- fecha .ah-wrap -->
 
-<script src="{% static 'js/aulas_horarios.js' %}"></script>
+<script src="{% static 'js/aulas/aulas.js' %}"></script>
 {% endblock %}

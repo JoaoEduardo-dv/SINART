@@ -130,13 +130,33 @@
 }
 
 .emp-btn--primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 52px;
+    min-height: 52px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 8px;
     background: var(--emp-red);
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(220, 38, 38, .28);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(214, 59, 45, .3);
+    flex: none;
+    transition: filter .15s;
 }
 
 .emp-btn--primary:hover {
-    background: var(--emp-red-dark);
+    filter: brightness(1.08);
+}
+
+.emp-btn--primary .emp-icon {
+    width: 22px;
+    height: 22px;
 }
 
 .emp-btn--sm {

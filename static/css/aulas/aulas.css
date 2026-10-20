@@ -550,3 +550,330 @@
         justify-content: center
     }
 }
+
+/* ===== Cabeçalho e botão Cadastrar aula ===== */
+.ah-head-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.ah-title-copy {
+    min-width: 0;
+}
+
+.ah-head-top h1 {
+    margin: 0;
+}
+
+.ah-head-top p {
+    margin-bottom: 0;
+}
+
+.ah-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 52px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 8px;
+    background: var(--red);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(214, 59, 45, .3);
+    flex: none;
+    transition: filter .15s;
+}
+
+.ah-btn-primary:hover {
+    filter: brightness(1.08);
+}
+
+.ah-btn-primary span {
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* ===== Abas funcionais ===== */
+.ah-tabs button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: 14px 22px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 16px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.ah-tabs button:hover {
+    color: var(--text);
+}
+
+.ah-tabs button.active {
+    color: var(--ah-red);
+    font-weight: 600;
+}
+
+.ah-tabs button.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--ah-red);
+    border-radius: 2px;
+    animation: ahline .3s ease;
+}
+
+.ah-tab-panel[hidden] {
+    display: none !important;
+}
+
+.ah-tab-panel {
+    animation: ahPanelIn .18s ease;
+}
+
+@keyframes ahPanelIn {
+    from {
+        opacity: .55;
+        transform: translateY(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ah-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.ah-list-head h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.ah-list-head p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.ah-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: min(100%, 260px);
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--ah-edge);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--muted);
+}
+
+.ah-search span {
+    font-size: 23px;
+    line-height: 1;
+}
+
+.ah-search input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+}
+
+.ah-data-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.ah-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.ah-data-table th {
+    padding: 14px 16px;
+    background: var(--hover);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.ah-data-table td {
+    padding: 15px 16px;
+    border-bottom: 1px solid var(--ah-line);
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.ah-data-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ah-data-table tbody tr:hover {
+    background: var(--hover);
+}
+
+.ah-data-table td strong {
+    display: block;
+    font-weight: 600;
+}
+
+.ah-data-table td small {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+}
+
+.ah-action-link {
+    color: var(--ah-red);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.ah-action-link:hover {
+    text-decoration: underline;
+}
+
+.ah-teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 14px;
+}
+
+.ah-teacher-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--ah-edge);
+    border-radius: 10px;
+    background: var(--card);
+}
+
+.ah-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border-radius: 50%;
+    background: rgba(189, 82, 62, .12);
+    color: #bd523e;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ah-teacher-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ah-teacher-info h3 {
+    margin: 0 0 6px;
+    color: var(--text);
+    font-size: 16px;
+}
+
+.ah-teacher-info p {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.ah-teacher-info span {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: var(--hover);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.ah-teacher-card>a {
+    align-self: center;
+    color: var(--ah-red);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.ah-empty {
+    margin: 18px 0 4px;
+    color: var(--muted);
+    text-align: center;
+}
+
+@container ahw (max-width:640px) {
+    .ah-head-top {
+        align-items: stretch;
+    }
+
+    .ah-btn-primary {
+        width: 100%;
+    }
+
+    .ah-tabs button {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .ah-list-head {
+        align-items: stretch;
+    }
+
+    .ah-search {
+        width: 100%;
+    }
+
+    .ah-data-table th,
+    .ah-data-table td {
+        padding: 12px 10px;
+    }
+
+    .ah-teacher-card {
+        flex-wrap: wrap;
+    }
+
+    .ah-teacher-card>a {
+        margin-left: 57px;
+    }
+}
