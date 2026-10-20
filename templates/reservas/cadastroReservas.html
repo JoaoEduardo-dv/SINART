@@ -1,187 +1,223 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-Reservas
+    Nova Reserva de Sala
 {% endblock %}
 
+
 {% block content %}
-<div class="parte1CadReservas">
-    <button class="voltar"><i class="fa-solid fa-arrow-left-long"></i></button>
-    <div class="tituloCadReservas">
-        <h1>Nova Reserva de Sala</h1>
-        <h5>Preencha as informações abaixo para realizar a reserva de uma sala do Núcleo de Arte</h6>
+
+<!-- Ícones usados só nesta página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="nr-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="nr-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+    <symbol id="nr-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="nr-cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 9.5h18"/></symbol>
+    <symbol id="nr-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="nr-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/><path d="M12 12l7-7M17 3v4h4"/></symbol>
+    <symbol id="nr-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+    <symbol id="nr-building" viewBox="0 0 24 24"><path d="M3 9l9-6 9 6zM5 9v11M9 9v11M15 9v11M19 9v11M3 21h18"/></symbol>
+    <symbol id="nr-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="nr-alert" viewBox="0 0 24 24"><path d="M12 4l9 16H3zM12 10v4M12 17v.5"/></symbol>
+    <symbol id="nr-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></symbol>
+    <symbol id="nr-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17v.01"/></symbol>
+    <symbol id="nr-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  </defs>
+</svg>
+
+<div class="nr-wrap">
+<div class="nr">
+
+  <!-- ===== Cabeçalho ===== -->
+  <header class="nr-head">
+    <a class="nr-back" data-nr-link="voltar" href="{% url 'reservas' %}" aria-label="Voltar para Reservas"><svg><use href="#nr-back"/></svg></a>
+    <div>
+      <h1>Nova Reserva de Sala</h1>
+      <p>Preencha as informações abaixo para realizar a reserva de uma sala do Núcleo de Arte.</p>
     </div>
-</div>
+  </header>
 
-<div class="parte2CadReservas">
-    <div class="FormularioCadReservas">
-        
-        <div class="tituloFormCadReservas">
-            <div class="numCadReservas">
-                1
+  <div class="nr-grid">
+
+    <!-- ===================== FORMULÁRIO ===================== -->
+    {% comment %} action="": coloque a URL que recebe o POST, ex.: action="{% url 'cadastroReservas' %}".
+         data-url-reservas: para onde voltar ao cancelar ou confirmar. {% endcomment %}
+    <form id="formReserva" class="nr-card nr-form" method="post" action="" data-url-reservas="{% url 'reservas' %}" novalidate>
+      {% csrf_token %}
+
+      <!-- 1. Informações da reserva -->
+      <div class="nr-step">
+        <h2><span class="nr-num">1</span>Informações da Reserva</h2>
+
+        <div class="nr-cols">
+          <div class="nr-field">
+            <label for="sala">Sala <b>*</b></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-search"/></svg></span>
+              <select id="sala" name="sala" required>
+                <option value="">Selecione uma sala</option>
+                {# VARIÁVEL: {% for s in salas %}<option value="{{ s.id }}">{{ s.nome }}</option>{% endfor %} #}
+                <option value="1">Sala de Música 1</option>
+                <option value="2">Sala de Música 2</option>
+                <option value="3">Sala de Artes Visuais</option>
+                <option value="4">Sala de Teatro</option>
+                <option value="5">Sala de Reuniões</option>
+                <option value="6">Auditório</option>
+              </select>
+              <svg class="nr-chev"><use href="#nr-chev"/></svg>
             </div>
-            <h3>Informações da Reserva</h3>
-        </div>
-
-        <div class="infor1">
-            
-            <div class="Colocar um nome depois">
-
-                <label for="salas">Salas</label>
-
-                <div class="juncaoDupla">
-                    <div class="iconesCadResera">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-
-                    <div class="barraFuncionalCadReserva">
-                        <select name="salas" id="salas">
-                            <option value="" disabled selected>Selecione uma sala</option>
-                            <option value="sala 47">sala 47</option>
-                            <option value="sala 80">sala 80</option>
-                            <option value="sala 81">sala 81</option>
-                            <option value="sala 83">sala 83</option>
-                            <!-- <option value=""></option> Tem um a sala do bloco B que a NUARTE gerencia-->
-                        </select>
-                    </div>
-                </div>
+          </div>
+          <div class="nr-field">
+            <label for="data">Data <b>*</b></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-cal"/></svg></span>
+              <input id="data" name="data" type="date" required>
             </div>
+          </div>
+        </div>
 
-            {% comment %} Colocar função para não pdoer escolher datas passadas e ou já esclhidas {% endcomment %}
-            <div class:"dataCadReserva">
-
-                <label for="data">Data</label>
-                
-                <div class="juncaoDupla">
-                    <div class="iconesCadResera">
-                        <i class="fa-regular fa-calendar"></i>
-                    </div>
-
-                    <input type="date" id="data" name="data" required>
-                </div>
+        <div class="nr-cols">
+          <div class="nr-field">
+            <label for="inicio">Horário de início <b>*</b></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-clock"/></svg></span>
+              <input id="inicio" name="horario_inicio" type="time" required>
             </div>
-
-            <div class="horarios">
-                <div class="campo">
-                    {% comment %} Ver outra possivel forma de fazer {% endcomment %}
-                    <label for="horario_inicio">Horário de início *</label>
-                        
-                    <div class="juncaoDupla">
-                        <div class="iconesCadResera">
-                            <i class="fa-regular fa-clock"></i>
-                        </div>
-
-                        <select id="horario_inicio" name="horario_inicio">
-                            <option value="" disabled selected>Selecione o horário</option>
-                            <option value="07:00">07:00</option>
-                            <option value="07:45">07:45</option>
-                            <option value="08:50">08:50</option>
-                            <option value="09:35">09:35</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:15">11:15</option>
-                            <option value="13:00">13:00</option>
-                            <option value="13:45">13:45</option>
-                            <option value="14:50">14:50</option>
-                            <option value="15:35">15:35</option>
-                            <option value="16:30">16:30</option>
-                            <option value="17:15">17:15</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="campo">
-                    <label for="horario_termino">Horário de término *</label>
-                    
-                    <div class="juncaoDupla">
-                        <div class="iconesCadResera">
-                            <i class="fa-regular fa-clock"></i>
-                        </div>
-
-                        <select id="horario_inicio" name="horario_inicio">
-                            <option value="" disabled selected>Selecione o horário</option>
-                            <option value="07:45">07:45</option>
-                            <option value="08:30">08:30</option>
-                            <option value="09:35">09:35</option>
-                            <option value="10:20">10:20</option>
-                            <option value="11:15">11:15</option>
-                            <option value="13:00">13:00</option>
-                            <option value="13:45">13:45</option>
-                            <option value="14:50">14:50</option>
-                            <option value="15:35">15:35</option>
-                            <option value="16:30">16:30</option>
-                            <option value="17:15">17:15</option>
-                            <option value="18:00">18:00</option>
-                        </select>
-                    </div>
-                </div>
+          </div>
+          <div class="nr-field">
+            <label for="termino">Horário de término <b>*</b></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-clock"/></svg></span>
+              <input id="termino" name="horario_termino" type="time" required>
             </div>
+          </div>
         </div>
 
-        <div class="infor2">
-
-            {% comment %} Coloca para voltar ao selecione caso marqu algo e queira desmarcar. {% endcomment %}
-            <label for="finalidade">Finalidade *</label>
-
-            <div class="juncaoDupla">
-
-                <div class="iconesCadResera">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
-
-                <select id="finalidade" name="finalidade">
-                    <option value="" disabled selected>Selecione uma finalidade</option>
-                    <option value="aula">Aula/Estudo</option>
-                    <option value="ensaio">Ensaio</option>
-                    <option value="reuniao">Reunião</option>
-                    <option value="evento">Evento</option>
-                    <option value="apresentacao">Apresentação</option>
-                    <option value="oficina">Oficina</option>
-                    <option value="outro">Outro</option>
-                </select>
-
-            </div>    
-
-            <label for="descricao">Descrição / Observações</label>
-            <textarea id="descricao" name="descricao"
-                placeholder="Informe detalhes adicionais sobre a reserva (opcional)..." maxlength="500"></textarea>
-
+        <div class="nr-field nr-full">
+          <label for="finalidade">Finalidade <b>*</b></label>
+          <div class="nr-control">
+            <span class="nr-ico"><svg><use href="#nr-target"/></svg></span>
+            <select id="finalidade" name="finalidade" required>
+<option value="">Selecione a finalidade</option>
+                <option value="aula">Aula</option>
+                <option value="ensaio">Ensaio</option>
+                <option value="projeto">Projeto</option>
+                <option value="reuniao">Reunião</option>
+                <option value="oficina">Oficina</option>
+                <option value="apresentacao">Apresentação</option>
+                <option value="outro">Outro</option>
+              </select>
+            <svg class="nr-chev"><use href="#nr-chev"/></svg>
+          </div>
         </div>
-    </div>
 
-    <div class="infoCadReservas">
-        <div class="tituloFormCadReservas">
-            <div class="numCadReservas">
-                2
+        <div class="nr-field nr-full">
+          <label for="obs">Descrição / Observações</label>
+          <div class="nr-control nr-area">
+            <textarea id="obs" name="descricao" maxlength="500" placeholder="Informe detalhes adicionais sobre a reserva (opcional)..."></textarea>
+          </div>
+          <div class="nr-count"><span id="contador">0</span>/500</div>
+        </div>
+      </div>
+
+      <!-- 2. Responsável -->
+      <div class="nr-step">
+        <h2><span class="nr-num">2</span>Responsável</h2>
+
+        <div class="nr-cols nr-cols3">
+          <div class="nr-field">
+            <label for="nome">Nome <b>*</b></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-user"/></svg></span>
+              {# VARIÁVEL: nome do usuário logado, ex.: value="{{ request.user.get_full_name }}" #}
+              <input id="nome" name="responsavel" type="text" value="João da Silva" autocomplete="name" required>
             </div>
-            <h3>Responsavel</h3>
+          </div>
+          <div class="nr-field">
+            <label for="setor">Setor / Curso <b>*</b></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-building"/></svg></span>
+              <select id="setor" name="setor" required>
+<option value="">Selecione</option>
+                <option value="Núcleo de Arte">Núcleo de Arte</option>
+                <option value="Música">Música</option>
+                <option value="Artes Visuais">Artes Visuais</option>
+                <option value="Teatro">Teatro</option>
+                <option value="Dança">Dança</option>
+                <option value="Outro">Outro</option>
+              </select>
+              <svg class="nr-chev"><use href="#nr-chev"/></svg>
+            </div>
+          </div>
+          <div class="nr-field">
+            <label for="contato">Contato <span class="nr-opt">(opcional)</span></label>
+            <div class="nr-control">
+              <span class="nr-ico"><svg><use href="#nr-phone"/></svg></span>
+              <input id="contato" name="contato" type="tel" inputmode="tel" placeholder="(XX) XXXXX-XXXX" maxlength="15" autocomplete="tel">
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="verNomeClasse">
-            <label for="nome">Nome *</label>
-            <input type="text" id="nome" name="nome" placeholder="João da Silva">
+      <div class="nr-actions">
+        <button type="button" class="nr-btn nr-btn-cancel" id="btnCancelar">Cancelar</button>
+        <button type="submit" class="nr-btn nr-btn-save" id="btnConfirmar"><svg><use href="#nr-cal"/></svg>Confirmar Reserva</button>
+      </div>
+    </form>
+
+    <!-- ===================== COLUNA LATERAL ===================== -->
+    <aside class="nr-side">
+
+      <section class="nr-card nr-info">
+        <h3 class="nr-title"><span class="nr-title-ico"><svg><use href="#nr-cal"/></svg></span>Informações Importantes</h3>
+        <ul class="nr-rules">
+          <li><svg><use href="#nr-clock"/></svg>A reserva só pode ser feita para horários em que a sala estiver disponível.</li>
+          <li><svg><use href="#nr-alert"/></svg>Em caso de conflito de horário, o sistema mostrará um aviso.</li>
+          <li><svg><use href="#nr-history"/></svg>O cancelamento deve ser feito com antecedência mínima de 24 horas.</li>
+          <li><svg><use href="#nr-help"/></svg>Para dúvidas ou problemas, entre em contato com a coordenação do Núcleo de Arte.</li>
+        </ul>
+      </section>
+
+      <section class="nr-card nr-rooms">
+        <div class="nr-rooms-head">
+          <h3><svg><use href="#nr-building"/></svg>Salas disponíveis</h3>
+          <a class="nr-see" data-nr-link="ver-salas" href="#">Ver todas as salas <svg><use href="#nr-arrow"/></svg></a>
         </div>
+        {# VARIÁVEL: lista de salas, ex.: {% for s in salas %} ... {{ s.nome }} / {{ s.capacidade }} pessoas {% endfor %} #}
+        <ul id="listaSalas">
+          <li><a class="nr-room" data-sala="1" data-nr-link="sala-1" href="#">
+            <i class="nr-dot green"></i>
+            <span><strong>Sala de Música 1</strong><small>Capacidade: 20 pessoas</small></span>
+          </a></li>
+          <li><a class="nr-room" data-sala="2" data-nr-link="sala-2" href="#">
+            <i class="nr-dot blue"></i>
+            <span><strong>Sala de Música 2</strong><small>Capacidade: 15 pessoas</small></span>
+          </a></li>
+          <li><a class="nr-room" data-sala="3" data-nr-link="sala-3" href="#">
+            <i class="nr-dot purple"></i>
+            <span><strong>Sala de Artes Visuais</strong><small>Capacidade: 12 pessoas</small></span>
+          </a></li>
+          <li><a class="nr-room" data-sala="4" data-nr-link="sala-4" href="#">
+            <i class="nr-dot yellow"></i>
+            <span><strong>Sala de Teatro</strong><small>Capacidade: 25 pessoas</small></span>
+          </a></li>
+          <li><a class="nr-room" data-sala="5" data-nr-link="sala-5" href="#">
+            <i class="nr-dot red"></i>
+            <span><strong>Sala de Reuniões</strong><small>Capacidade: 10 pessoas</small></span>
+          </a></li>
+          <li><a class="nr-room" data-sala="6" data-nr-link="sala-6" href="#">
+            <i class="nr-dot purple"></i>
+            <span><strong>Auditório</strong><small>Capacidade: 80 pessoas</small></span>
+          </a></li>
+        </ul>
+      </section>
 
-            {% comment %} Ver essa questão para saber como e mehor fazer {% endcomment %}
-        <div class="verNomeClasse">
-            <label for="nome">Setor/Curso</label>
-            <input type="text" id="nome" name="nome" placeholder="Aluno/Informática">
-        </div>
+    </aside>
+  </div>
+</div><!-- fecha .nr -->
+</div><!-- fecha .nr-wrap -->
 
-        <div class="verNomeClasse">
-            <label for="contato">Contato (opcional)</label>
-            <input type="tel" id="contato" name="contato" placeholder="(XX) XXXXX-XXXX">
-        </div>
-    </div>
-
-    <div class="but">
-        <button>Cancelar</button>
-        {% comment %} Ainda ajeitar {% endcomment %}
-        <div>
-            <button>Confirmar reserva</button>
-        </div>
-    </div>
-
-    {% comment %} Confirmação de atualização para commit????? {% endcomment %}
-</div>
-
+<script src="{% static 'js/cadastroReservas.js' %}"></script>
 {% endblock %}

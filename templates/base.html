@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{% static 'css/emprestimos/emprestimo.css' %}">
     <link rel="stylesheet" href="{% static 'css/emprestimos/cadastroEmprestimos.css' %}">
     <link rel="stylesheet" href="{% static 'css/Painel de atividades/atividades.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reservas/cadastroReservas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aulas/aulas.css' %}">
 </head>
 
 <body>
@@ -136,7 +138,7 @@
                 <a class="menu-item" data-link="emprestimos" href="{% url 'emprestimos' %}"><svg>
                         <use href="#i-book" />
                     </svg><span>Empréstimos</span></a>
-                <a class="menu-item" data-link="aulas" href="#"><svg>
+                <a class="menu-item" data-link="aulas" href="{% url 'aulas' %}"><svg>
                         <use href="#i-cap" />
                     </svg><span>Aulas e Horários</span></a>
                 <a class="menu-item" data-link="calendario" href="{% url 'atividades' %}"><svg>
@@ -249,6 +251,8 @@
     <script src="{% static 'js/emprestimos/emprestimo.js' %}"></script>
     <script src="{% static 'js/emprestimos/cadastroEmprestimos.js' %}"></script>
     <script src="{% static 'js/painel de atividades/atividades.js' %}"></script>
+    <script src="{% static 'js/reservas/cadastroReservas.js' %}"></script>
+    <script src="{% static 'js/aulas/aulas.js' %}"></script>
 </body>
 
 </html>

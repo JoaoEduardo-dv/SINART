@@ -15,3 +15,6 @@ def atividades (request):
 
 def login (request):
     return render (request, 'index.html')
+
+def aulas (request):
+    return render (request, 'aulas/aulas.html')

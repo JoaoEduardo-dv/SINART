@@ -153,36 +153,69 @@ Reservas de Salas
               <div class="cd"><b>Qua</b><span>14/05</span></div>
               <div class="cd"><b>Qui</b><span>15/05</span></div>
               <div class="cd"><b>Sex</b><span>16/05</span></div>
-              <div class="cd"><b>Sáb</b><span>17/05</span></div>
-              <div class="cd"><b>Dom</b><span>18/05</span></div>
             </div>
+
+            <!-- Corpo: uma grade só. Linhas = 12 aulas de 45 min + intervalos + almoço -->
             <div class="cal-body">
-              <div class="horas"><span style="--i:0">07:00</span><span style="--i:1">08:00</span><span
-                  style="--i:2">09:00</span><span style="--i:3">10:00</span><span style="--i:4">11:00</span><span
-                  style="--i:5">12:00</span><span style="--i:6">13:00</span><span style="--i:7">14:00</span><span
-                  style="--i:8">15:00</span><span style="--i:9">16:00</span><span style="--i:10">17:00</span><span
-                  style="--i:11">18:00</span></div>
-              <div class="cal-cols">
-                <div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <a class="ev aula" href="#" style="--dia:0;--ini:9;--dur:2">
-                  <b>Aula de Violão</b><span>09:00 - 11:00</span><span>Prof. Carlos</span>
-                </a>
-                <a class="ev ensaio" href="#" style="--dia:1;--ini:14;--dur:2">
-                  <b>Ensaio Coral</b><span>14:00 - 16:00</span><span>Coral do NUARTE</span>
-                </a>
-                <a class="ev outro" href="#" style="--dia:2;--ini:10;--dur:2">
-                  <b>Aula de Teoria Musical</b><span>10:00 - 12:00</span><span>Prof. Ana Beatriz</span>
-                </a>
-                <a class="ev reuniao" href="#" style="--dia:3;--ini:8;--dur:2">
-                  <b>Aula de Piano</b><span>08:00 - 10:00</span><span>Prof. Lucas</span>
-                </a>
-                <a class="ev projeto" href="#" style="--dia:4;--ini:13;--dur:2">
-                  <b>Projeto Arte e Cultura</b><span>13:00 - 15:00</span><span>NUARTE</span>
-                </a>
-                <a class="ev reuniao" href="#" style="--dia:4;--ini:16;--dur:2">
-                  <b>Ensaio Banda</b><span>16:00 - 18:00</span><span>Banda Experimental</span>
-                </a>
-              </div>
+              <div class="c-hlines" aria-hidden="true"><i style="--r:2"></i><i style="--r:3"></i><i style="--r:4"></i><i
+                  style="--r:5"></i><i style="--r:6"></i><i style="--r:7"></i><i style="--r:8"></i><i
+                  style="--r:9"></i><i style="--r:10"></i><i style="--r:11"></i><i style="--r:12"></i><i
+                  style="--r:13"></i><i style="--r:14"></i><i style="--r:15"></i><i style="--r:16"></i><i
+                  style="--r:17"></i><i style="--r:18"></i><i style="--r:19"></i></div>
+              <div class="c-vlines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+              <!-- horários (coluna da esquerda) -->
+              <span class="c-t" style="--r:2">07:00</span>
+              <span class="c-t" style="--r:3">07:45</span>
+              <span class="c-t" style="--r:4">08:30</span>
+              <span class="c-t" style="--r:5">08:50</span>
+              <span class="c-t" style="--r:6">09:35</span>
+              <span class="c-t" style="--r:7">10:20</span>
+              <span class="c-t" style="--r:8">10:30</span>
+              <span class="c-t" style="--r:9">11:15</span>
+              <span class="c-t" style="--r:10">12:00</span>
+              <span class="c-t" style="--r:11">13:00</span>
+              <span class="c-t" style="--r:12">13:45</span>
+              <span class="c-t" style="--r:13">14:30</span>
+              <span class="c-t" style="--r:14">14:50</span>
+              <span class="c-t" style="--r:15">15:35</span>
+              <span class="c-t" style="--r:16">16:20</span>
+              <span class="c-t" style="--r:17">16:30</span>
+              <span class="c-t" style="--r:18">17:15</span>
+              <span class="c-t" style="--r:19">18:00</span>
+
+              <!-- intervalos e almoço -->
+              <div class="c-gap" style="--r:4">Intervalo · 20 min</div>
+              <div class="c-gap" style="--r:7">Intervalo · 10 min</div>
+              <div class="c-gap" style="--r:10">Almoço · 1 hora</div>
+              <div class="c-gap" style="--r:13">Intervalo · 20 min</div>
+              <div class="c-gap" style="--r:16">Intervalo · 10 min</div>
+
+              {% comment %} RESERVAS: use a classe rb1 a rb6 (cada uma ocupa 2 aulas de 45 min):
+              rb1 = 07:00-08:30 | rb2 = 08:50-10:20 | rb3 = 10:30-12:00
+              rb4 = 13:00-14:30 | rb5 = 14:50-16:20 | rb6 = 16:30-18:00
+              style="--dia:0 a 4" escolhe o dia (0 = Seg ... 4 = Sex).
+              Para uma reserva de 45 min só: troque a classe rbN por style="--dia:0;--r:LINHA;--span:1", com LINHA =
+              07:00=2 | 07:45=3 | 08:50=5 | 09:35=6 | 10:30=8 | 11:15=9 | 13:00=11 | 13:45=12 | 14:50=14 | 15:35=15 |
+              16:30=17 | 17:15=18 {% endcomment %}
+              <a class="ev aula rb2" href="#" style="--dia:0">
+                <b>Aula de Violão</b><span>08:50 - 10:20</span><span>Prof. Carlos</span>
+              </a>
+              <a class="ev ensaio rb5" href="#" style="--dia:1">
+                <b>Ensaio Coral</b><span>14:50 - 16:20</span><span>Coral do NUARTE</span>
+              </a>
+              <a class="ev outro rb3" href="#" style="--dia:2">
+                <b>Aula de Teoria Musical</b><span>10:30 - 12:00</span><span>Prof. Ana Beatriz</span>
+              </a>
+              <a class="ev reuniao rb1" href="#" style="--dia:3">
+                <b>Aula de Piano</b><span>07:00 - 08:30</span><span>Prof. Lucas</span>
+              </a>
+              <a class="ev projeto rb4" href="#" style="--dia:4">
+                <b>Projeto Arte e Cultura</b><span>13:00 - 14:30</span><span>NUARTE</span>
+              </a>
+              <a class="ev reuniao rb6" href="#" style="--dia:4">
+                <b>Ensaio Banda</b><span>16:30 - 18:00</span><span>Banda Experimental</span>
+              </a>
             </div>
           </div>
         </div>

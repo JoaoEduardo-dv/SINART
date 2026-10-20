@@ -91,3 +91,49 @@ document.querySelectorAll(".sidebar a").forEach(a =>
   a.addEventListener("click", () => { if (window.innerWidth <= 900) closeMobileMenu(); })
 );
 window.addEventListener("resize", () => { if (window.innerWidth > 900) closeMobileMenu(); });
+
+/* =====================================================================
+   SCROLLBAR POR TEMA
+   - Tema escuro: fundo (trilho) escuro e a barra (polegar) clara.
+   - Tema claro:  fundo claro e a barra em cinza-azulado.
+   Funciona em toda a página e também nas áreas com rolagem própria
+   (grade de horários, calendário, barra lateral...).
+   Acompanha sozinho o atributo data-theme do <html>, então não precisa
+   mexer na função que troca o tema.
+   ===================================================================== */
+function aplicarScrollbarTema(tema){
+  const escuro = (tema || document.documentElement.getAttribute("data-theme")) === "dark";
+
+  // cores (o trilho usa o --bg da própria página; se não existir, usa a cor padrão)
+  const trilho = "var(--bg, " + (escuro ? "#12151d" : "#ffffff") + ")";
+  const barra  = escuro ? "#cfd6e8" : "#c3cadb";   // polegar
+  const hover  = escuro ? "#ffffff" : "#a4adc4";   // polegar ao passar o mouse
+
+  // deixa os controles nativos (rolagem, calendário do input date...) no mesmo tema
+  document.documentElement.style.colorScheme = escuro ? "dark" : "light";
+
+  let st = document.getElementById("sinart-scrollbar");
+  if (!st) {
+    st = document.createElement("style");
+    st.id = "sinart-scrollbar";
+    document.head.appendChild(st);
+  }
+
+  st.textContent = `
+    /* Chrome, Edge e Firefox atuais */
+    *{scrollbar-width:thin;scrollbar-color:${barra} ${trilho}}
+
+    /* Safari e navegadores antigos */
+    @supports not (scrollbar-color:auto){
+      *::-webkit-scrollbar{width:12px;height:12px}
+      *::-webkit-scrollbar-track,*::-webkit-scrollbar-corner{background:${trilho}}
+      *::-webkit-scrollbar-thumb{background:${barra};border-radius:8px;border:3px solid ${trilho}}
+      *::-webkit-scrollbar-thumb:hover{background:${hover}}
+    }
+  `;
+}
+
+// aplica agora e sempre que o tema mudar
+aplicarScrollbarTema();
+new MutationObserver(() => aplicarScrollbarTema())
+  .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
