@@ -1,0 +1,1075 @@
+/* ==========================================
+   SINART | Cadastro de Aula
+   Responsivo + tema claro e escuro
+   ========================================== */
+
+.cad-aula {
+    --cad-fundo: var(--cor-fundo, #ffffff);
+    --cad-superficie: var(--cor-card, #ffffff);
+    --cad-texto: var(--cor-texto, #14213d);
+    --cad-texto-secundario: var(--cor-texto-secundario, #61718e);
+    --cad-borda: var(--cor-borda, #e2e8f0);
+    --cad-campo: var(--cor-input, #ffffff);
+    --cad-azul: #2478f5;
+    --cad-vermelho: #e5392d;
+    --cad-verde: #19a765;
+    --cad-roxo: #8145c5;
+
+    width: 100%;
+    min-width: 0;
+    padding: 26px 30px 32px;
+    color: var(--cad-texto);
+    background: transparent;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.cad-aula *,
+.cad-aula *::before,
+.cad-aula *::after {
+    box-sizing: border-box;
+}
+
+.cad-aula [hidden] {
+    display: none !important;
+}
+
+.cad-aula h1,
+.cad-aula h2,
+.cad-aula h3,
+.cad-aula p {
+    margin-top: 0;
+}
+
+.cad-aula button,
+.cad-aula input,
+.cad-aula select,
+.cad-aula textarea {
+    font: inherit;
+}
+
+/* Cabeçalho */
+
+.cad-aula__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.cad-aula__breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+    color: var(--cad-texto-secundario);
+    font-size: 13px;
+}
+
+.cad-aula__breadcrumb>i {
+    font-size: 10px;
+    opacity: 0.65;
+}
+
+.cad-aula__voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: var(--cad-azul);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.cad-aula__voltar:hover {
+    background: #eaf2ff;
+    transform: translateX(-2px);
+}
+
+.cad-aula__breadcrumb-atual {
+    color: var(--cad-texto);
+    font-weight: 600;
+}
+
+.cad-aula__cabecalho h1 {
+    margin-bottom: 5px;
+    color: var(--cad-texto);
+    font-size: clamp(25px, 2.1vw, 32px);
+    font-weight: 700;
+    letter-spacing: -0.7px;
+}
+
+.cad-aula__cabecalho>p {
+    margin-bottom: 0;
+    color: var(--cad-texto-secundario);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.cad-aula__etiqueta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+    padding: 13px 19px;
+    color: #ffffff;
+    background: var(--cad-vermelho);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cad-aula__etiqueta i {
+    font-size: 17px;
+}
+
+/* Layout principal */
+
+.cad-aula__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.15fr) minmax(280px, 0.85fr);
+    align-items: start;
+    gap: 20px;
+}
+
+.cad-aula__principal,
+.cad-aula__lateral {
+    min-width: 0;
+}
+
+.cad-aula__principal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cad-aula__lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Cards */
+
+.cad-aula__card,
+.cad-aula__etapas {
+    min-width: 0;
+    background: var(--cad-superficie);
+    border: 1px solid var(--cad-borda);
+    border-radius: 11px;
+    box-shadow: 0 2px 8px rgb(25 50 90 / 3%);
+}
+
+.cad-aula__card {
+    padding: 23px;
+}
+
+.cad-aula__secao-titulo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.cad-aula__secao-titulo h2 {
+    margin-bottom: 5px;
+    color: var(--cad-texto);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cad-aula__secao-titulo p {
+    margin-bottom: 0;
+    color: var(--cad-texto-secundario);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.cad-aula__icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-size: 21px;
+}
+
+.cad-aula__icone--vermelho {
+    color: #ef382d;
+    background: #ffe5e3;
+}
+
+.cad-aula__icone--azul {
+    color: #2478f5;
+    background: #e3edff;
+}
+
+.cad-aula__icone--verde {
+    color: #17a965;
+    background: #ddf7e8;
+}
+
+.cad-aula__icone--roxo {
+    color: #8145c5;
+    background: #eee3ff;
+}
+
+/* Campos */
+
+.cad-aula__campos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+}
+
+.cad-aula__campo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 8px;
+}
+
+.cad-aula__campo--completo {
+    grid-column: 1 / -1;
+}
+
+.cad-aula__campo label,
+.cad-aula__observacoes label {
+    color: var(--cad-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cad-aula__campo label span {
+    color: var(--cad-vermelho);
+}
+
+.cad-aula__input-icone {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 43px;
+    border: 1px solid var(--cad-borda);
+    border-radius: 8px;
+    background: var(--cad-campo);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cad-aula__input-icone:focus-within {
+    border-color: var(--cad-azul);
+    box-shadow: 0 0 0 3px rgb(36 120 245 / 10%);
+}
+
+.cad-aula__input-icone>i:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    align-self: stretch;
+    flex-shrink: 0;
+    color: var(--cad-texto-secundario);
+    border-right: 1px solid var(--cad-borda);
+    font-size: 14px;
+}
+
+.cad-aula__input-icone input,
+.cad-aula__input-icone select {
+    width: 100%;
+    min-width: 0;
+    min-height: 41px;
+    padding: 9px 12px;
+    color: var(--cad-texto);
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 13px;
+}
+
+.cad-aula__input-icone input::placeholder {
+    color: var(--cad-texto-secundario);
+    opacity: 0.85;
+}
+
+.cad-aula__input-icone select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+.cad-aula__input-icone .cad-aula__seta {
+    width: 30px;
+    flex-shrink: 0;
+    color: var(--cad-texto-secundario);
+    border: 0;
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.cad-aula__campo textarea,
+.cad-aula__observacoes textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+    color: var(--cad-texto);
+    background: var(--cad-campo);
+    border: 1px solid var(--cad-borda);
+    border-radius: 8px;
+    outline: 0;
+    resize: vertical;
+    font-size: 13px;
+    line-height: 1.6;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cad-aula__campo textarea {
+    min-height: 95px;
+}
+
+.cad-aula__campo textarea::placeholder,
+.cad-aula__observacoes textarea::placeholder {
+    color: var(--cad-texto-secundario);
+    opacity: 0.85;
+}
+
+.cad-aula__campo textarea:focus,
+.cad-aula__observacoes textarea:focus {
+    border-color: var(--cad-azul);
+    box-shadow: 0 0 0 3px rgb(36 120 245 / 10%);
+}
+
+.cad-aula__contador {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -4px;
+    color: var(--cad-texto-secundario);
+    font-size: 11px;
+}
+
+/* Etapas do cadastro */
+
+.cad-aula__etapas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 19px 22px;
+}
+
+.cad-aula__etapa {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.cad-aula__etapa-numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--cad-texto);
+    background: #e8eef7;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.cad-aula__etapa--ativa .cad-aula__etapa-numero {
+    color: #ffffff;
+    background: var(--cad-azul);
+}
+
+.cad-aula__etapa strong,
+.cad-aula__etapa div>span {
+    display: block;
+}
+
+.cad-aula__etapa strong {
+    margin-bottom: 5px;
+    color: var(--cad-texto);
+    font-size: 12px;
+}
+
+.cad-aula__etapa div>span {
+    color: var(--cad-texto-secundario);
+    font-size: 11px;
+}
+
+.cad-aula__etapa-linha {
+    height: 1px;
+    flex: 1;
+    min-width: 12px;
+    background: var(--cad-borda);
+}
+
+/* Horários */
+
+.cad-aula__horarios-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 25px 0 15px;
+}
+
+.cad-aula__horarios-cabecalho h3 {
+    margin-bottom: 6px;
+    color: var(--cad-texto);
+    font-size: 14px;
+}
+
+.cad-aula__horarios-cabecalho h3 i {
+    margin-right: 6px;
+    color: var(--cad-azul);
+}
+
+.cad-aula__horarios-cabecalho p {
+    margin-bottom: 0;
+    color: var(--cad-texto-secundario);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.cad-aula__tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--cad-borda);
+    border-radius: 8px;
+}
+
+.cad-aula__tabela {
+    width: 100%;
+    min-width: 610px;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.cad-aula__tabela thead {
+    background: var(--cad-cabecalho-tabela, #eff4fb);
+}
+
+.cad-aula__tabela th {
+    padding: 13px 10px;
+    color: var(--cad-texto-secundario);
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.cad-aula__tabela td {
+    padding: 10px;
+    color: var(--cad-texto);
+    border-top: 1px solid var(--cad-borda);
+    vertical-align: middle;
+}
+
+.cad-aula__tabela input,
+.cad-aula__tabela select {
+    width: 100%;
+    min-width: 90px;
+    min-height: 37px;
+    padding: 7px;
+    color: var(--cad-texto);
+    background: var(--cad-campo);
+    border: 1px solid var(--cad-borda);
+    border-radius: 6px;
+    outline: none;
+    font-size: 12px;
+}
+
+.cad-aula__tabela input:focus,
+.cad-aula__tabela select:focus {
+    border-color: var(--cad-azul);
+}
+
+.cad-aula__table-empty {
+    padding: 23px !important;
+    color: var(--cad-texto-secundario) !important;
+    text-align: center;
+}
+
+.cad-aula__remove-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    color: var(--cad-vermelho);
+    background: transparent;
+    border: 1px solid var(--cad-borda);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.cad-aula__remove-row:hover {
+    background: #fff0ee;
+    border-color: #f3b7b2;
+}
+
+.cad-aula__observacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 23px;
+}
+
+.cad-aula__observacoes label i {
+    margin-right: 6px;
+    color: var(--cad-azul);
+}
+
+/* Botões */
+
+.cad-aula__botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.cad-aula__botao:hover {
+    transform: translateY(-1px);
+}
+
+.cad-aula__botao--adicionar {
+    flex-shrink: 0;
+    min-height: 38px;
+    padding: 8px 12px;
+    color: var(--cad-azul);
+    background: transparent;
+    border-color: var(--cad-azul);
+    font-size: 12px;
+}
+
+.cad-aula__botao--adicionar:hover {
+    background: #edf4ff;
+}
+
+.cad-aula__acoes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 3px;
+}
+
+.cad-aula__botao--cancelar {
+    color: var(--cad-texto);
+    background: var(--cad-superficie);
+    border-color: var(--cad-borda);
+}
+
+.cad-aula__botao--cancelar:hover {
+    background: var(--cad-hover, #f5f7fb);
+}
+
+.cad-aula__botao--salvar {
+    color: #ffffff;
+    background: var(--cad-vermelho);
+}
+
+.cad-aula__botao--salvar:hover,
+.cad-aula__etiqueta:hover {
+    background: #cb2f25;
+}
+
+/* Resumo */
+
+.cad-aula__resumo .cad-aula__secao-titulo {
+    margin-bottom: 18px;
+}
+
+.cad-aula__resumo-destaque {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 15px;
+    margin-bottom: 17px;
+    background: var(--cad-resumo-fundo, #f6f9ff);
+    border: 1px solid var(--cad-borda);
+    border-radius: 8px;
+}
+
+.cad-aula__resumo-destaque>span:first-child {
+    color: var(--cad-texto-secundario);
+    font-size: 11px;
+}
+
+.cad-aula__resumo-destaque>strong {
+    color: var(--cad-texto);
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.cad-aula__badge {
+    padding: 5px 10px;
+    color: var(--cad-azul);
+    background: #e2edff;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.cad-aula__resumo-item {
+    display: grid;
+    grid-template-columns: 18px minmax(55px, 0.7fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 10px;
+    padding: 10px 0;
+    font-size: 12px;
+}
+
+.cad-aula__resumo-item>i {
+    margin-top: 2px;
+    color: var(--cad-texto-secundario);
+}
+
+.cad-aula__resumo-item>span {
+    color: var(--cad-texto-secundario);
+}
+
+.cad-aula__resumo-item>strong {
+    color: var(--cad-texto);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.cad-aula__aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px;
+    margin-top: 12px;
+    color: var(--cad-azul);
+    background: var(--cad-aviso-fundo, #edf5ff);
+    border-radius: 8px;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.cad-aula__aviso i {
+    margin-top: 2px;
+    font-size: 16px;
+}
+
+/* Orientações */
+
+.cad-aula__orientacoes .cad-aula__secao-titulo {
+    margin-bottom: 17px;
+}
+
+.cad-aula__orientacoes ul {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.cad-aula__orientacoes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    color: var(--cad-texto-secundario);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.cad-aula__orientacoes li i {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--cad-roxo);
+}
+
+/* Segurança */
+
+.cad-aula__seguranca {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.cad-aula__seguranca .cad-aula__icone {
+    width: 43px;
+    height: 43px;
+    font-size: 18px;
+}
+
+.cad-aula__seguranca h2 {
+    margin: 3px 0 7px;
+    font-size: 14px;
+}
+
+.cad-aula__seguranca p {
+    margin-bottom: 0;
+    color: var(--cad-texto-secundario);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Mensagens */
+
+.cad-aula__mensagem {
+    padding: 13px 15px;
+    margin-bottom: 16px;
+    color: #a3231b;
+    background: #fff0ee;
+    border: 1px solid #f4c5c0;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Foco acessível */
+
+.cad-aula button:focus-visible,
+.cad-aula a:focus-visible,
+.cad-aula input:focus-visible,
+.cad-aula select:focus-visible,
+.cad-aula textarea:focus-visible {
+    outline: 2px solid var(--cad-azul);
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   TEMA ESCURO
+   Ajuste os seletores caso seu base.html
+   utilize outra classe para alternar o tema.
+   ========================================== */
+
+body.dark-mode .cad-aula,
+body.dark .cad-aula,
+body.tema-escuro .cad-aula,
+[data-theme="dark"] .cad-aula,
+[data-bs-theme="dark"] .cad-aula {
+    --cad-fundo: #111827;
+    --cad-superficie: #192334;
+    --cad-texto: #edf2fa;
+    --cad-texto-secundario: #a5b3c9;
+    --cad-borda: #354258;
+    --cad-campo: #151f30;
+    --cad-cabecalho-tabela: #222f43;
+    --cad-resumo-fundo: #202d41;
+    --cad-aviso-fundo: #1c3049;
+    --cad-hover: #26354b;
+}
+
+body.dark-mode .cad-aula__icone--vermelho,
+body.dark .cad-aula__icone--vermelho,
+body.tema-escuro .cad-aula__icone--vermelho,
+[data-theme="dark"] .cad-aula__icone--vermelho,
+[data-bs-theme="dark"] .cad-aula__icone--vermelho {
+    color: #ff8a82;
+    background: #492b32;
+}
+
+body.dark-mode .cad-aula__icone--azul,
+body.dark .cad-aula__icone--azul,
+body.tema-escuro .cad-aula__icone--azul,
+[data-theme="dark"] .cad-aula__icone--azul,
+[data-bs-theme="dark"] .cad-aula__icone--azul {
+    color: #8bbaff;
+    background: #243a5b;
+}
+
+body.dark-mode .cad-aula__icone--verde,
+body.dark .cad-aula__icone--verde,
+body.tema-escuro .cad-aula__icone--verde,
+[data-theme="dark"] .cad-aula__icone--verde,
+[data-bs-theme="dark"] .cad-aula__icone--verde {
+    color: #78e0a8;
+    background: #1f4038;
+}
+
+body.dark-mode .cad-aula__icone--roxo,
+body.dark .cad-aula__icone--roxo,
+body.tema-escuro .cad-aula__icone--roxo,
+[data-theme="dark"] .cad-aula__icone--roxo,
+[data-bs-theme="dark"] .cad-aula__icone--roxo {
+    color: #c3a0ff;
+    background: #382d50;
+}
+
+body.dark-mode .cad-aula__badge,
+body.dark .cad-aula__badge,
+body.tema-escuro .cad-aula__badge,
+[data-theme="dark"] .cad-aula__badge,
+[data-bs-theme="dark"] .cad-aula__badge {
+    color: #a7caff;
+    background: #263b5c;
+}
+
+body.dark-mode .cad-aula__etapa-numero,
+body.dark .cad-aula__etapa-numero,
+body.tema-escuro .cad-aula__etapa-numero,
+[data-theme="dark"] .cad-aula__etapa-numero,
+[data-bs-theme="dark"] .cad-aula__etapa-numero {
+    color: #e5edf9;
+    background: #354258;
+}
+
+body.dark-mode .cad-aula__etapa--ativa .cad-aula__etapa-numero,
+body.dark .cad-aula__etapa--ativa .cad-aula__etapa-numero,
+body.tema-escuro .cad-aula__etapa--ativa .cad-aula__etapa-numero,
+[data-theme="dark"] .cad-aula__etapa--ativa .cad-aula__etapa-numero,
+[data-bs-theme="dark"] .cad-aula__etapa--ativa .cad-aula__etapa-numero {
+    color: #ffffff;
+    background: var(--cad-azul);
+}
+
+body.dark-mode .cad-aula__voltar:hover,
+body.dark .cad-aula__voltar:hover,
+body.tema-escuro .cad-aula__voltar:hover,
+[data-theme="dark"] .cad-aula__voltar:hover,
+[data-bs-theme="dark"] .cad-aula__voltar:hover {
+    background: #24354c;
+}
+
+body.dark-mode .cad-aula__botao--adicionar:hover,
+body.dark .cad-aula__botao--adicionar:hover,
+body.tema-escuro .cad-aula__botao--adicionar:hover,
+[data-theme="dark"] .cad-aula__botao--adicionar:hover,
+[data-bs-theme="dark"] .cad-aula__botao--adicionar:hover {
+    background: #24354c;
+}
+
+body.dark-mode .cad-aula__remove-row:hover,
+body.dark .cad-aula__remove-row:hover,
+body.tema-escuro .cad-aula__remove-row:hover,
+[data-theme="dark"] .cad-aula__remove-row:hover,
+[data-bs-theme="dark"] .cad-aula__remove-row:hover {
+    background: #492b32;
+    border-color: #74414a;
+}
+
+body.dark-mode .cad-aula__mensagem,
+body.dark .cad-aula__mensagem,
+body.tema-escuro .cad-aula__mensagem,
+[data-theme="dark"] .cad-aula__mensagem,
+[data-bs-theme="dark"] .cad-aula__mensagem {
+    color: #ffaaa3;
+    background: #3b242c;
+    border-color: #69404a;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 1200px) {
+    .cad-aula {
+        padding: 23px 20px 28px;
+    }
+
+    .cad-aula__layout {
+        grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.9fr);
+        gap: 15px;
+    }
+
+    .cad-aula__card {
+        padding: 19px;
+    }
+
+    .cad-aula__etapas {
+        padding: 16px;
+    }
+
+    .cad-aula__etapa {
+        gap: 8px;
+    }
+
+    .cad-aula__etapa-numero {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 950px) {
+    .cad-aula__layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cad-aula__lateral {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .cad-aula__resumo {
+        grid-row: span 2;
+    }
+
+    .cad-aula__seguranca {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 650px) {
+    .cad-aula {
+        padding: 18px 12px 24px;
+    }
+
+    .cad-aula__topo {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 18px;
+    }
+
+    .cad-aula__cabecalho h1 {
+        font-size: 25px;
+    }
+
+    .cad-aula__cabecalho>p {
+        font-size: 13px;
+    }
+
+    .cad-aula__breadcrumb {
+        gap: 8px;
+        margin-bottom: 14px;
+        font-size: 12px;
+    }
+
+    .cad-aula__etiqueta {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+
+    .cad-aula__card {
+        padding: 16px 13px;
+    }
+
+    .cad-aula__secao-titulo {
+        gap: 11px;
+        margin-bottom: 20px;
+    }
+
+    .cad-aula__icone {
+        width: 41px;
+        height: 41px;
+        font-size: 18px;
+    }
+
+    .cad-aula__secao-titulo h2 {
+        font-size: 14px;
+    }
+
+    .cad-aula__secao-titulo p {
+        font-size: 11px;
+    }
+
+    .cad-aula__campos {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+    }
+
+    .cad-aula__campo--completo {
+        grid-column: auto;
+    }
+
+    .cad-aula__etapas {
+        align-items: flex-start;
+        gap: 7px;
+        padding: 13px 10px;
+    }
+
+    .cad-aula__etapa {
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        text-align: center;
+    }
+
+    .cad-aula__etapa-numero {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+
+    .cad-aula__etapa strong {
+        font-size: 10px;
+    }
+
+    .cad-aula__etapa div>span {
+        font-size: 10px;
+    }
+
+    .cad-aula__etapa-linha {
+        margin-top: 16px;
+        min-width: 5px;
+    }
+
+    .cad-aula__horarios-cabecalho {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cad-aula__botao--adicionar {
+        width: 100%;
+    }
+
+    .cad-aula__tabela {
+        min-width: 590px;
+    }
+
+    .cad-aula__lateral {
+        display: flex;
+    }
+
+    .cad-aula__resumo {
+        grid-row: auto;
+    }
+
+    .cad-aula__seguranca {
+        grid-column: auto;
+    }
+
+    .cad-aula__acoes {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 9px;
+    }
+
+    .cad-aula__botao {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .cad-aula__acoes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cad-aula__botao {
+        width: 100%;
+    }
+
+    .cad-aula__resumo-item {
+        grid-template-columns: 18px 65px minmax(0, 1fr);
+        gap: 7px;
+    }
+}

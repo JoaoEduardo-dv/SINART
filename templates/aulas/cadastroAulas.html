@@ -1,0 +1,407 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<main class="cad-aula">
+
+    <!-- Cabeçalho -->
+    <div class="cad-aula__topo">
+        <div class="cad-aula__cabecalho">
+            <h1>Cadastrar aula</h1>
+            <p>Preencha as informações para adicionar uma nova aula no sistema.</p>
+        </div>
+    </div>
+
+    <!-- Mensagem de validação -->
+    <div id="mensagemCadastro" class="cad-aula__mensagem" role="alert" aria-live="polite" hidden>
+    </div>
+
+    <div class="cad-aula__layout">
+
+        <!-- Coluna principal -->
+        <div class="cad-aula__principal">
+
+            <!-- Etapas -->
+            <section class="cad-aula__etapas" aria-label="Etapas do cadastro">
+
+                <div class="cad-aula__etapa cad-aula__etapa--ativa">
+                    <span class="cad-aula__etapa-numero">1</span>
+                    <div>
+                        <strong>Identificação</strong>
+                        <span>Dados da aula</span>
+                    </div>
+                </div>
+
+                <div class="cad-aula__etapa-linha"></div>
+
+                <div class="cad-aula__etapa">
+                    <span class="cad-aula__etapa-numero">2</span>
+                    <div>
+                        <strong>Programação</strong>
+                        <span>Dias e horários</span>
+                    </div>
+                </div>
+
+                <div class="cad-aula__etapa-linha"></div>
+
+                <div class="cad-aula__etapa">
+                    <span class="cad-aula__etapa-numero">3</span>
+                    <div>
+                        <strong>Finalização</strong>
+                        <span>Revisão dos dados</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <form id="formCadastroAula" method="post" action="" novalidate>
+
+                {% csrf_token %}
+
+                <!-- IDENTIFICAÇÃO -->
+                <section class="cad-aula__card">
+
+                    <div class="cad-aula__secao-titulo">
+                        <div class="cad-aula__icone cad-aula__icone--vermelho">
+                            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <h2>Identificação da aula</h2>
+                            <p>Informe os dados principais da aula ou disciplina.</p>
+                        </div>
+                    </div>
+
+                    <div class="cad-aula__campos">
+
+                        <div class="cad-aula__campo">
+                            <label for="nomeAula">
+                                Nome da aula ou disciplina <span>*</span>
+                            </label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-book" aria-hidden="true"></i>
+                                <input type="text" id="nomeAula" name="nome_aula"
+                                    placeholder="Ex.: Violão Intermediário" maxlength="150" required>
+                            </div>
+                        </div>
+
+                        <div class="cad-aula__campo">
+                            <label for="professorAula">
+                                Professor responsável <span>*</span>
+                            </label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+
+                                <select id="professorAula" name="professor" required>
+                                    <option value="">Selecione o professor</option>
+                                    {% for professor in professores %}
+                                    <option value="{{ professor.pk }}">
+                                        {{ professor }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+
+                                <i class="fa-solid fa-chevron-down cad-aula__seta" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="cad-aula__campo">
+                            <label for="turmaAula">Turma <span>*</span></label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-users" aria-hidden="true"></i>
+                                <input type="text" id="turmaAula" name="turma"
+                                    placeholder="Ex.: Turma A - Intermediário" maxlength="100" required>
+                            </div>
+                        </div>
+
+                        <div class="cad-aula__campo">
+                            <label for="categoriaAula">
+                                Área artística <span>*</span>
+                            </label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-palette" aria-hidden="true"></i>
+
+                                <select id="categoriaAula" name="area_artistica" required>
+                                    <option value="">Selecione uma área</option>
+                                    <option value="musica">Música</option>
+                                    <option value="artes">Artes</option>
+                                    <option value="fotografia">Fotografia</option>
+                                    <option value="pintura">Pintura</option>
+                                    <option value="outra">Outra</option>
+                                </select>
+
+                                <i class="fa-solid fa-chevron-down cad-aula__seta" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="cad-aula__campo">
+                            <label for="semestreAula">
+                                Semestre letivo <span>*</span>
+                            </label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+
+                                <select id="semestreAula" name="semestre" required>
+                                    <option value="">Selecione o semestre</option>
+                                    <option value="2026.1">2026.1</option>
+                                    <option value="2026.2">2026.2</option>
+                                    <option value="2027.1">2027.1</option>
+                                    <option value="2027.2">2027.2</option>
+                                </select>
+
+                                <i class="fa-solid fa-chevron-down cad-aula__seta" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="cad-aula__campo cad-aula__campo--completo">
+                            <label for="descricaoAula">Descrição da aula</label>
+
+                            <textarea id="descricaoAula" name="descricao" maxlength="500" rows="4"
+                                placeholder="Descreva brevemente o conteúdo, o objetivo ou as atividades desenvolvidas..."></textarea>
+
+                            <div class="cad-aula__contador">
+                                <span id="contadorDescricao">0</span>/500
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <!-- PROGRAMAÇÃO -->
+                <section class="cad-aula__card">
+
+                    <div class="cad-aula__secao-titulo">
+                        <div class="cad-aula__icone cad-aula__icone--azul">
+                            <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <h2>Programação da aula</h2>
+                            <p>Defina o período de realização e os horários semanais.</p>
+                        </div>
+                    </div>
+
+                    <div class="cad-aula__campos">
+
+                        <div class="cad-aula__campo">
+                            <label for="dataInicioAula">
+                                Início do período <span>*</span>
+                            </label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
+                                <input type="date" id="dataInicioAula" name="data_inicio" required>
+                            </div>
+                        </div>
+
+                        <div class="cad-aula__campo">
+                            <label for="dataFimAula">
+                                Fim do período <span>*</span>
+                            </label>
+
+                            <div class="cad-aula__input-icone">
+                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                                <input type="date" id="dataFimAula" name="data_fim" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="cad-aula__horarios-cabecalho">
+                        <div>
+                            <h3>
+                                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                                Horários semanais
+                            </h3>
+                            <p>Adicione um registro para cada dia e horário da aula.</p>
+                        </div>
+
+                        <button type="button" id="adicionarHorario" class="cad-aula__botao cad-aula__botao--adicionar">
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                            Adicionar horário
+                        </button>
+                    </div>
+
+                    <div class="cad-aula__tabela-container">
+                        <table class="cad-aula__tabela">
+                            <thead>
+                                <tr>
+                                    <th>Dia da semana</th>
+                                    <th>Horário inicial</th>
+                                    <th>Horário final</th>
+                                    <th>Sala</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="listaHorarios">
+                                <tr>
+                                    <td colspan="5" class="cad-aula__table-empty">
+                                        Nenhum horário cadastrado
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="cad-aula__observacoes">
+                        <label for="observacoesAula">
+                            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+                            Observações adicionais
+                        </label>
+
+                        <textarea id="observacoesAula" name="observacoes" maxlength="500" rows="2"
+                            placeholder="Informe necessidades específicas, materiais ou outras observações (opcional)..."></textarea>
+
+                        <div class="cad-aula__contador">
+                            <span id="contadorObservacoes">0</span>/500
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- BOTÕES -->
+                <div class="cad-aula__acoes">
+                    <a href="{% url 'aulas' %}" class="cad-aula__botao cad-aula__botao--cancelar">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="cad-aula__botao cad-aula__botao--salvar">
+                        <i class="fa-solid fa-check" aria-hidden="true"></i>
+                        Cadastrar aula
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- COLUNA LATERAL -->
+        <aside class="cad-aula__lateral">
+
+            <!-- RESUMO -->
+            <section class="cad-aula__card cad-aula__resumo">
+
+                <div class="cad-aula__secao-titulo">
+                    <div class="cad-aula__icone cad-aula__icone--verde">
+                        <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+                    </div>
+
+                    <div>
+                        <h2>Resumo do cadastro</h2>
+                        <p>Confira os dados preenchidos.</p>
+                    </div>
+                </div>
+
+                <div class="cad-aula__resumo-destaque">
+                    <span>AULA / DISCIPLINA</span>
+                    <strong id="resumoNome">Nova aula</strong>
+                    <span class="cad-aula__badge" id="resumoCategoria">
+                        Área não selecionada
+                    </span>
+                </div>
+
+                <div class="cad-aula__resumo-item">
+                    <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                    <span>Professor</span>
+                    <strong id="resumoProfessor">Não selecionado</strong>
+                </div>
+
+                <div class="cad-aula__resumo-item">
+                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                    <span>Turma</span>
+                    <strong id="resumoTurma">Não informada</strong>
+                </div>
+
+                <div class="cad-aula__resumo-item">
+                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                    <span>Semestre</span>
+                    <strong id="resumoSemestre">Não selecionado</strong>
+                </div>
+
+                <div class="cad-aula__resumo-item">
+                    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                    <span>Horários</span>
+                    <strong id="resumoQuantidade">0 horários</strong>
+                </div>
+
+                <div class="cad-aula__resumo-item">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                    <span>Local</span>
+                    <strong id="resumoLocal">Definido nos horários</strong>
+                </div>
+
+                <div class="cad-aula__aviso">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    <span>Revise os dados antes de enviar o cadastro.</span>
+                </div>
+
+            </section>
+
+            <!-- ORIENTAÇÕES -->
+            <section class="cad-aula__card cad-aula__orientacoes">
+
+                <div class="cad-aula__secao-titulo">
+                    <div class="cad-aula__icone cad-aula__icone--roxo">
+                        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                    </div>
+
+                    <div>
+                        <h2>Orientações</h2>
+                        <p>Confira as recomendações para o cadastro.</p>
+                    </div>
+                </div>
+
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        Confira se o professor está correto e vinculado à aula.
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        Evite sobreposição de horários para o mesmo professor,
+                        turma ou sala.
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        Informe o período completo em que a aula deverá ocorrer.
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        Utilize as observações para registrar necessidades específicas.
+                    </li>
+                </ul>
+
+            </section>
+
+            <!-- SEGURANÇA -->
+            <section class="cad-aula__card cad-aula__seguranca">
+
+                <div class="cad-aula__icone cad-aula__icone--verde">
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                </div>
+
+                <div>
+                    <h2>Cadastro seguro</h2>
+                    <p>Os dados serão enviados para processamento pelo SINART.</p>
+                </div>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+</main>
+
+{% endblock %}

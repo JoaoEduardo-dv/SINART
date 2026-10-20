@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Adicionar atividade | SINART{% endblock %}
+
+{% block content %}
+
+<main id="cadastroAtividade" class="ca-pagina">
+
+    <header class="ca-cabecalho">
+        <div>
+            <h1>Adicionar atividade</h1>
+            <p>Preencha os dados abaixo para cadastrar uma nova atividade no sistema.</p>
+        </div>
+    </header>
+
+    <section class="ca-cartao">
+        <div class="ca-titulo-secao">
+            <i class="fa-regular fa-calendar"></i>
+            <h2>Informações da atividade</h2>
+        </div>
+
+        <form id="caFormulario" method="post" action="#">
+            {% csrf_token %}
+
+            <div class="ca-grade ca-grade-titulo">
+                <div class="ca-campo">
+                    <label for="caTitulo">Título da atividade <span>*</span></label>
+                    <input type="text" id="caTitulo" name="titulo" placeholder="Ex.: Ensaio musical" maxlength="120"
+                        required>
+                </div>
+
+                <div class="ca-campo">
+                    <label for="caTipo">Tipo de atividade <span>*</span></label>
+                    <select id="caTipo" name="tipo" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="aula">Aula</option>
+                        <option value="ensaio">Ensaio</option>
+                        <option value="reuniao">Reunião</option>
+                        <option value="evento">Evento</option>
+                        <option value="apresentacao">Apresentação</option>
+                        <option value="oficina">Oficina</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="ca-grade ca-grade-horarios">
+                <div class="ca-campo">
+                    <label for="caData">Data <span>*</span></label>
+                    <input type="date" id="caData" name="data" required>
+                </div>
+
+                <div class="ca-campo">
+                    <label for="caHoraInicio">Horário inicial <span>*</span></label>
+                    <input type="time" id="caHoraInicio" name="hora_inicio" required>
+                </div>
+
+                <div class="ca-campo">
+                    <label for="caHoraFim">Horário final <span>*</span></label>
+                    <input type="time" id="caHoraFim" name="hora_fim" required>
+                </div>
+            </div>
+
+            <div class="ca-campo">
+                <label for="caLocal">Local</label>
+                <input type="text" id="caLocal" name="local" maxlength="150" placeholder="Sala ou ambiente">
+            </div>
+
+            <div class="ca-campo">
+                <label for="caDescricao">Descrição</label>
+                <textarea id="caDescricao" name="descricao" rows="4" placeholder="Detalhes da atividade"></textarea>
+            </div>
+
+            <div class="ca-campo">
+                <label for="caPublico">Público-alvo <span>*</span></label>
+                <select id="caPublico" name="publico" required>
+                    <option value="">Selecione o público</option>
+                    <option value="todos">Para todos</option>
+                    <option value="mim">Para mim</option>
+                    <option value="especificos">Pessoas específicas</option>
+                </select>
+            </div>
+
+            <div class="ca-campo ca-campo-pessoas" id="caCampoPessoas" hidden>
+                <label for="caPessoas">Selecionar pessoas <span>*</span></label>
+                <select id="caPessoas" name="pessoas" multiple size="4" aria-describedby="caAjudaPessoas">
+                    {% for pessoa in pessoas %}
+                    <option value="{{ pessoa.pk }}">
+                        {{ pessoa.get_full_name|default:pessoa.username }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <small id="caAjudaPessoas">
+                    Para selecionar várias pessoas, mantenha Ctrl pressionado
+                    enquanto clica nas opções (ou use a seleção múltipla do celular).
+                </small>
+            </div>
+
+            <div class="ca-mensagem" id="caMensagem" role="alert" hidden></div>
+
+            <footer class="ca-acoes">
+                <a href="{% url 'atividades' %}" class="ca-botao ca-botao-cancelar">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="ca-botao ca-botao-salvar">
+                    <i class="fa-solid fa-check"></i>
+                    Salvar atividade
+                </button>
+            </footer>
+        </form>
+    </section>
+
+</main>
+{% endblock %}
