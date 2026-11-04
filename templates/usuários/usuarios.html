@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Todos os usuários - SINART{% endblock %}
+
+{% block content %}
+
+<main class="usu-page" id="usuariosPage">
+
+    <header class="usu-header">
+        <div>
+            <h1>Todos os usuários</h1>
+            <p>Visualize e gerencie todos os usuários cadastrados no sistema.</p>
+        </div>
+
+        <a href="{% url 'cadastroUsuario' %}" class="usu-btn usu-btn-primary" data-link="novoUsuario">
+            <i class="fa-solid fa-plus"></i>
+            Novo usuário
+        </a>
+    </header>
+
+    <section class="usu-stats" aria-label="Resumo dos usuários">
+        <button class="usu-stat usu-stat-purple" type="button" data-stat-filter="todos">
+            <span class="usu-stat-icon"><i class="fa-solid fa-users"></i></span>
+            <span class="usu-stat-content">
+                <span class="usu-stat-label">Total de usuários</span>
+                <strong id="usuTotal">48</strong>
+                <span class="usu-stat-link">Ver todos <i class="fa-solid fa-arrow-right"></i></span>
+            </span>
+        </button>
+
+        <button class="usu-stat usu-stat-green" type="button" data-stat-filter="Aluno">
+            <span class="usu-stat-icon"><i class="fa-solid fa-user-graduate"></i></span>
+            <span class="usu-stat-content">
+                <span class="usu-stat-label">Alunos</span>
+                <strong id="usuAlunos">28</strong>
+                <span class="usu-stat-link">Ver alunos <i class="fa-solid fa-arrow-right"></i></span>
+            </span>
+        </button>
+
+        <button class="usu-stat usu-stat-blue" type="button" data-stat-filter="Professor">
+            <span class="usu-stat-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+            <span class="usu-stat-content">
+                <span class="usu-stat-label">Professores</span>
+                <strong id="usuProfessores">12</strong>
+                <span class="usu-stat-link">Ver professores <i class="fa-solid fa-arrow-right"></i></span>
+            </span>
+        </button>
+
+        <button class="usu-stat usu-stat-orange" type="button" data-stat-filter="Administrador">
+            <span class="usu-stat-icon"><i class="fa-solid fa-shield-halved"></i></span>
+            <span class="usu-stat-content">
+                <span class="usu-stat-label">Administradores</span>
+                <strong id="usuAdministradores">8</strong>
+                <span class="usu-stat-link">Ver administradores <i class="fa-solid fa-arrow-right"></i></span>
+            </span>
+        </button>
+    </section>
+
+    <section class="usu-panel">
+        <div class="usu-toolbar">
+            <label class="usu-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="search"
+                    id="usuBusca"
+                    placeholder="Buscar por nome, e-mail ou matrícula..."
+                    aria-label="Buscar usuários"
+                >
+            </label>
+
+            <select id="usuFiltroPerfil" aria-label="Filtrar por perfil">
+                <option value="">Todos os perfis</option>
+                <option value="Professor">Professor</option>
+                <option value="Aluno">Aluno</option>
+                <option value="Bolsista">Bolsista</option>
+                <option value="Servidor">Servidor</option>
+                <option value="Administrador">Administrador</option>
+            </select>
+
+            <select id="usuFiltroStatus" aria-label="Filtrar por status">
+                <option value="">Todos os status</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+            </select>
+
+            <button type="button" class="usu-btn usu-btn-outline" id="usuBotaoFiltros">
+                <i class="fa-solid fa-filter"></i>
+                Mais filtros
+            </button>
+
+            <button type="button" class="usu-btn usu-btn-outline usu-exportar" id="usuExportar">
+                <i class="fa-solid fa-download"></i>
+                Exportar
+            </button>
+        </div>
+
+        <div class="usu-filtros-extra" id="usuFiltrosExtra" hidden>
+            <label>
+                Departamento/Área
+                <select id="usuFiltroDepartamento">
+                    <option value="">Todos os departamentos</option>
+                    <option value="Música">Música</option>
+                    <option value="Artes Visuais">Artes Visuais</option>
+                    <option value="Administração">Administração</option>
+                    <option value="Teatro">Teatro</option>
+                    <option value="Núcleo de Arte">Núcleo de Arte</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Danças">Danças</option>
+                </select>
+            </label>
+
+            <button type="button" class="usu-btn usu-btn-outline" id="usuLimparFiltros">
+                Limpar filtros
+            </button>
+        </div>
+
+        <div class="usu-table-wrap">
+            <table class="usu-table">
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Matrícula</th>
+                        <th>Perfil</th>
+                        <th>Departamento/Área</th>
+                        <th>E-mail</th>
+                        <th>Status</th>
+                        <th>Último acesso</th>
+                        <th class="usu-th-acoes">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="usuTabelaCorpo"></tbody>
+            </table>
+
+            <div class="usu-vazio" id="usuVazio" hidden>
+                <i class="fa-solid fa-users"></i>
+                <strong>Nenhum usuário encontrado</strong>
+                <p>Tente modificar a pesquisa ou os filtros selecionados.</p>
+            </div>
+        </div>
+
+        <div class="usu-pagination">
+            <span id="usuContagem">Mostrando usuários</span>
+
+            <div class="usu-pagination-buttons" id="usuPaginacao">
+                <button type="button" data-page="first" aria-label="Primeira página">«</button>
+                <button type="button" data-page="prev" aria-label="Página anterior">‹</button>
+                <span id="usuNumerosPaginas"></span>
+                <button type="button" data-page="next" aria-label="Próxima página">›</button>
+                <button type="button" data-page="last" aria-label="Última página">»</button>
+            </div>
+
+            <select id="usuPorPagina" aria-label="Quantidade de usuários por página">
+                <option value="10">10 por página</option>
+                <option value="20">20 por página</option>
+                <option value="50">50 por página</option>
+            </select>
+        </div>
+    </section>
+
+    <aside class="usu-aviso">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Gerencie os usuários, atribua perfis e defina as permissões de acesso no sistema.</span>
+    </aside>
+
+    <div class="usu-toast" id="usuToast" role="status" aria-live="polite" hidden></div>
+
+</main>
+
+{% endblock %}

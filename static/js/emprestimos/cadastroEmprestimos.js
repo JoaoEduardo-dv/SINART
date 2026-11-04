@@ -1,35 +1,19 @@
-/* =====================================================================
-   TELA NOVO EMPRÉSTIMO
-   - A URL da lista de empréstimos vem do HTML (data-url-emprestimos="{% url 'emprestimos' %}"),
-     porque o Django só processa {% url %} dentro do .html.
-   - Se quiser, pode fixar uma URL aqui como reserva (usada só se o HTML não tiver).
-   ===================================================================== */
-const URL_EMPRESTIMOS_RESERVA = "";
-
-/* Links dos botões simples da página (vazio = não faz nada) */
-const LINKS_EMPRESTIMO = {
-  "ver-todos": ""   // "Ver todos" em Materiais mais emprestados
-};
-
+(() => {
 const $q = s => document.querySelector(s);
 const form = $q("#formEmprestimo");
-const URL_EMPRESTIMOS = form.dataset.urlEmprestimos || URL_EMPRESTIMOS_RESERVA;
 
-/* ---- volta para a aba Empréstimos ---- */
-function voltarParaEmprestimos(){
-  if (URL_EMPRESTIMOS) window.location.href = URL_EMPRESTIMOS;
-  else console.warn("Defina a URL de empréstimos (data-url-emprestimos no <form>).");
-}
+if (!form) return;
 
-/* ---- links ---- */
-document.querySelectorAll("[data-emp-link]").forEach(el => {
-  const url = LINKS_EMPRESTIMO[el.dataset.empLink];
-  if (url) el.setAttribute("href", url);
-  else if (el.getAttribute("href") === "#") el.addEventListener("click", e => e.preventDefault());
+const btnCancelar = $q("#btnCancelar");
+
+document.querySelectorAll('[data-emp-link][href="#"]').forEach(el => {
+  el.addEventListener("click", evento => evento.preventDefault());
 });
 
 /* ---- Cancelar ---- */
-$q("#btnCancelar").addEventListener("click", voltarParaEmprestimos);
+btnCancelar.addEventListener("click", () => {
+  window.location.href = btnCancelar.dataset.urlEmprestimos;
+});
 
 /* ---- elementos ---- */
 const tipo = $q("#tipo"), material = $q("#material"), qtd = $q("#quantidade");
@@ -121,7 +105,7 @@ form.addEventListener("submit", async e => {
   const action = form.getAttribute("action");
 
   // sem action: apenas volta para a lista (modo protótipo)
-  if (!action) { voltarParaEmprestimos(); return; }
+  if (!action) { window.location.href = btnCancelar.dataset.urlEmprestimos; return; }
 
   // com action: envia os dados (com o csrf_token e os materiais) e volta para a lista
   try {
@@ -131,7 +115,7 @@ form.addEventListener("submit", async e => {
       headers: { "X-Requested-With": "XMLHttpRequest" },
       credentials: "same-origin"
     });
-    if (resp.ok) voltarParaEmprestimos();
+    if (resp.ok) window.location.href = btnCancelar.dataset.urlEmprestimos;
     else throw new Error("HTTP " + resp.status);
   } catch (err) {
     btnRegistrar.disabled = false;
@@ -181,3 +165,4 @@ function atualizarInfo(){
   }
 }
 material.addEventListener("change", atualizarInfo);
+})();

@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{% static 'css/aulas/aulas.css' %}">
     <link rel="stylesheet" href="{% static 'css/aulas/cadastroAulas.css' %}">
     <link rel="stylesheet" href="{% static 'css/Painel de atividades/cadastroAtividades.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Usuários/usuarios.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Usuários/permissoesUsuarios.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Usuários/cadastroUsuario.css' %}">
 </head>
 
 <body>
@@ -159,8 +162,8 @@
                         </svg>
                     </button>
                     <div class="submenu">
-                        <a data-link="usuarios-lista" href="#">Listar usuários</a>
-                        <a data-link="usuarios-cadastro" href="#">Cadastrar usuário</a>
+                        <a data-link="usuarios-lista" href="{% url 'usuarios' %}">Todos os usuários</a>
+                        <a data-link="usuarios-cadastro" href="#">Perfis e permisões</a>
                     </div>
                 </div>
 
@@ -258,6 +261,9 @@
     <script src="{% static 'js/aulas/aulas.js' %}"></script>
     <script src="{% static 'js/aulas/cadastroAulas.js' %}"></script>
     <script src="{% static 'js/painel de atividades/cadastroAtividades.js' %}"></script>
+    <script src="{% static 'js/Usuários/usuarios.js' %}"></script>
+    <script src="{% static 'js/Usuários/permissoesUsuarios.js' %}"></script>
+    <script src="{% static 'js/Usuários/cadastroUsuario.js' %}"></script>
 </body>
 
 </html>

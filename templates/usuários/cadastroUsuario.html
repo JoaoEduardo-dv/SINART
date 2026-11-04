@@ -1,0 +1,289 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Novo usuário - SINART{% endblock %}
+
+{% block content %}
+
+<div class="cu-page" id="cadastroUsuarioPage">
+
+    <!-- Caminho da página -->
+    <nav class="cu-breadcrumb" aria-label="Navegação estrutural">
+        <a href="" data-link="usuarios">Usuários</a>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        <span>Novo usuário</span>
+    </nav>
+
+    <!-- Cabeçalho -->
+    <header class="cu-header">
+        <div class="cu-header-title">
+            <a href="" class="cu-back" data-link="voltar"
+               aria-label="Voltar para usuários">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </a>
+
+            <div>
+                <h1>Novo usuário</h1>
+                <p>Preencha os dados abaixo para cadastrar um novo usuário no sistema.</p>
+            </div>
+        </div>
+    </header>
+
+    <form id="cuForm" novalidate>
+
+        <!-- Informações pessoais -->
+        <section class="cu-card" aria-labelledby="cuTituloPessoal">
+            <h2 id="cuTituloPessoal" class="cu-card-title">
+                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                Informações pessoais
+            </h2>
+
+            <div class="cu-grid cu-grid-3">
+                <div class="cu-field">
+                    <label for="cuNome">Nome completo <span>*</span></label>
+                    <input
+                        type="text"
+                        id="cuNome"
+                        name="nome"
+                        placeholder="Digite o nome completo do usuário"
+                        autocomplete="name"
+                        maxlength="150"
+                        required
+                    >
+                    <small class="cu-error" id="cuNomeErro"></small>
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuMatricula">Matrícula <span>*</span></label>
+                    <input
+                        type="text"
+                        id="cuMatricula"
+                        name="matricula"
+                        placeholder="Digite a matrícula"
+                        maxlength="30"
+                        required
+                    >
+                    <small class="cu-error" id="cuMatriculaErro"></small>
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuEmail">E-mail <span>*</span></label>
+                    <input
+                        type="email"
+                        id="cuEmail"
+                        name="email"
+                        placeholder="Digite o e-mail institucional"
+                        autocomplete="email"
+                        maxlength="254"
+                        required
+                    >
+                    <small class="cu-error" id="cuEmailErro"></small>
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuTelefone">Telefone</label>
+                    <input
+                        type="tel"
+                        id="cuTelefone"
+                        name="telefone"
+                        placeholder="(00) 00000-0000"
+                        autocomplete="tel"
+                        maxlength="15"
+                    >
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuNascimento">Data de nascimento</label>
+                    <input
+                        type="date"
+                        id="cuNascimento"
+                        name="data_nascimento"
+                    >
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuCpf">CPF</label>
+                    <input
+                        type="text"
+                        id="cuCpf"
+                        name="cpf"
+                        placeholder="000.000.000-00"
+                        inputmode="numeric"
+                        maxlength="14"
+                    >
+                    <small class="cu-error" id="cuCpfErro"></small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perfil e vínculo -->
+        <section class="cu-card" aria-labelledby="cuTituloPerfil">
+            <h2 id="cuTituloPerfil" class="cu-card-title">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                Perfil e vínculo
+            </h2>
+
+            <div class="cu-grid cu-grid-3">
+                <div class="cu-field">
+                    <label for="cuPerfil">Perfil de acesso <span>*</span></label>
+                    <select id="cuPerfil" name="perfil" required>
+                        <option value="">Selecione o perfil</option>
+                        <option value="Aluno">Aluno</option>
+                        <option value="Professor">Professor</option>
+                        <option value="Servidor">Servidor</option>
+                        <option value="Bolsista">Bolsista</option>
+                        <option value="Administrador">Administrador</option>
+                    </select>
+                    <small class="cu-error" id="cuPerfilErro"></small>
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuDepartamento">Departamento/Área</label>
+                    <select id="cuDepartamento" name="departamento">
+                        <option value="">Selecione o departamento</option>
+                        <option value="Música">Música</option>
+                        <option value="Artes Visuais">Artes Visuais</option>
+                        <option value="Fotografia">Fotografia</option>
+                        <option value="Pintura">Pintura</option>
+                        <option value="Teatro">Teatro</option>
+                        <option value="Dança">Dança</option>
+                        <option value="Núcleo de Arte">Núcleo de Arte</option>
+                        <option value="Administração">Administração</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="cu-field">
+                    <label for="cuSituacao">Situação</label>
+                    <select id="cuSituacao" name="situacao">
+                        <option value="Ativo" selected>Ativo</option>
+                        <option value="Inativo">Inativo</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Foto do usuário -->
+        <section class="cu-card" aria-labelledby="cuTituloFoto">
+            <h2 id="cuTituloFoto" class="cu-card-title">
+                <i class="fa-regular fa-image" aria-hidden="true"></i>
+                Foto do usuário
+            </h2>
+
+            <div class="cu-photo-layout">
+                <label for="cuFoto" class="cu-upload" id="cuUpload">
+                    <i class="fa-solid fa-cloud-arrow-up cu-upload-icon"
+                       aria-hidden="true"></i>
+                    <span class="cu-upload-main">
+                        Clique para selecionar uma imagem
+                    </span>
+                    <span class="cu-upload-secondary">
+                        ou arraste e solte aqui
+                    </span>
+                    <span class="cu-upload-hint">
+                        Formatos aceitos: JPG, PNG. Tamanho máximo: 2 MB.
+                    </span>
+                    <input
+                        type="file"
+                        id="cuFoto"
+                        name="foto"
+                        accept="image/jpeg,image/png"
+                    >
+                </label>
+
+                <div class="cu-photo-preview">
+                    <div class="cu-avatar-preview" id="cuAvatarPreview">
+                        <i class="fa-solid fa-user" aria-hidden="true"></i>
+                    </div>
+                    <p>A foto deve ser uma imagem recente<br>
+                        e nítida do usuário.</p>
+                </div>
+            </div>
+
+            <small class="cu-error" id="cuFotoErro"></small>
+        </section>
+
+        <!-- Permissões -->
+        <section class="cu-card cu-permissions-card"
+                 aria-labelledby="cuTituloPermissoes">
+            <h2 id="cuTituloPermissoes" class="cu-card-title">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                Permissões (opcional)
+            </h2>
+
+            <label class="cu-switch-row" for="cuPermissoes">
+                <span class="cu-switch">
+                    <input type="checkbox" id="cuPermissoes"
+                           name="permissoes_personalizadas">
+                    <span class="cu-switch-slider"></span>
+                </span>
+
+                <span class="cu-switch-text">
+                    <strong>Definir permissões personalizadas</strong>
+                    <small>
+                        Marque esta opção para configurar permissões específicas para o usuário.
+                    </small>
+                </span>
+            </label>
+
+            <div class="cu-permissions-options" id="cuPermissoesOpcoes" hidden>
+                <p>Selecione as permissões que deseja conceder:</p>
+
+                <div class="cu-permissions-grid">
+                    <label>
+                        <input type="checkbox" name="permissoes"
+                               value="reservas_visualizar">
+                        Visualizar reservas
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="permissoes"
+                               value="reservas_gerenciar">
+                        Gerenciar reservas
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="permissoes"
+                               value="emprestimos_visualizar">
+                        Visualizar empréstimos
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="permissoes"
+                               value="emprestimos_gerenciar">
+                        Gerenciar empréstimos
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="permissoes"
+                               value="atividades_gerenciar">
+                        Gerenciar atividades
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="permissoes"
+                               value="usuarios_gerenciar">
+                        Gerenciar usuários
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ações -->
+        <div class="cu-actions">
+            <a href="" class="cu-btn cu-btn-cancel" data-link="cancelar">
+                Cancelar
+            </a>
+
+            <button type="submit" class="cu-btn cu-btn-save">
+                <i class="fa-regular fa-floppy-disk" aria-hidden="true"></i>
+                Salvar usuário
+            </button>
+        </div>
+
+        <p class="cu-form-message" id="cuMensagem" role="status"
+           aria-live="polite"></p>
+    </form>
+</div>
+{% endblock %}

@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("reservas.urls")), # <-- Rota vazia '' significa a página inicial do site
     path("", include("emprestimos.urls")),
+    path("", include("usuarios.urls")),
 ]
 
 if settings.DEBUG:

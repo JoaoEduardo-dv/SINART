@@ -1,10 +1,7 @@
 /* ===== Tela Novo Empréstimo ===== */
 .novo-emp {
-    --blue: #2f63e0;
-    --tint-blue: rgba(47, 99, 224, .08);
-    --tint-purple: rgba(124, 58, 237, .10);
-    --purple: #7c3aed;
-    --red: #d63b2d;
+    --tint-blue: rgba(43, 120, 194, .08);
+    --tint-purple: rgba(123, 63, 152, .10);
     --line: var(--border);
     display: grid;
     grid-template-columns: minmax(0, 7fr) minmax(290px, 3fr);
@@ -12,6 +9,11 @@
     align-items: start;
     min-width: 0;
     max-width: none
+}
+
+html[data-theme="dark"] .novo-emp {
+    --tint-blue: #252b3a;
+    --tint-purple: #252b3a
 }
 
 .novo-emp svg {
@@ -106,7 +108,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(47, 99, 224, .14);
+    background: rgba(43, 120, 194, .14);
     color: var(--blue);
     font-size: 15px;
     font-weight: 600;
@@ -172,18 +174,14 @@
     display: flex;
     align-items: center;
     height: 42px;
-    border: 1px solid #cfdaf0;
+    border: 1px solid var(--border);
     border-radius: 6px;
     background: var(--card)
 }
 
-[data-theme="dark"] .control {
-    border-color: var(--border)
-}
-
 .control:focus-within {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(47, 99, 224, .15)
+    box-shadow: 0 0 0 3px rgba(43, 120, 194, .15)
 }
 
 .control select,
@@ -210,7 +208,8 @@
 }
 
 .control select option {
-    color: #1c2230
+    color: var(--text);
+    background: var(--card)
 }
 
 .c-ico {
@@ -374,7 +373,7 @@
 }
 
 .btn-cancel {
-    border: 1px solid #cfdaf0;
+    border: 1px solid var(--border);
     background: var(--card);
     color: var(--text)
 }
@@ -476,7 +475,7 @@
     height: 84px;
     border-radius: 50%;
     background: var(--tint-purple);
-    color: rgba(124, 58, 237, .35)
+    color: var(--purple)
 }
 
 .big-ico svg {
@@ -578,13 +577,13 @@
 }
 
 .t-ico.blue {
-    background: rgba(47, 99, 224, .14);
+    background: rgba(43, 120, 194, .14);
     color: var(--blue)
 }
 
 .t-ico.green {
-    background: rgba(76, 174, 79, .16);
-    color: #2f6f4a
+    background: rgba(106, 165, 111, .16);
+    color: var(--green)
 }
 
 .t-ico.purple {
@@ -650,13 +649,9 @@
 
 .added {
     margin-top: 20px;
-    border: 1px solid #cfdaf0;
+    border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden
-}
-
-[data-theme="dark"] .added {
-    border-color: var(--border)
 }
 
 .added.invalid {

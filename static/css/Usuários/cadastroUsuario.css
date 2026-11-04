@@ -1,0 +1,659 @@
+
+/* ==========================================
+   SINART — Cadastro de usuário
+   ========================================== */
+
+.cu-page {
+    --cu-purple: #672dc2;
+    --cu-purple-hover: #5521a8;
+    --cu-text: #10264d;
+    --cu-muted: #49658f;
+    --cu-placeholder: #8298bd;
+    --cu-border: #dce6f7;
+    --cu-card: #ffffff;
+    --cu-input: #ffffff;
+    --cu-bg: #f8faff;
+    --cu-danger: #dc3545;
+
+    width: 100%;
+    min-width: 0;
+    padding: 22px 28px 26px;
+    color: var(--cu-text);
+    background: var(--cu-bg);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.cu-page *,
+.cu-page *::before,
+.cu-page *::after {
+    box-sizing: border-box;
+}
+
+.cu-page input,
+.cu-page select,
+.cu-page button {
+    font: inherit;
+}
+
+.cu-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-bottom: 18px;
+    color: var(--cu-muted);
+    font-size: 13px;
+}
+
+.cu-breadcrumb a {
+    color: var(--cu-muted);
+    text-decoration: none;
+}
+
+.cu-breadcrumb a:hover {
+    color: var(--cu-purple);
+}
+
+.cu-breadcrumb i {
+    color: #9aaac2;
+    font-size: 10px;
+}
+
+.cu-breadcrumb span {
+    color: var(--cu-text);
+}
+
+.cu-header {
+    margin-bottom: 25px;
+}
+
+.cu-header-title {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.cu-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--cu-border);
+    border-radius: 50%;
+    color: var(--cu-text);
+    background: var(--cu-card);
+    box-shadow: 0 2px 8px rgb(20 40 75 / 5%);
+    text-decoration: none;
+    transition: .2s ease;
+}
+
+.cu-back:hover {
+    color: var(--cu-purple);
+    border-color: var(--cu-purple);
+}
+
+.cu-header h1 {
+    margin: 0 0 3px;
+    color: var(--cu-text);
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.cu-header p {
+    margin: 0;
+    color: var(--cu-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.cu-card {
+    min-width: 0;
+    margin-bottom: 14px;
+    padding: 19px 23px 21px;
+    border: 1px solid var(--cu-border);
+    border-radius: 11px;
+    background: var(--cu-card);
+}
+
+.cu-card-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 0 21px;
+    color: var(--cu-text);
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.cu-card-title i {
+    width: 27px;
+    color: var(--cu-purple);
+    font-size: 22px;
+    text-align: center;
+}
+
+.cu-grid {
+    display: grid;
+    gap: 21px 23px;
+}
+
+.cu-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cu-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 8px;
+}
+
+.cu-field label {
+    color: var(--cu-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.cu-field label span {
+    color: var(--cu-danger);
+}
+
+.cu-field input,
+.cu-field select {
+    width: 100%;
+    min-width: 0;
+    height: 41px;
+    padding: 0 13px;
+    border: 1px solid #d4e0f5;
+    border-radius: 8px;
+    outline: none;
+    color: var(--cu-text);
+    background: var(--cu-input);
+    font-size: 12px;
+    transition: border-color .18s, box-shadow .18s;
+}
+
+.cu-field input::placeholder {
+    color: var(--cu-placeholder);
+    opacity: 1;
+}
+
+.cu-field input:focus,
+.cu-field select:focus {
+    border-color: var(--cu-purple);
+    box-shadow: 0 0 0 3px rgb(103 45 194 / 10%);
+}
+
+.cu-field input.is-invalid,
+.cu-field select.is-invalid {
+    border-color: var(--cu-danger);
+}
+
+.cu-error {
+    min-height: 0;
+    color: var(--cu-danger);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.cu-error:empty {
+    display: none;
+}
+
+/* Foto */
+.cu-photo-layout {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+.cu-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: min(455px, 100%);
+    min-height: 130px;
+    padding: 15px;
+    border: 1.5px dashed #bfd0f0;
+    border-radius: 9px;
+    color: var(--cu-text);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+
+.cu-upload:hover,
+.cu-upload.is-dragging {
+    border-color: var(--cu-purple);
+    background: rgb(103 45 194 / 4%);
+}
+
+.cu-upload-icon {
+    color: var(--cu-muted);
+    font-size: 28px;
+}
+
+.cu-upload-main {
+    font-size: 12px;
+}
+
+.cu-upload-secondary {
+    margin-top: -5px;
+    color: var(--cu-muted);
+    font-size: 11px;
+}
+
+.cu-upload-hint {
+    margin-top: 4px;
+    color: var(--cu-placeholder);
+    font-size: 10px;
+}
+
+.cu-upload input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.cu-upload:focus-within {
+    outline: 2px solid var(--cu-purple);
+    outline-offset: 3px;
+}
+
+.cu-photo-preview {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.cu-avatar-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 98px;
+    width: 98px;
+    height: 98px;
+    overflow: hidden;
+    border-radius: 50%;
+    color: #91a6c9;
+    background: #e7ecf6;
+    font-size: 36px;
+}
+
+.cu-avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cu-photo-preview p {
+    margin: 0;
+    color: var(--cu-placeholder);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* Permissões */
+.cu-permissions-card .cu-card-title {
+    margin-bottom: 18px;
+}
+
+.cu-switch-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.cu-switch {
+    position: relative;
+    flex: 0 0 39px;
+    width: 39px;
+    height: 22px;
+    margin-top: 1px;
+}
+
+.cu-switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.cu-switch-slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 99px;
+    background: #c7d1e2;
+    transition: .2s;
+}
+
+.cu-switch-slider::before {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    content: "";
+    transition: .2s;
+}
+
+.cu-switch input:checked + .cu-switch-slider {
+    background: var(--cu-purple);
+}
+
+.cu-switch input:checked + .cu-switch-slider::before {
+    transform: translateX(17px);
+}
+
+.cu-switch input:focus-visible + .cu-switch-slider {
+    outline: 2px solid var(--cu-purple);
+    outline-offset: 3px;
+}
+
+.cu-switch-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cu-switch-text strong {
+    color: var(--cu-text);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.cu-switch-text small {
+    color: var(--cu-placeholder);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.cu-permissions-options {
+    margin: 19px 0 0 51px;
+    padding-top: 17px;
+    border-top: 1px solid var(--cu-border);
+}
+
+.cu-permissions-options[hidden] {
+    display: none;
+}
+
+.cu-permissions-options > p {
+    margin: 0 0 14px;
+    color: var(--cu-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.cu-permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px 18px;
+}
+
+.cu-permissions-grid label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cu-muted);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cu-permissions-grid input {
+    accent-color: var(--cu-purple);
+}
+
+/* Botões finais */
+.cu-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-top: 15px;
+}
+
+.cu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 43px;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, transform .2s;
+}
+
+.cu-btn:focus-visible {
+    outline: 2px solid var(--cu-purple);
+    outline-offset: 3px;
+}
+
+.cu-btn-cancel {
+    border-color: #cad8ef;
+    color: var(--cu-text);
+    background: var(--cu-card);
+}
+
+.cu-btn-cancel:hover {
+    border-color: var(--cu-purple);
+    color: var(--cu-purple);
+}
+
+.cu-btn-save {
+    color: #fff;
+    background: var(--cu-purple);
+    border-color: var(--cu-purple);
+}
+
+.cu-btn-save:hover {
+    background: var(--cu-purple-hover);
+    border-color: var(--cu-purple-hover);
+}
+
+.cu-btn-save:disabled {
+    opacity: .65;
+    cursor: wait;
+}
+
+.cu-form-message {
+    margin: 12px 0 0;
+    color: var(--cu-muted);
+    font-size: 12px;
+    text-align: right;
+}
+
+.cu-form-message:empty {
+    display: none;
+}
+
+/* Tema escuro: compatível com classes comuns do base.html */
+body.dark-mode .cu-page,
+body.tema-escuro .cu-page,
+body.dark .cu-page,
+html[data-theme="dark"] .cu-page {
+    --cu-purple: #a67bf0;
+    --cu-purple-hover: #8d5be0;
+    --cu-text: #edf2fc;
+    --cu-muted: #b6c3d9;
+    --cu-placeholder: #9cacc6;
+    --cu-border: #3c495e;
+    --cu-card: #252f3e;
+    --cu-input: #202a38;
+    --cu-bg: #1b2431;
+
+    color: var(--cu-text);
+    background: var(--cu-bg);
+}
+
+body.dark-mode .cu-field input,
+body.dark-mode .cu-field select,
+body.tema-escuro .cu-field input,
+body.tema-escuro .cu-field select,
+body.dark .cu-field input,
+body.dark .cu-field select,
+html[data-theme="dark"] .cu-field input,
+html[data-theme="dark"] .cu-field select {
+    border-color: var(--cu-border);
+    color: var(--cu-text);
+    background: var(--cu-input);
+}
+
+body.dark-mode .cu-field input::placeholder,
+body.tema-escuro .cu-field input::placeholder,
+body.dark .cu-field input::placeholder,
+html[data-theme="dark"] .cu-field input::placeholder {
+    color: var(--cu-placeholder);
+}
+
+body.dark-mode .cu-card,
+body.tema-escuro .cu-card,
+body.dark .cu-card,
+html[data-theme="dark"] .cu-card {
+    border-color: var(--cu-border);
+    background: var(--cu-card);
+}
+
+body.dark-mode .cu-back,
+body.dark-mode .cu-btn-cancel,
+body.tema-escuro .cu-back,
+body.tema-escuro .cu-btn-cancel,
+body.dark .cu-back,
+body.dark .cu-btn-cancel,
+html[data-theme="dark"] .cu-back,
+html[data-theme="dark"] .cu-btn-cancel {
+    border-color: var(--cu-border);
+    color: var(--cu-text);
+    background: var(--cu-card);
+}
+
+body.dark-mode .cu-upload,
+body.tema-escuro .cu-upload,
+body.dark .cu-upload,
+html[data-theme="dark"] .cu-upload {
+    border-color: #536785;
+}
+
+body.dark-mode .cu-avatar-preview,
+body.tema-escuro .cu-avatar-preview,
+body.dark .cu-avatar-preview,
+html[data-theme="dark"] .cu-avatar-preview {
+    color: #b3c4e2;
+    background: #354258;
+}
+
+body.dark-mode .cu-permissions-options,
+body.tema-escuro .cu-permissions-options,
+body.dark .cu-permissions-options,
+html[data-theme="dark"] .cu-permissions-options {
+    border-color: var(--cu-border);
+}
+
+/* Responsividade */
+@media (max-width: 1050px) {
+    .cu-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cu-permissions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .cu-page {
+        padding: 17px 13px 22px;
+    }
+
+    .cu-header h1 {
+        font-size: 23px;
+    }
+
+    .cu-header p {
+        font-size: 12px;
+    }
+
+    .cu-header-title {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .cu-back {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .cu-card {
+        padding: 17px 14px;
+    }
+
+    .cu-card-title {
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .cu-grid-3,
+    .cu-permissions-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cu-photo-layout {
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .cu-upload {
+        width: 100%;
+        min-height: 145px;
+    }
+
+    .cu-photo-preview {
+        gap: 13px;
+    }
+
+    .cu-avatar-preview {
+        flex-basis: 75px;
+        width: 75px;
+        height: 75px;
+        font-size: 28px;
+    }
+
+    .cu-permissions-options {
+        margin-left: 0;
+    }
+
+    .cu-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .cu-btn {
+        width: 100%;
+        min-height: 45px;
+    }
+
+    .cu-form-message {
+        text-align: left;
+    }
+}

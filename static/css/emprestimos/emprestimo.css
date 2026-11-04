@@ -27,6 +27,87 @@
     font-family: inherit;
 }
 
+/* ---------- Tema escuro ---------- */
+html[data-theme="dark"] .emp {
+    --emp-red: #f87171;
+    --emp-red-dark: #fecaca;
+    --emp-red-soft: #3a252b;
+    --emp-text: #e8ebf3;
+    --emp-muted: #a3aec4;
+    --emp-border: #303747;
+    --emp-surface: #1b202c;
+    --emp-surface-alt: #242b39;
+    --emp-shadow: 0 1px 3px rgba(0, 0, 0, .24);
+}
+
+html[data-theme="dark"] .emp .emp-kpi--blue .emp-kpi__icon {
+    background: #1e3150;
+    color: #8bb8ff;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--blue .emp-kpi__link {
+    color: #8bb8ff;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--green .emp-kpi__icon {
+    background: #1d382c;
+    color: #7dd9a1;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--green .emp-kpi__link {
+    color: #7dd9a1;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--purple .emp-kpi__icon {
+    background: #302449;
+    color: #c4a3ff;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--purple .emp-kpi__link {
+    color: #c4a3ff;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--red .emp-kpi__icon {
+    background: #40262d;
+    color: #ff9292;
+}
+
+html[data-theme="dark"] .emp .emp-kpi--red .emp-kpi__link {
+    color: #ff9292;
+}
+
+html[data-theme="dark"] .emp .emp-badge--andamento {
+    background: #1d382c;
+    color: #7dd9a1;
+}
+
+html[data-theme="dark"] .emp .emp-badge--atrasado {
+    background: #402f20;
+    color: #ffc078;
+}
+
+html[data-theme="dark"] .emp .emp-badge--devolvido {
+    background: #233451;
+    color: #9bbcff;
+}
+
+html[data-theme="dark"] .emp .emp-btn--outline:hover,
+html[data-theme="dark"] .emp .emp-iconbtn:hover,
+html[data-theme="dark"] .emp .emp-iconbtn[aria-expanded="true"] {
+    border-color: #465168;
+}
+
+html[data-theme="dark"] .emp .emp-table tr[data-emp-row]:hover td {
+    background: #202635;
+}
+
+html[data-theme="dark"] .emp .emp-field input,
+html[data-theme="dark"] .emp .emp-search input,
+html[data-theme="dark"] .emp .emp-select select,
+html[data-theme="dark"] .emp .emp-period__btn {
+    color-scheme: dark;
+}
+
 .emp *,
 .emp *::before,
 .emp *::after {
@@ -115,6 +196,7 @@
     cursor: pointer;
     white-space: nowrap;
     transition: background-color .15s, border-color .15s, box-shadow .15s;
+    color: #ffffff;
 }
 
 .emp-btn--outline {
@@ -139,7 +221,7 @@
     padding: 0 28px;
     border: none;
     border-radius: 8px;
-    background: var(--emp-red);
+    background: var(--red);
     color: #ffffff;
     font-size: 18px;
     font-weight: 400;
