@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{% static 'css/Usuários/cadastroUsuario.css' %}">
     <link rel="stylesheet" href="{% static 'css/Usuários/cadastroPerfil.css' %}">
     <link rel="stylesheet" href="{% static 'css/documentos/documentos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/setup/config.css' %}">
+    <link rel="stylesheet" href="{% static 'css/documentos/informacoes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Usuários/meuPerfil.css' %}">
 </head>
 
 <body>
@@ -172,10 +175,10 @@
                 <a class="menu-item" data-link="documentos" href="{% url 'documentos' %}"><svg>
                         <use href="#i-folder" />
                     </svg><span>Documentos</span></a>
-                <a class="menu-item" data-link="nuarte" href="#"><svg>
+                <a class="menu-item" data-link="nuarte" href="{% url 'informações' %}"><svg>
                         <use href="#i-info" />
                     </svg><span>Informações do NUARTE</span></a>
-                <a class="menu-item" data-link="configuracoes" href="#"><svg>
+                <a class="menu-item" data-link="configuracoes" href="{% url 'configurações' %}"><svg>
                         <use href="#i-gear" />
                     </svg><span>Configurações</span></a>
                 <a class="menu-item" data-link="perfil" href="{% url 'meuPerfil' %}"><svg>
@@ -268,6 +271,9 @@
     <script src="{% static 'js/Usuários/cadastroUsuario.js' %}"></script>
     <script src="{% static 'js/Usuários/cadastroPerfil.js' %}"></script>
     <script src="{% static 'js/documentos/documentos.js' %}"></script>
+    <script src="{% static 'js/Usuários/meuPerfil.js' %}"></script>
+    <script src="{% static 'js/setup/config.js' %}"></script>
+    <script src="{% static 'js/documentos/informacoes.js' %}"></script>
 </body>
 
 </html>

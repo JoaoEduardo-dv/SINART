@@ -1,0 +1,101 @@
+/* ==========================================================================
+   INFORMAÇÕES DO NUARTE
+   ========================================================================== */
+.si-info-grid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: var(--si-gap); }
+.si-nuarte-banner {
+  background: linear-gradient(120deg, var(--si-purple-dark), var(--si-purple)); color: #fff; border: 0;
+  display: flex; align-items: center; gap: 28px; min-height: 213px; padding: 24px;
+}
+.si-nuarte-mark { min-width: 120px; text-align: center; font-size: 38px; line-height: .85; font-weight: 300; letter-spacing: 1px; }
+.si-nuarte-mark b { display: block; margin: 5px 0; border: 2px solid #fff; font-size: 30px; font-weight: 500; padding: 5px 2px; letter-spacing: 2px; }
+.si-nuarte-mark small { display: block; font-size: 21px; letter-spacing: 4px; }
+.si-banner-copy h2 { font-size: 20px; line-height: 1.25; margin-bottom: 8px; color: #fff; }
+.si-banner-copy p { font-size: 12.5px; line-height: 1.55; margin-bottom: 12px; color: rgba(255, 255, 255, .92); }
+.si-outline-link {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  color: #fff; border: 1px solid rgba(255, 255, 255, .45); border-radius: 6px; padding: 9px 12px;
+  font-size: 12px; text-decoration: none; transition: background .15s;
+}
+.si-outline-link:hover { background: rgba(255, 255, 255, .14); }
+
+.si-mission-card, .si-vision-card { min-height: 213px; padding: 24px; }
+.si-mission-card > p, .si-vision-card > p { font-size: 13.5px; line-height: 1.75; color: var(--si-muted); padding-left: 44px; margin-bottom: 0; }
+.si-vision-card .si-text-link { margin: 26px 0 0 44px; }
+
+.si-areas-card { grid-column: span 2; }
+.si-areas-list { display: flex; justify-content: space-between; gap: 10px; padding: 8px 4px 0; flex-wrap: wrap; }
+.si-area {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 70px; padding: 10px 8px;
+  border-radius: 8px; color: var(--si-muted); font-size: 12px; text-decoration: none; transition: background .15s, color .15s;
+}
+.si-area i { font-size: 25px; color: var(--si-accent-text); }
+.si-area:hover { background: var(--si-tint); color: var(--si-accent-text); }
+
+.si-check-list { list-style: none; margin: 0; padding: 0 0 0 12px; }
+.si-check-list li { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--si-muted); margin: 0 0 10px; }
+.si-check-list li i { color: var(--si-accent-text); font-size: 13px; }
+
+.si-spaces-card, .si-coordinators-card, .si-docs-card { display: flex; flex-direction: column; min-height: 315px; }
+.si-spaces-card .si-text-link, .si-coordinators-card .si-text-link, .si-docs-card .si-text-link { margin-top: auto; padding-top: 14px; }
+.si-space-list { display: grid; gap: 8px; }
+.si-space-item {
+  display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; padding: 4px; border-radius: 8px; color: inherit; transition: background .15s;
+}
+.si-space-item:hover { background: var(--si-tint-soft); }
+.si-thumb {
+  position: relative; width: 60px; height: 44px; border-radius: 6px; flex: none; overflow: hidden;
+  background: linear-gradient(135deg, var(--si-tint), rgba(var(--si-purple-rgb), .32));
+  display: grid; place-items: center; color: var(--si-accent-text); font-size: 18px;
+}
+.si-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.si-space-item b, .si-person b { display: block; font-size: 12px; margin-bottom: 3px; color: var(--si-ink); }
+.si-space-item small, .si-person small { display: block; font-size: 11px; color: var(--si-muted); line-height: 1.4; }
+
+.si-person-list { display: grid; gap: 15px; }
+.si-person { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.si-person > span {
+  width: 36px; height: 36px; border-radius: 50%; flex: none; background: var(--si-tint); color: var(--si-accent-text);
+  display: grid; place-items: center; font-size: 12px; font-weight: 700;
+}
+.si-person em {
+  font-style: normal; font-weight: 500; color: var(--si-accent-text); background: var(--si-tint);
+  padding: 2px 7px; border-radius: 4px; font-size: 10px; margin-left: 5px; white-space: nowrap;
+}
+.si-person:hover b { color: var(--si-accent-text); }
+
+.si-doc-link {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--si-divider);
+  text-decoration: none; color: var(--si-ink); font-size: 12px; transition: color .15s;
+}
+.si-doc-link > span {
+  width: 32px; height: 36px; border: 1px solid var(--si-border); border-radius: 5px; flex: none;
+  display: grid; place-items: center; color: var(--si-accent-text); font-size: 16px;
+}
+.si-doc-link > div { flex: 1; min-width: 0; }
+.si-doc-link small { display: block; color: var(--si-subtle); font-size: 11px; margin-top: 4px; }
+.si-doc-link > i { font-size: 11px; color: var(--si-subtle); }
+.si-doc-link:hover { color: var(--si-accent-text); }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1250px) {
+  .si-info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .si-nuarte-banner { grid-column: span 2; }
+}
+@media (max-width: 900px) {
+  .si-info-grid { grid-template-columns: 1fr; }
+  .si-nuarte-banner, .si-areas-card { grid-column: auto; }
+}
+@media (max-width: 760px) {
+  .si-areas-list { display: grid; grid-template-columns: repeat(4, 1fr); row-gap: 8px; }
+  .si-nuarte-banner { gap: 16px; padding: 18px; }
+  .si-nuarte-mark { min-width: 96px; font-size: 31px; }
+  .si-nuarte-mark b { font-size: 24px; }
+}
+@media (max-width: 460px) {
+  .si-nuarte-banner { flex-direction: column; align-items: flex-start; }
+  .si-nuarte-mark { align-self: center; }
+  .si-banner-copy { width: 100%; }
+  .si-areas-list { grid-template-columns: repeat(3, 1fr); }
+  .si-person em { display: block; width: max-content; margin: 5px 0 0; }
+}

@@ -1,6 +1,4 @@
-# from django.shortcuts import render
-# from reservas.views import 
+from django.shortcuts import render
 
-# def minha_pagina_view(request):
-#     # Retorna o arquivo HTML que criamos na pasta templates
-#     return render(request, 'base.html')
+def configuracoes(request):
+    return render (request, 'setup/config.html')
