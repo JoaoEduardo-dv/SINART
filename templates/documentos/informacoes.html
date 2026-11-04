@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Informações do NUARTE - SINART{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/telas-institucionais.css' %}">
+<section class="si-page si-info" id="siInformacoes">
+    <header class="si-heading si-heading-icon">
+        <span class="si-heading-symbol"><i class="fa-solid fa-circle-info"></i></span>
+        <div>
+            <h1>Informações do NUARTE</h1>
+            <p>Conheça o Núcleo de Arte do IFRN e sua missão, estrutura e objetivos.</p>
+        </div>
+    </header>
+
+    <div class="si-info-grid">
+        <article class="si-card si-nuarte-banner">
+            <div class="si-nuarte-mark">NU<br><b>ARTE</b><small>IFRN</small></div>
+            <div class="si-banner-copy">
+                <h2>Núcleo de Arte<br>do IFRN</h2>
+                <p>O NUARTE é um espaço dedicado à promoção, ao ensino e à difusão das artes no Instituto Federal do Rio
+                    Grande do Norte.</p>
+                <a class="si-outline-link" href="#" target="_blank" rel="noopener">Saiba mais sobre o NUARTE <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="si-card si-mission-card">
+            <div class="si-card-title"><i class="fa-solid fa-bullseye"></i>
+                <h2>Nossa Missão</h2>
+            </div>
+            <p>Promover a formação artística, o acesso à cultura e o desenvolvimento de ações que integrem a arte à
+                educação, à pesquisa e à extensão, contribuindo para a formação integral dos estudantes e para a
+                transformação social.</p>
+        </article>
+        <article class="si-card si-vision-card">
+            <div class="si-card-title"><i class="fa-regular fa-eye"></i>
+                <h2>Nossa Visão</h2>
+            </div>
+            <p>Ser referência na produção, difusão e formação em arte e cultura no IFRN, reconhecido pela excelência e
+                inovação em suas ações.</p>
+            <a class="si-text-link" href="#" target="_blank" rel="noopener">Ver histórico do NUARTE <i
+                    class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="si-card si-areas-card">
+            <div class="si-card-title"><i class="fa-solid fa-palette"></i>
+                <div>
+                    <h2>Áreas de Atuação</h2>
+                    <p>O NUARTE atua em diferentes linguagens e áreas artísticas.</p>
+                </div>
+            </div>
+            <div class="si-areas-list">
+                <div><i class="fa-solid fa-music"></i><span>Música</span></div>
+                <div><i class="fa-regular fa-image"></i><span>Artes Visuais</span></div>
+                <div><i class="fa-solid fa-masks-theater"></i><span>Artes Cênicas</span></div>
+                <div><i class="fa-solid fa-camera"></i><span>Fotografia</span></div>
+                <div><i class="fa-solid fa-person"></i><span>Dança</span></div>
+                <div><i class="fa-solid fa-book-open"></i><span>Literatura</span></div>
+                <div><i class="fa-solid fa-people-group"></i><span>Cultura Popular</span></div>
+            </div>
+        </article>
+        <article class="si-card si-values-card">
+            <div class="si-card-title"><i class="fa-regular fa-heart"></i>
+                <h2>Nossos Valores</h2>
+            </div>
+            <ul class="si-check-list">
+                <li>Inclusão e diversidade</li>
+                <li>Criatividade e inovação</li>
+                <li>Respeito e colaboração</li>
+                <li>Compromisso com a educação</li>
+                <li>Ética e responsabilidade social</li>
+            </ul>
+        </article>
+
+        <article class="si-card si-spaces-card">
+            <div class="si-card-title"><i class="fa-regular fa-building"></i>
+                <div>
+                    <h2>Estrutura e Espaços</h2>
+                    <p>Conheça os principais espaços utilizados pelo NUARTE.</p>
+                </div>
+            </div>
+            <div class="si-space-list">
+                <div class="si-space-item"><span class="si-space-placeholder"><i class="fa-solid fa-music"></i></span>
+                    <div><b>Sala de Música</b><small>Espaço equipado para aulas, ensaios e gravações.</small></div>
+                </div>
+                <div class="si-space-item"><span class="si-space-placeholder"><i class="fa-solid fa-palette"></i></span>
+                    <div><b>Sala de Artes Visuais</b><small>Ambiente destinado à produção artística e oficinas.</small>
+                    </div>
+                </div>
+                <div class="si-space-item"><span class="si-space-placeholder"><i class="fa-solid fa-person"></i></span>
+                    <div><b>Sala de Dança</b><small>Espaço amplo com estrutura para atividades corporais.</small></div>
+                </div>
+                <div class="si-space-item"><span class="si-space-placeholder"><i class="fa-solid fa-camera"></i></span>
+                    <div><b>Estúdio de Fotografia</b><small>Equipado para ensaios fotográficos e edição.</small></div>
+                </div>
+            </div>
+            <a class="si-text-link" href="#">Ver todos os espaços <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="si-card si-coordinators-card">
+            <div class="si-card-title"><i class="fa-solid fa-users"></i>
+                <div>
+                    <h2>Coordenadores</h2>
+                    <p>Equipe responsável pela gestão do NUARTE.</p>
+                </div>
+            </div>
+            <div class="si-person-list">
+                <div class="si-person"><span>AF</span>
+                    <div><b>Alexandre Ferreira <em>Coordenador
+                                Geral</em></b><small>alexandre.ferreira@ifrn.edu.br</small></div>
+                </div>
+                <div class="si-person"><span>RC</span>
+                    <div><b>Raquel Costa <em>Coordenadora de Música</em></b><small>raquel.costa@ifrn.edu.br</small>
+                    </div>
+                </div>
+                <div class="si-person"><span>LP</span>
+                    <div><b>Lucas Pereira <em>Coordenador de Artes
+                                Visuais</em></b><small>lucas.pereira@ifrn.edu.br</small></div>
+                </div>
+                <div class="si-person"><span>MM</span>
+                    <div><b>Mariana Morais <em>Coordenadora de Artes
+                                Cênicas</em></b><small>mariana.morais@ifrn.edu.br</small></div>
+                </div>
+            </div>
+            <a class="si-text-link" href="#">Ver equipe completa <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="si-card si-docs-card">
+            <div class="si-card-title"><i class="fa-regular fa-folder"></i>
+                <div>
+                    <h2>Documentos Institucionais</h2>
+                    <p>Acesse documentos importantes do NUARTE.</p>
+                </div>
+            </div>
+            <a class="si-doc-link" href="#"><span><i class="fa-regular fa-file-lines"></i></span>
+                <div>Regimento Interno do NUARTE<small>PDF · 1,2 MB</small></div><i
+                    class="fa-solid fa-chevron-right"></i>
+            </a>
+            <a class="si-doc-link" href="#"><span><i class="fa-regular fa-file-lines"></i></span>
+                <div>Plano Anual de Atividades<small>PDF · 2,4 MB</small></div><i class="fa-solid fa-chevron-right"></i>
+            </a>
+            <a class="si-doc-link" href="#"><span><i class="fa-regular fa-file-lines"></i></span>
+                <div>Política de Uso dos Espaços<small>PDF · 856 KB</small></div><i
+                    class="fa-solid fa-chevron-right"></i>
+            </a>
+            <a class="si-doc-link" href="#"><span><i class="fa-regular fa-file-lines"></i></span>
+                <div>Relatório Anual de Atividades 2024<small>PDF · 3,1 MB</small></div><i
+                    class="fa-solid fa-chevron-right"></i>
+            </a>
+            <a class="si-text-link" href="{% url 'documentos' %}">Ver todos os documentos <i
+                    class="fa-solid fa-arrow-right"></i></a>
+        </article>
+    </div>
+    <div class="si-info-footer"><i class="fa-solid fa-circle-info"></i><span>Em caso de dúvidas ou sugestões, entre em
+            contato conosco pelo e-mail: <a href="mailto:nuarte@ifrn.edu.br">nuarte@ifrn.edu.br</a> ou visite-nos no
+            IFRN – Campus São Gonçalo do Amarante.</span></div>
+</section>
+<script src="{% static 'js/telas-institucionais.js' %}"></script>
+{% endblock %}

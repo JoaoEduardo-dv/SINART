@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Documentos - SINART{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/documentos/documentos.css' %}">
+
+<section class="doc-page" id="documentosPage">
+
+    <!-- Cabeçalho -->
+    <header class="doc-header">
+        <div>
+            <h1>Documentos</h1>
+            <p>Organize, armazene e compartilhe documentos do Núcleo de Arte.</p>
+        </div>
+
+        <div class="doc-header-actions">
+            <button type="button" class="doc-btn doc-btn-outline" id="docNovaPasta">
+                <i class="fa-regular fa-folder-plus"></i>
+                Nova pasta
+            </button>
+
+            <button type="button" class="doc-btn doc-btn-primary" id="docEnviar">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Enviar documento
+            </button>
+
+            <input type="file" id="docInputArquivo" hidden multiple>
+        </div>
+    </header>
+
+    <!-- Cartões de resumo -->
+    <section class="doc-stats">
+
+        <button type="button" class="doc-stat doc-stat-purple" data-stat="pastas">
+            <span class="doc-stat-icon">
+                <i class="fa-regular fa-folder"></i>
+            </span>
+            <span class="doc-stat-content">
+                <span class="doc-stat-label">Pastas</span>
+                <strong id="docTotalPastas">12</strong>
+                <small>pastas criadas</small>
+                <span class="doc-stat-link">
+                    Ver pastas <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="doc-stat doc-stat-blue" data-stat="documentos">
+            <span class="doc-stat-icon">
+                <i class="fa-regular fa-file-lines"></i>
+            </span>
+            <span class="doc-stat-content">
+                <span class="doc-stat-label">Documentos</span>
+                <strong id="docTotalDocumentos">78</strong>
+                <small>documentos no total</small>
+                <span class="doc-stat-link">
+                    Ver documentos <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="doc-stat doc-stat-green" data-stat="downloads">
+            <span class="doc-stat-icon">
+                <i class="fa-solid fa-download"></i>
+            </span>
+            <span class="doc-stat-content">
+                <span class="doc-stat-label">Downloads</span>
+                <strong id="docTotalDownloads">124</strong>
+                <small>nos últimos 30 dias</small>
+                <span class="doc-stat-link">
+                    Ver relatórios <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="doc-stat doc-stat-orange" data-stat="compartilhados">
+            <span class="doc-stat-icon">
+                <i class="fa-regular fa-user"></i>
+            </span>
+            <span class="doc-stat-content">
+                <span class="doc-stat-label">Compartilhados</span>
+                <strong id="docTotalCompartilhados">15</strong>
+                <small>documentos</small>
+                <span class="doc-stat-link">
+                    Ver compartilhados <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </span>
+        </button>
+
+    </section>
+
+    <!-- Conteúdo principal -->
+    <section class="doc-content">
+
+        <!-- Coluna de pastas -->
+        <aside class="doc-sidebar">
+
+            <div class="doc-folders-card">
+                <div class="doc-folders-header">
+                    <h2>Pastas</h2>
+                    <button type="button" id="docAdicionarPasta" aria-label="Adicionar pasta">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="doc-folder-list" id="docListaPastas"></div>
+
+                <button type="button" class="doc-all-folders" id="docTodasPastas">
+                    Ver todas as pastas
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Armazenamento -->
+            <div class="doc-storage-card">
+                <h3>Armazenamento utilizado</h3>
+
+                <div class="doc-storage-info">
+                    <span id="docArmazenamentoTexto">3,2 GB / 10 GB</span>
+                    <strong id="docArmazenamentoPercentual">32%</strong>
+                </div>
+
+                <div class="doc-progress">
+                    <span id="docProgressBar"></span>
+                </div>
+
+                <a href="#" class="doc-storage-link">
+                    <i class="fa-solid fa-gear"></i>
+                    Gerenciar armazenamento
+                </a>
+            </div>
+
+        </aside>
+
+        <!-- Tabela de documentos -->
+        <section class="doc-table-card">
+
+            <div class="doc-toolbar">
+
+                <label class="doc-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="search"
+                        id="docBusca"
+                        placeholder="Buscar documentos..."
+                        aria-label="Buscar documentos"
+                    >
+                </label>
+
+                <select id="docFiltroTipo" aria-label="Filtrar por tipo">
+                    <option value="">Todos os tipos</option>
+                    <option value="PDF">PDF</option>
+                    <option value="DOCX">DOCX</option>
+                    <option value="XLSX">XLSX</option>
+                    <option value="PPTX">PPTX</option>
+                    <option value="OUTRO">Outros</option>
+                </select>
+
+                <select id="docFiltroPasta" aria-label="Filtrar por pasta">
+                    <option value="">Todas as pastas</option>
+                </select>
+
+                <button type="button" class="doc-btn doc-btn-outline" id="docBotaoFiltros">
+                    <i class="fa-solid fa-filter"></i>
+                    Mais filtros
+                </button>
+
+            </div>
+
+            <!-- Filtros adicionais -->
+            <div class="doc-extra-filters" id="docFiltrosExtras" hidden>
+
+                <label>
+                    Enviado por
+                    <select id="docFiltroRemetente">
+                        <option value="">Todos os usuários</option>
+                    </select>
+                </label>
+
+                <label>
+                    Ordenar por
+                    <select id="docOrdenacao">
+                        <option value="recentes">Mais recentes</option>
+                        <option value="antigos">Mais antigos</option>
+                        <option value="nome">Nome (A-Z)</option>
+                        <option value="tamanho">Maior tamanho</option>
+                    </select>
+                </label>
+
+                <button type="button" class="doc-btn doc-btn-outline" id="docLimparFiltros">
+                    Limpar filtros
+                </button>
+
+            </div>
+
+            <!-- Tabela -->
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Pasta</th>
+                            <th>Tipo</th>
+                            <th>Enviado por</th>
+                            <th>
+                                <button type="button" class="doc-sort-date" id="docOrdenarData">
+                                    Data <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </th>
+                            <th>Tamanho</th>
+                            <th class="doc-actions-heading">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="docTabelaCorpo"></tbody>
+                </table>
+
+                <div class="doc-empty" id="docVazio" hidden>
+                    <i class="fa-regular fa-folder-open"></i>
+                    <strong>Nenhum documento encontrado</strong>
+                    <p>Tente modificar sua pesquisa ou os filtros selecionados.</p>
+                </div>
+            </div>
+
+            <!-- Paginação -->
+            <div class="doc-pagination">
+                <span id="docContagem">Mostrando documentos</span>
+
+                <div class="doc-pagination-buttons" id="docPaginacao">
+                    <button type="button" data-page="prev" aria-label="Página anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <span id="docNumerosPaginas"></span>
+
+                    <button type="button" data-page="next" aria-label="Próxima página">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <select id="docPorPagina" aria-label="Documentos por página">
+                    <option value="6">6 por página</option>
+                    <option value="10">10 por página</option>
+                    <option value="20">20 por página</option>
+                </select>
+            </div>
+
+        </section>
+    </section>
+
+    <!-- Aviso inferior -->
+    <div class="doc-tip" id="docAviso">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Dica: você pode arrastar e soltar arquivos para enviar rapidamente.</span>
+        <button type="button" id="docFecharAviso" aria-label="Fechar aviso">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Área de arrastar arquivos -->
+    <div class="doc-drop-overlay" id="docDropOverlay">
+        <div>
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <strong>Solte os arquivos para enviar</strong>
+            <span>Os arquivos serão adicionados à lista de documentos.</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- Modal: nova pasta -->
+<div class="doc-modal" id="docModalPasta" aria-hidden="true">
+    <div class="doc-modal-content">
+        <div class="doc-modal-header">
+            <div>
+                <h2>Nova pasta</h2>
+                <p>Crie uma pasta para organizar seus documentos.</p>
+            </div>
+            <button type="button" class="doc-modal-close" data-fechar-modal>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="docFormPasta">
+            <label for="docNomePasta">Nome da pasta <span>*</span></label>
+            <input
+                type="text"
+                id="docNomePasta"
+                placeholder="Ex.: Projetos"
+                maxlength="40"
+                required
+            >
+
+            <div class="doc-modal-actions">
+                <button type="button" class="doc-btn doc-btn-outline" data-fechar-modal>
+                    Cancelar
+                </button>
+                <button type="submit" class="doc-btn doc-btn-primary">
+                    <i class="fa-solid fa-folder-plus"></i>
+                    Criar pasta
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: detalhes do documento -->
+<div class="doc-modal" id="docModalDetalhes" aria-hidden="true">
+    <div class="doc-modal-content">
+        <div class="doc-modal-header">
+            <div>
+                <h2>Detalhes do documento</h2>
+                <p>Informações do arquivo selecionado.</p>
+            </div>
+            <button type="button" class="doc-modal-close" data-fechar-modal>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="docDetalhesConteudo" class="doc-details-content"></div>
+
+        <div class="doc-modal-actions">
+            <button type="button" class="doc-btn doc-btn-outline" data-fechar-modal>
+                Fechar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="doc-toast" id="docToast" role="status" aria-live="polite" hidden></div>
+
+<script src="{% static 'js/documentos/documentos.js' %}"></script>
+
+{% endblock %}

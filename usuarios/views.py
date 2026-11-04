@@ -9,3 +9,9 @@ def permissoesUsuarios (request):
 
 def cadastroUsuario (request):
     return render (request, 'usuários/cadastroUsuario.html')
+
+def cadastroPerfil(request):
+    return render (request, 'usuários/cadastroPerfil.html')
+
+def meuPerfil(request):
+    return render (request, 'usuário/meuPerfil.html')

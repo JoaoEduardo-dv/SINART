@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Meu Perfil - SINART{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/telas-institucionais.css' %}">
+<section class="si-page si-profile" id="siMeuPerfil">
+    <header class="si-heading">
+        <h1>Meu Perfil</h1>
+        <p>Gerencie suas informações pessoais, preferências e segurança da conta.</p>
+    </header>
+    <nav class="si-tabs" aria-label="Seções do perfil">
+        <button class="si-tab active" data-tab="visao"><i class="fa-solid fa-shield-halved"></i> Visão geral</button>
+        <button class="si-tab" data-tab="editar"><i class="fa-solid fa-pen"></i> Editar perfil</button>
+        <button class="si-tab" data-tab="perfil-seguranca"><i class="fa-solid fa-lock"></i> Segurança</button>
+        <button class="si-tab" data-tab="preferencias"><i class="fa-solid fa-gear"></i> Preferências</button>
+        <button class="si-tab" data-tab="atividade"><i class="fa-regular fa-clock"></i> Atividade da conta</button>
+    </nav>
+
+    <div class="si-profile-grid" data-panel="visao">
+        <article class="si-card si-profile-summary">
+            <div class="si-profile-cover"><i class="fa-solid fa-music"></i><i class="fa-solid fa-palette"></i><i
+                    class="fa-solid fa-camera"></i></div>
+            <div class="si-avatar-wrap">
+                <div class="si-avatar">JD</div><button class="si-avatar-camera" title="Alterar foto"><i
+                        class="fa-solid fa-camera"></i></button>
+            </div>
+            <h2>João da Silva</h2><span class="si-role">Professor</span>
+            <div class="si-profile-contact">
+                <p><i class="fa-regular fa-envelope"></i> joao.silva@ifrn.edu.br</p>
+                <p><i class="fa-regular fa-address-card"></i> Matrícula: 2021001</p>
+                <p><i class="fa-solid fa-clipboard"></i> Departamento de Música</p>
+                <p><i class="fa-solid fa-location-dot"></i> IFRN - Campus São Gonçalo do Amarante</p>
+                <p><i class="fa-regular fa-calendar"></i> Membro desde: 12/03/2024</p>
+                <p><i class="si-status-dot"></i> Status da conta: <b class="si-green">Ativa</b></p>
+            </div>
+            <div class="si-account-stats">
+                <h3>Resumo da conta</h3>
+                <div class="si-stat-grid">
+                    <div><i class="fa-regular fa-calendar-check"></i><b>12</b><small>Reservas realizadas</small></div>
+                    <div><i class="fa-solid fa-book-open"></i><b>8</b><small>Empréstimos ativos</small></div>
+                    <div><i class="fa-regular fa-file-lines"></i><b>15</b><small>Documentos acessados</small></div>
+                    <div><i class="fa-regular fa-calendar-days"></i><b>32</b><small>Eventos participados</small></div>
+                </div>
+            </div>
+        </article>
+
+        <div class="si-profile-middle">
+            <article class="si-card si-personal-info">
+                <div class="si-card-title"><i class="fa-regular fa-user"></i>
+                    <h2>Informações pessoais</h2><button class="si-icon-button" data-open-tab="editar"
+                        title="Editar informações"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <div class="si-data-row"><span>Nome completo</span><b>João da Silva</b></div>
+                <div class="si-data-row"><span>Data de nascimento</span><b>15/07/1988</b></div>
+                <div class="si-data-row"><span>CPF</span><b>123.456.789-00</b></div>
+                <div class="si-data-row"><span>Telefone</span><b>(84) 99999-1234</b></div>
+                <div class="si-data-row"><span>E-mail institucional</span><b>joao.silva@ifrn.edu.br</b></div>
+                <div class="si-data-row"><span>E-mail alternativo</span><b>joao.silva@gmail.com</b></div>
+                <div class="si-data-row"><span>Formação</span><b>Licenciatura em Música</b></div>
+                <div class="si-data-row"><span>Função</span><b>Professor</b></div>
+                <div class="si-data-row"><span>Perfil de acesso</span><b>Professor</b></div>
+                <div class="si-data-row"><span>Departamento/Área</span><b>Música</b></div>
+            </article>
+            <article class="si-card si-recent-activity">
+                <div class="si-card-title"><i class="fa-solid fa-clock-rotate-left"></i>
+                    <h2>Atividade recente</h2><button class="si-text-button" data-open-tab="atividade">Ver tudo</button>
+                </div>
+                <div class="si-activity-row"><i class="fa-regular fa-calendar-check"></i><span>Você realizou uma reserva
+                        para a sala 03 (Audição).</span><small>Hoje, 10:45</small></div>
+                <div class="si-activity-row"><i class="fa-solid fa-box"></i><span>Empréstimo do item “Microfone Shure
+                        SM58” aprovado.</span><small>Ontem, 14:22</small></div>
+                <div class="si-activity-row"><i class="fa-regular fa-file-lines"></i><span>Acesso ao documento
+                        “Regimento Interno do NUARTE”.</span><small>12/05/2025, 09:15</small></div>
+                <div class="si-activity-row"><i class="fa-solid fa-calendar-check"></i><span>Participação no evento
+                        “Recital de Violão” confirmada.</span><small>10/05/2025, 16:30</small></div>
+            </article>
+        </div>
+
+        <div class="si-profile-right">
+            <article class="si-card si-security-card">
+                <div class="si-card-title"><i class="fa-solid fa-lock"></i>
+                    <h2>Segurança da conta</h2>
+                </div>
+                <div class="si-shield"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Sua conta está protegida</h3>
+                <p>Última alteração de senha: 10/05/2024</p>
+                <p>Autenticação em duas etapas: <b class="si-green">Ativada</b></p><button class="si-secondary"
+                    data-open-tab="perfil-seguranca">Gerenciar segurança <i
+                        class="fa-solid fa-chevron-right"></i></button>
+            </article>
+            <article class="si-card si-quick-actions">
+                <div class="si-card-title"><i class="fa-solid fa-bolt"></i>
+                    <h2>Ações rápidas</h2>
+                </div><button data-open-tab="editar"><i class="fa-regular fa-user"></i>Editar minhas informações <i
+                        class="fa-solid fa-chevron-right"></i></button><button data-open-tab="perfil-seguranca"><i
+                        class="fa-solid fa-lock"></i>Alterar senha <i
+                        class="fa-solid fa-chevron-right"></i></button><button><i
+                        class="fa-solid fa-desktop"></i>Gerenciar dispositivos <i
+                        class="fa-solid fa-chevron-right"></i></button><button><i
+                        class="fa-solid fa-download"></i>Baixar meus dados <i
+                        class="fa-solid fa-chevron-right"></i></button><button class="si-logout"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i>Sair da conta</button>
+            </article>
+        </div>
+    </div>
+
+    <div class="si-card si-profile-form si-hidden" data-panel="editar">
+        <div class="si-card-title"><i class="fa-regular fa-user"></i>
+            <div>
+                <h2>Editar perfil</h2>
+                <p>Atualize suas informações pessoais.</p>
+            </div>
+        </div>
+        <form class="si-demo-form">
+            <div class="si-form-grid">
+                <label class="si-field">Nome completo<input value="João da Silva"></label><label class="si-field">Data
+                    de nascimento<input type="date" value="1988-07-15"></label>
+                <label class="si-field">Telefone<input value="(84) 99999-1234"></label><label class="si-field">E-mail
+                    alternativo<input type="email" value="joao.silva@gmail.com"></label>
+                <label class="si-field">Formação<input value="Licenciatura em Música"></label><label
+                    class="si-field">Departamento/Área<select>
+                        <option>Música</option>
+                        <option>Artes Visuais</option>
+                        <option>Artes Cênicas</option>
+                        <option>Fotografia</option>
+                    </select></label>
+            </div>
+            <div class="si-actions"><button type="reset" class="si-secondary">Cancelar</button><button
+                    class="si-primary si-save" type="submit">Salvar alterações</button></div>
+        </form>
+    </div>
+
+    <div class="si-card si-profile-form si-hidden" data-panel="perfil-seguranca">
+        <div class="si-card-title"><i class="fa-solid fa-lock"></i>
+            <div>
+                <h2>Segurança da conta</h2>
+                <p>Atualize sua senha e revise as opções de proteção.</p>
+            </div>
+        </div>
+        <form class="si-demo-form">
+            <div class="si-form-grid"><label class="si-field">Senha atual<input type="password"
+                        placeholder="Digite sua senha atual"></label><label class="si-field">Nova senha<input
+                        type="password" placeholder="Digite a nova senha"></label><label class="si-field">Confirmar nova
+                    senha<input type="password" placeholder="Repita a nova senha"></label></div>
+            <div class="si-toggle-row">
+                <div><b>Autenticação em duas etapas</b><small>Solicitar uma segunda confirmação ao entrar.</small></div>
+                <label class="si-switch"><input type="checkbox" checked><span></span></label>
+            </div>
+            <div class="si-actions"><button class="si-primary si-save" type="submit">Atualizar segurança</button></div>
+        </form>
+    </div>
+
+    <div class="si-card si-profile-form si-hidden" data-panel="preferencias">
+        <div class="si-card-title"><i class="fa-solid fa-gear"></i>
+            <div>
+                <h2>Preferências</h2>
+                <p>Personalize sua experiência no SINART.</p>
+            </div>
+        </div>
+        <div class="si-form-grid"><label class="si-field">Idioma<select>
+                    <option>Português (Brasil)</option>
+                    <option>English</option>
+                </select></label><label class="si-field">Tema<select>
+                    <option>Claro</option>
+                    <option>Escuro</option>
+                    <option>Sistema</option>
+                </select></label></div>
+        <div class="si-toggle-row">
+            <div><b>Receber notificações por e-mail</b><small>Receba atualizações importantes.</small></div><label
+                class="si-switch"><input type="checkbox" checked><span></span></label>
+        </div>
+        <div class="si-actions"><button class="si-primary si-save">Salvar preferências</button></div>
+    </div>
+
+    <div class="si-card si-profile-form si-hidden" data-panel="atividade">
+        <div class="si-card-title"><i class="fa-solid fa-clock-rotate-left"></i>
+            <div>
+                <h2>Atividade da conta</h2>
+                <p>Confira as ações recentes realizadas na sua conta.</p>
+            </div>
+        </div>
+        <div class="si-activity-row"><i class="fa-regular fa-calendar-check"></i><span>Reserva para a sala 03
+                (Audição).</span><small>Hoje, 10:45</small></div>
+        <div class="si-activity-row"><i class="fa-solid fa-box"></i><span>Empréstimo do item “Microfone Shure SM58”
+                aprovado.</span><small>Ontem, 14:22</small></div>
+        <div class="si-activity-row"><i class="fa-regular fa-file-lines"></i><span>Acesso ao documento “Regimento
+                Interno do NUARTE”.</span><small>12/05/2025, 09:15</small></div>
+        <div class="si-activity-row"><i class="fa-solid fa-calendar-check"></i><span>Participação no evento “Recital de
+                Violão” confirmada.</span><small>10/05/2025, 16:30</small></div>
+    </div>
+    <div class="si-info-footer"><i class="fa-solid fa-circle-info"></i><span>Mantenha seus dados atualizados para
+            garantir uma melhor experiência no SINART.</span></div>
+    <div class="si-toast" role="status" aria-live="polite"></div>
+</section>
+<script src="{% static 'js/telas-institucionais.js' %}"></script>
+{% endblock %}

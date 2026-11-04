@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'reservas',
     'emprestimos',
     'usuarios',
+    'documentos',
 ]
 
 MIDDLEWARE = [

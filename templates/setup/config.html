@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Configurações - SINART{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/telas-institucionais.css' %}">
+<section class="si-page si-settings" id="siConfiguracoes">
+    <header class="si-heading">
+        <h1>Configurações</h1>
+        <p>Gerencie as preferências do sistema e personalize sua experiência.</p>
+    </header>
+    <nav class="si-tabs" aria-label="Seções de configurações">
+        <button class="si-tab active" data-tab="geral"><i class="fa-solid fa-gear"></i> Geral</button>
+        <button class="si-tab" data-tab="aparencia"><i class="fa-solid fa-palette"></i> Aparência</button>
+        <button class="si-tab" data-tab="notificacoes"><i class="fa-regular fa-bell"></i> Notificações</button>
+        <button class="si-tab" data-tab="seguranca"><i class="fa-solid fa-lock"></i> Segurança</button>
+        <button class="si-tab" data-tab="integracoes"><i class="fa-solid fa-link"></i> Integrações</button>
+        <button class="si-tab" data-tab="backup"><i class="fa-solid fa-cloud-arrow-down"></i> Backup</button>
+        <button class="si-tab" data-tab="sobre"><i class="fa-solid fa-circle-info"></i> Sobre o Sistema</button>
+    </nav>
+
+    <div class="si-settings-grid">
+        <article class="si-card si-setting-panel" data-panel="geral">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-solid fa-gear"></i></span>
+                <div>
+                    <h2>Configurações Gerais</h2>
+                    <p>Defina as opções básicas de funcionamento do sistema.</p>
+                </div>
+            </div>
+            <label class="si-field">Nome do sistema<input value="SINART - Sistema Integrado do Núcleo de Arte"></label>
+            <label class="si-field">Instituição<input value="IFRN – Campus São Gonçalo do Amarante"></label>
+            <label class="si-field">Fuso horário<select>
+                    <option>(UTC−03:00) Brasília</option>
+                    <option>(UTC−04:00) Manaus</option>
+                </select></label>
+            <div class="si-two-fields"><label class="si-field">Formato de data<select>
+                        <option>DD/MM/AAAA</option>
+                        <option>AAAA-MM-DD</option>
+                    </select></label><label class="si-field">Formato de hora<select>
+                        <option>24 horas (13:30)</option>
+                        <option>12 horas (01:30 PM)</option>
+                    </select></label></div>
+            <div class="si-actions"><button class="si-primary si-save"> <i class="fa-regular fa-floppy-disk"></i> Salvar
+                    alterações</button></div>
+        </article>
+
+        <article class="si-card si-setting-panel" data-panel="aparencia">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-solid fa-palette"></i></span>
+                <div>
+                    <h2>Aparência</h2>
+                    <p>Personalize a aparência do sistema.</p>
+                </div>
+            </div>
+            <label class="si-field">Tema</label>
+            <div class="si-theme-options">
+                <button class="si-theme-choice selected" data-theme-choice="light"><i
+                        class="fa-regular fa-sun"></i>Claro</button>
+                <button class="si-theme-choice" data-theme-choice="dark"><i
+                        class="fa-regular fa-moon"></i>Escuro</button>
+                <button class="si-theme-choice" data-theme-choice="system"><i
+                        class="fa-solid fa-desktop"></i>Sistema</button>
+            </div>
+            <label class="si-field">Cor principal</label>
+            <div class="si-color-options"><button class="si-color-dot red" aria-label="Vermelho"></button><button
+                    class="si-color-dot blue" aria-label="Azul"></button><button class="si-color-dot green"
+                    aria-label="Verde"></button><button class="si-color-dot purple selected"
+                    aria-label="Roxo"></button><button class="si-color-dot custom" aria-label="Personalizar">+</button>
+            </div>
+            <label class="si-field si-density">Densidade da interface<select>
+                    <option>Confortável</option>
+                    <option>Compacta</option>
+                    <option>Espaçosa</option>
+                </select><small>Ajuste o espaçamento entre os elementos.</small></label>
+            <div class="si-actions"><button class="si-primary si-save"><i class="fa-regular fa-floppy-disk"></i> Salvar
+                    alterações</button></div>
+        </article>
+
+        <article class="si-card si-setting-panel" data-panel="notificacoes">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-regular fa-bell"></i></span>
+                <div>
+                    <h2>Notificações</h2>
+                    <p>Escolha como e quando deseja receber notificações.</p>
+                </div>
+            </div>
+            <div class="si-toggle-row">
+                <div><b>Notificações por e-mail</b><small>Receba notificações importantes por e-mail.</small></div>
+                <label class="si-switch"><input type="checkbox" checked><span></span></label>
+            </div>
+            <div class="si-toggle-row">
+                <div><b>Notificações no sistema</b><small>Exiba notificações dentro do sistema.</small></div><label
+                    class="si-switch"><input type="checkbox" checked><span></span></label>
+            </div>
+            <div class="si-toggle-row">
+                <div><b>Lembretes de reservas</b><small>Receba lembretes sobre suas reservas.</small></div><label
+                    class="si-switch"><input type="checkbox" checked><span></span></label>
+            </div>
+            <div class="si-toggle-row">
+                <div><b>Notificações de empréstimos</b><small>Receba avisos sobre empréstimos de materiais.</small>
+                </div><label class="si-switch"><input type="checkbox" checked><span></span></label>
+            </div>
+            <div class="si-toggle-row">
+                <div><b>Resumo semanal</b><small>Receba um resumo das atividades toda segunda-feira.</small></div><label
+                    class="si-switch"><input type="checkbox"><span></span></label>
+            </div>
+            <div class="si-actions"><button class="si-primary si-save"><i class="fa-regular fa-floppy-disk"></i> Salvar
+                    preferências</button></div>
+        </article>
+
+        <article class="si-card si-setting-panel" data-panel="seguranca">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-solid fa-lock"></i></span>
+                <div>
+                    <h2>Segurança</h2>
+                    <p>Defina políticas de segurança e acesso.</p>
+                </div>
+            </div>
+            <label class="si-inline-field"><span><b>Expira senha em</b><small>Tempo de validade da senha dos
+                        usuários.</small></span><select>
+                    <option>90 dias</option>
+                    <option>60 dias</option>
+                    <option>120 dias</option>
+                    <option>Nunca</option>
+                </select></label>
+            <label class="si-inline-field"><span><b>Tentativas de login</b><small>Bloquear após tentativas
+                        inválidas.</small></span><select>
+                    <option>5 tentativas</option>
+                    <option>3 tentativas</option>
+                    <option>10 tentativas</option>
+                </select></label>
+            <div class="si-toggle-row">
+                <div><b>Autenticação em duas etapas</b><small>Aumente a segurança da sua conta.</small></div><label
+                    class="si-switch"><input type="checkbox" checked><span></span></label>
+            </div>
+            <label class="si-inline-field"><span><b>Logout automático</b><small>Encerrar sessão após período de
+                        inatividade.</small></span><select>
+                    <option>30 min</option>
+                    <option>15 min</option>
+                    <option>60 min</option>
+                </select></label>
+            <div class="si-toggle-row">
+                <div><b>Requerer confirmação para ações sensíveis</b><small>Solicitar confirmação para
+                        exclusões.</small></div><label class="si-switch"><input type="checkbox"
+                        checked><span></span></label>
+            </div>
+            <div class="si-actions"><button class="si-primary si-save"><i class="fa-regular fa-floppy-disk"></i> Salvar
+                    configurações</button></div>
+        </article>
+
+        <article class="si-card si-setting-panel" data-panel="integracoes">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-solid fa-link"></i></span>
+                <div>
+                    <h2>Integrações</h2>
+                    <p>Gerencie serviços conectados ao SINART.</p>
+                </div>
+            </div>
+            <div class="si-integration"><i class="fa-regular fa-envelope"></i>
+                <div><b>Serviço de e-mail</b><small>Envio de avisos e notificações.</small></div><span
+                    class="si-status">Não configurado</span>
+            </div>
+            <div class="si-integration"><i class="fa-solid fa-calendar-days"></i>
+                <div><b>Calendário institucional</b><small>Sincronização de eventos acadêmicos.</small></div><span
+                    class="si-status">Não conectado</span>
+            </div>
+            <div class="si-integration"><i class="fa-solid fa-cloud"></i>
+                <div><b>Armazenamento externo</b><small>Integração para arquivos e documentos.</small></div><span
+                    class="si-status">Não conectado</span>
+            </div>
+            <p class="si-muted-note">As integrações precisam ser configuradas pelo administrador do sistema.</p>
+        </article>
+
+        <article class="si-card si-setting-panel" data-panel="backup">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-solid fa-cloud-arrow-down"></i></span>
+                <div>
+                    <h2>Backup</h2>
+                    <p>Gerencie cópias de segurança dos dados.</p>
+                </div>
+            </div>
+            <div class="si-backup-status"><i class="fa-solid fa-database"></i>
+                <div><b>Backup do sistema</b><small>Configure a rotina de cópias de segurança com o
+                        administrador.</small></div>
+            </div>
+            <label class="si-field">Frequência<select>
+                    <option>Diariamente</option>
+                    <option>Semanalmente</option>
+                    <option>Mensalmente</option>
+                </select></label>
+            <label class="si-field">Manter cópias por<select>
+                    <option>30 dias</option>
+                    <option>60 dias</option>
+                    <option>90 dias</option>
+                </select></label>
+            <div class="si-actions"><button class="si-primary si-save"><i class="fa-regular fa-floppy-disk"></i> Salvar
+                    configurações</button></div>
+        </article>
+
+        <article class="si-card si-setting-panel" data-panel="sobre">
+            <div class="si-card-title"><span class="si-icon-box"><i class="fa-solid fa-circle-info"></i></span>
+                <div>
+                    <h2>Sobre o Sistema</h2>
+                    <p>Informações sobre a versão e o desenvolvimento do SINART.</p>
+                </div>
+            </div>
+            <div class="si-about-logo">SINART <small>Sistema Integrado do Núcleo de Arte</small></div>
+            <div class="si-about-row"><span>Versão</span><b>1.0.0</b></div>
+            <div class="si-about-row"><span>Instituição</span><b>IFRN</b></div>
+            <div class="si-about-row"><span>Campus</span><b>São Gonçalo do Amarante</b></div>
+            <div class="si-about-row"><span>Desenvolvimento</span><b>Projeto acadêmico</b></div>
+        </article>
+    </div>
+    <div class="si-info-footer"><i class="fa-solid fa-circle-info"></i><span>As alterações são aplicadas à interface
+            após salvar. Configurações de segurança e integrações exigem implementação no servidor.</span></div>
+    <div class="si-toast" role="status" aria-live="polite"></div>
+</section>
+<script src="{% static 'js/telas-institucionais.js' %}"></script>
+{% endblock %}

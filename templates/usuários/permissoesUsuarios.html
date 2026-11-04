@@ -1,0 +1,393 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Perfis e permissões - SINART{% endblock %}
+
+{% block content %}
+
+<main class="per-page" id="permissoesPage">
+
+    <!-- Cabeçalho -->
+    <header class="per-header">
+        <div>
+            <h1>Perfis e permissões</h1>
+            <p>Gerencie os perfis de acesso e defina as permissões de cada módulo do sistema.</p>
+        </div>
+
+    </header>
+
+    <!-- Abas principais -->
+    <nav class="per-tabs">
+        <button type="button" class="per-tab active" data-main-tab="perfis">
+            Perfis
+        </button>
+
+        <button type="button" class="per-tab" data-main-tab="permissoes">
+            Permissões por módulo
+        </button>
+    </nav>
+
+    <!-- Conteúdo da aba Perfis -->
+    <section class="per-main-content" data-main-content="perfis">
+
+        <!-- Indicadores -->
+        <section class="per-stats">
+
+            <article class="per-stat per-purple">
+                <div class="per-stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div class="per-stat-info">
+                    <span>Total de perfis</span>
+                    <strong id="perTotalPerfis">5</strong>
+                    <small>perfis cadastrados</small>
+                    <button type="button" data-stat-action="perfis">
+                        Ver todos os perfis <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </article>
+
+            <article class="per-stat per-green">
+                <div class="per-stat-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div class="per-stat-info">
+                    <span>Permissões ativas</span>
+                    <strong id="perTotalPermissoes">48</strong>
+                    <small>no total</small>
+                    <button type="button" data-stat-action="permissoes">
+                        Gerenciar permissões <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </article>
+
+            <article class="per-stat per-orange">
+                <div class="per-stat-icon">
+                    <i class="fa-solid fa-user-group"></i>
+                </div>
+
+                <div class="per-stat-info">
+                    <span>Usuários vinculados</span>
+                    <strong id="perTotalUsuarios">48</strong>
+                    <small>usuários com perfis</small>
+
+                    <!-- Coloque a URL da página Todos os usuários -->
+                    <a href="#">
+                        Ver usuários <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="per-stat per-blue">
+                <div class="per-stat-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <div class="per-stat-info">
+                    <span>Segurança</span>
+                    <strong class="per-stat-security">Controle de acesso</strong>
+                    <small>e permissões</small>
+                    <button type="button" data-stat-action="seguranca">
+                        Saiba mais <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Área principal -->
+        <section class="per-layout">
+
+            <!-- Lista de perfis -->
+            <aside class="per-list-panel">
+
+                <div class="per-list-header">
+                    <h2>Perfis cadastrados</h2>
+
+                    <label class="per-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input
+                            type="search"
+                            id="perBusca"
+                            placeholder="Buscar perfil..."
+                        >
+                    </label>
+                </div>
+
+                <div class="per-profile-list" id="perListaPerfis">
+
+                    <button type="button"
+                        class="per-profile active"
+                        data-profile="Administrador">
+
+                        <span class="per-profile-icon purple">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+
+                        <span class="per-profile-info">
+                            <strong>Administrador <small class="per-tag system">Sistema</small></strong>
+                            <small>8 usuários</small>
+                            <small>Acesso total a todas as funcionalidades</small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button type="button"
+                        class="per-profile"
+                        data-profile="Professor">
+
+                        <span class="per-profile-icon blue">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+
+                        <span class="per-profile-info">
+                            <strong>Professor <small class="per-tag default">Padrão</small></strong>
+                            <small>12 usuários</small>
+                            <small>Acesso às funcionalidades acadêmicas<br>e de gestão de atividades</small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button type="button"
+                        class="per-profile"
+                        data-profile="Servidor">
+
+                        <span class="per-profile-icon green">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </span>
+
+                        <span class="per-profile-info">
+                            <strong>Servidor <small class="per-tag default">Padrão</small></strong>
+                            <small>10 usuários</small>
+                            <small>Acesso às funcionalidades administrativas<br>e operacionais</small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button type="button"
+                        class="per-profile"
+                        data-profile="Aluno">
+
+                        <span class="per-profile-icon orange">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+
+                        <span class="per-profile-info">
+                            <strong>Aluno <small class="per-tag student">Padrão</small></strong>
+                            <small>15 usuários</small>
+                            <small>Acesso às informações acadêmicas<br>e participação</small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button type="button"
+                        class="per-profile"
+                        data-profile="Visitante">
+
+                        <span class="per-profile-icon red">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+
+                        <span class="per-profile-info">
+                            <strong>Visitante <small class="per-tag custom">Personalizado</small></strong>
+                            <small>3 usuários</small>
+                            <small>Acesso limitado a informações públicas</small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+                <div class="per-list-footer">
+                    <!-- Coloque a URL da página Todos os usuários -->
+                    <a href="#">
+                        <i class="fa-solid fa-users"></i>
+                        Ver usuários por perfil
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </aside>
+
+            <!-- Detalhes do perfil -->
+            <section class="per-details">
+
+                <header class="per-details-header">
+                    <div>
+                        <h2>
+                            Detalhes do perfil:
+                            <strong id="perNomePerfil">Administrador</strong>
+                            <span class="per-tag system" id="perTipoPerfil">Sistema</span>
+                        </h2>
+
+                        <p id="perDescricaoPerfil">
+                            Acesso total a todas as funcionalidades do sistema.
+                        </p>
+                    </div>
+
+                    <div class="per-details-actions">
+                        <button type="button" class="per-btn per-btn-edit" id="perEditar">
+                            <i class="fa-solid fa-pen"></i>
+                            Editar perfil
+                        </button>
+
+                        <button type="button" class="per-btn per-btn-delete" id="perExcluir">
+                            <i class="fa-regular fa-trash-can"></i>
+                            Excluir
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Abas dos detalhes -->
+                <nav class="per-detail-tabs">
+                    <button type="button" class="active" data-detail-tab="modulos">
+                        Permissões por módulo
+                    </button>
+
+                    <button type="button" data-detail-tab="usuarios">
+                        Usuários vinculados (<span id="perQuantidadeVinculados">8</span>)
+                    </button>
+
+                    <button type="button" data-detail-tab="informacoes">
+                        Informações gerais
+                    </button>
+                </nav>
+
+                <!-- Permissões por módulo -->
+                <div class="per-detail-content" data-detail-content="modulos">
+
+                    <div class="per-table-wrap">
+                        <table class="per-table">
+                            <thead>
+                                <tr>
+                                    <th>Módulo</th>
+                                    <th>Visualizar</th>
+                                    <th>Cadastrar</th>
+                                    <th>Editar</th>
+                                    <th>Excluir</th>
+                                    <th>Exportar</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="perTabelaPermissoes"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="per-permission-actions">
+                        <button type="button" class="per-btn per-btn-outline" id="perMarcarTodas">
+                            Marcar todas
+                        </button>
+
+                        <button type="button" class="per-btn per-btn-outline" id="perDesmarcarTodas">
+                            Desmarcar todas
+                        </button>
+
+                        <button type="button" class="per-btn per-btn-primary" id="perSalvar">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Salvar permissões
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Usuários vinculados -->
+                <div class="per-detail-content" data-detail-content="usuarios" hidden>
+
+                    <div class="per-linked-header">
+                        <h3>Usuários vinculados ao perfil</h3>
+                        <span id="perTextoVinculados">8 usuários encontrados</span>
+                    </div>
+
+                    <div class="per-linked-list" id="perListaVinculados"></div>
+
+                </div>
+
+                <!-- Informações gerais -->
+                <div class="per-detail-content" data-detail-content="informacoes" hidden>
+
+                    <div class="per-info-grid">
+                        <div>
+                            <span>Nome do perfil</span>
+                            <strong id="perInfoNome">Administrador</strong>
+                        </div>
+
+                        <div>
+                            <span>Tipo de perfil</span>
+                            <strong id="perInfoTipo">Sistema</strong>
+                        </div>
+
+                        <div>
+                            <span>Quantidade de usuários</span>
+                            <strong id="perInfoUsuarios">8</strong>
+                        </div>
+
+                        <div>
+                            <span>Permissões concedidas</span>
+                            <strong id="perInfoPermissoes">35</strong>
+                        </div>
+
+                        <div>
+                            <span>Situação</span>
+                            <strong class="per-info-active">Ativo</strong>
+                        </div>
+
+                        <div>
+                            <span>Identificador</span>
+                            <strong id="perInfoId">PER-001</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="per-details-notice">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>As permissões definem o que cada perfil pode visualizar e executar no sistema.</span>
+                </div>
+
+            </section>
+
+        </section>
+
+    </section>
+
+    <!-- Conteúdo da aba geral de permissões -->
+    <section class="per-main-content" data-main-content="permissoes" hidden>
+
+        <div class="per-global-panel">
+            <div class="per-global-heading">
+                <div>
+                    <h2>Permissões por módulo</h2>
+                    <p>Consulte e gerencie as permissões dos diferentes perfis do sistema.</p>
+                </div>
+            </div>
+
+            <div class="per-global-table-wrap">
+                <table class="per-table">
+                    <thead>
+                        <tr>
+                            <th>Perfil</th>
+                            <th>Usuários</th>
+                            <th>Permissões concedidas</th>
+                            <th>Situação</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="perTabelaGeral"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="per-toast" id="perToast" role="status" aria-live="polite" hidden></div>
+
+</main>
+
+{% endblock %}

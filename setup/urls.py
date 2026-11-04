@@ -9,6 +9,7 @@ urlpatterns = [
     path("", include("reservas.urls")), # <-- Rota vazia '' significa a página inicial do site
     path("", include("emprestimos.urls")),
     path("", include("usuarios.urls")),
+    path("", include("documentos.urls")),
 ]
 
 if settings.DEBUG:

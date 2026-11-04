@@ -5,4 +5,6 @@ urlpatterns = [
     path('usuarios/', views.usuarios, name="usuarios"),
     path('permissoesUsuarios/', views.permissoesUsuarios, name="permissoesUsuarios"),
     path('cadastroUsuario/', views.cadastroUsuario, name="cadastroUsuario"),
+    path('cadastroPerfil/', views.cadastroPerfil, name="cadastroPerfil"),
+    path('meuPerfil/', views.meuPerfil, name="meuPerfil"),
 ]
