@@ -14,4 +14,4 @@ def cadastroPerfil(request):
     return render (request, 'usuários/cadastroPerfil.html')
 
 def meuPerfil(request):
-    return render (request, 'usuário/meuPerfil.html')
+    return render (request, 'usuários/meuPerfil.html')
