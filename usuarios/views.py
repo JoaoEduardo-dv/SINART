@@ -2,16 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 def usuarios (request):
-    return render (request, 'usuários/usuarios.html')
+    return render (request, 'usuarios/usuarios.html')
 
 def permissoesUsuarios (request):
-    return render (request, 'usuários/permissoesUsuarios.html')
+    return render (request, 'usuarios/permissoesUsuarios.html')
 
 def cadastroUsuario (request):
-    return render (request, 'usuários/cadastroUsuario.html')
+    return render (request, 'usuarios/cadastroUsuario.html')
 
 def cadastroPerfil(request):
-    return render (request, 'usuários/cadastroPerfil.html')
+    return render (request, 'usuarios/cadastroPerfil.html')
 
 def meuPerfil(request):
-    return render (request, 'usuários/meuPerfil.html')
+    return render (request, 'usuarios/meuPerfil.html')

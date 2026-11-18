@@ -3,7 +3,7 @@
 ========================================= */
 
 .doc-page {
-    --doc-bg: #ffffff;
+    --doc-bg: transparent;
     --doc-surface: #ffffff;
     --doc-surface-soft: #f8f9fc;
     --doc-text: #17233b;
@@ -11,16 +11,17 @@
     --doc-border: #e3eaf4;
     --doc-input: #ffffff;
     --doc-primary: #6732b5;
-    --doc-primary-hover: #54249d;
-    --doc-shadow: 0 2px 10px rgba(31, 55, 90, 0.035);
+        --doc-primary-hover: #54249d;
+        --doc-shadow: 0 2px 10px rgba(31, 55, 90, 0.035);
 
     width: 100%;
     min-width: 0;
-    padding: 28px 30px 24px;
+    padding: 20px 16px 32px;
     color: var(--doc-text);
-    background: var(--doc-bg);
-    border: 1px solid var(--doc-border);
-    border-radius: 12px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     box-sizing: border-box;
     position: relative;
 }

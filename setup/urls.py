@@ -11,7 +11,7 @@ urlpatterns = [
     path("", include("emprestimos.urls")),
     path("", include("usuarios.urls")),
     path("", include("documentos.urls")),
-    path('confirações/', views.configuracoes, name="configurações"),
+    path('configurações/', views.configuracoes, name="configurações"),
 ]
 
 if settings.DEBUG:

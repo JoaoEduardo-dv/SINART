@@ -2,6 +2,10 @@
 (() => {
   "use strict";
 
+  // Só roda na página de Aulas. Sem isso, o script (carregado em todas as telas pelo base.html)
+  // escondia qualquer [data-panel] de outras páginas, como Configurações e Meu Perfil.
+  if (!document.getElementById('ahAbas')) return;
+
   // Coloque os endereços das páginas do Django aqui, ou substitua os href="#" no HTML.
   const LINKS_AH = {
     "cadastrar-aula": "",
